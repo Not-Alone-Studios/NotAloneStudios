@@ -430,9 +430,16 @@ main {
 .page-hero p,
 .page-intro p,
 .card p,
+.host-card p,
 .article-card p,
 .plan-card p,
+.proof-card p,
 .surface-panel p,
+.workflow-step p,
+.callout-card p,
+.note-band p,
+.cta-panel p,
+.page-banner p,
 .legal-article p,
 .legal-article li,
 .section-head p,
@@ -827,6 +834,8 @@ main {
 }
 
 .callout-card {
+  display: grid;
+  gap: 12px;
   padding: 22px;
   border-radius: 20px;
   border: 1px solid var(--line);
@@ -1095,6 +1104,12 @@ main {
 
 .page-banner p {
   margin: 0;
+}
+
+.note-band .button-row,
+.page-banner .button-row,
+.callout-card .button-row {
+  margin-top: 2px;
 }
 
 .inline-hosts {

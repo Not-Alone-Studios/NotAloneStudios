@@ -4,12 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#0f766e" />
-  <title>Maulya · Workflow Survey</title>
-  <meta name="description" content="Help us shape Maulya for valuation practice. 3 minutes, mostly taps." />
-  <meta property="og:title" content="Maulya · Workflow Survey" />
-  <meta property="og:description" content="3 minutes. Mostly taps. Helps us build the right tool for Indian valuation practice." />
+  <title>Maulya · Workflow Fit Survey</title>
+  <meta name="description" content="Help us shape Maulya for valuation operations. 3 minutes, mostly taps, directly useful." />
+  <meta property="og:title" content="Maulya · Workflow Fit Survey" />
+  <meta property="og:description" content="3 minutes. Mostly taps. Helps us shape Maulya for valuation operations." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://maulya.in/survey/" />
+  <link rel="icon" type="image/png" href="/assets/brand/maulya-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -530,7 +531,7 @@
       { id:'f3', s:'f', lite:false, t:'s', q:'Would ready-made bank-wise formats, standard declarations, and compliance-oriented report sections reduce your report preparation effort?',
         opts:['Yes, significantly','Yes, somewhat','Very little difference','No'], req:false },
       { id:'f4', s:'f', lite:true,  t:'s', q:'If one tool helped you generate and manage about 15–20 reports — how much monthly cost would feel worth it?',
-        hint:'Helps us calibrate pricing for the Indian valuation market.',
+        hint:'Helps us understand early commercial expectations without publishing fake public pricing.',
         opts:['Below ₹3,000 / month','₹3,000–₹5,000 / month','₹5,000–₹9,000 / month','Above ₹9,000 / month'], req:false }
     ];
 
@@ -805,11 +806,12 @@
       return `
         <div class="sv-intro" role="region" aria-label="Survey introduction">
           <img src="/assets/brand/maulya-logo.png" alt="Maulya" class="sv-intro__logo" loading="eager" />
-          <h1 class="sv-intro__title">Help us shape Maulya for valuation ops.</h1>
-          <p class="sv-intro__sub">We're building workflow software for Indian valuation teams. Your answers help us get the details right.</p>
+          <h1 class="sv-intro__title">Help us shape Maulya for valuation workflow.</h1>
+          <p class="sv-intro__sub">This short survey helps us tune assignments, evidence flow, approvals, reporting, and billing visibility for Indian valuation teams.</p>
           <div class="sv-intro__pills">
             <span class="sv-pill"><span class="sv-pill__dot"></span>3 minutes</span>
             <span class="sv-pill"><span class="sv-pill__dot"></span>Mostly taps</span>
+            <span class="sv-pill"><span class="sv-pill__dot"></span>Shapes roadmap</span>
             <span class="sv-pill"><span class="sv-pill__dot"></span>No client data</span>
             <span class="sv-pill"><span class="sv-pill__dot"></span>Progress saves locally</span>
           </div>
@@ -900,16 +902,16 @@
         <div class="sv-done" role="region" aria-label="Survey complete">
           <span class="sv-done__icon" aria-hidden="true">✓</span>
           <h2 class="sv-done__title">Thanks — responses received.</h2>
-          <p class="sv-done__sub">Your answers help us tune Maulya's workflow discipline, approval gates, and invoice follow-up.</p>
+          <p class="sv-done__sub">Your answers help us tune workflow fit, approvals, reporting posture, and rollout priorities.</p>
           ${profile ? `<div class="sv-done__profile" aria-label="Your workflow profile">${profile}</div>` : ''}
           <div id="sv-submit-status" class="sv-submit-status sv-submit-status--pending" role="status" aria-live="polite">
             <span class="sv-submit-spinner" aria-hidden="true"></span>Submitting…
           </div>
           <div class="sv-done__actions">
-            <a href="https://app.maulya.in/partner/request-access" class="sv-btn sv-btn--primary" target="_blank" rel="noopener">
-              Request Associate Access →
+            <a href="/pilot/?src=maulya-survey-done" class="sv-btn sv-btn--primary">
+              Request pilot or access →
             </a>
-            <a href="/demo/" class="sv-btn sv-btn--secondary">Try Demo</a>
+            <a href="/updates/" class="sv-btn sv-btn--secondary">Read product notes</a>
           </div>
           <div class="sv-done__mini">
             <button id="sv-dl-json">⬇ Download copy</button>
@@ -917,7 +919,7 @@
           </div>
           ${isLite ? `
           <div class="sv-done__expand">
-            <p>Want to share more? The full survey has ${fullQsLeft} additional questions on methods, compliance, and pricing.</p>
+            <p>Want to share more? The full survey has ${fullQsLeft} additional questions on methods, approvals, reporting, and commercial posture.</p>
             <button class="sv-btn sv-btn--secondary" id="sv-go-full" style="min-height:44px;font-size:14px;">
               Continue to full survey (${fullQsLeft} more) →
             </button>

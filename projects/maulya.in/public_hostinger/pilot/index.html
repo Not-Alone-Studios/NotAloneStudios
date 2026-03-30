@@ -15,6 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/site.css" />
+  
 </head>
 <body>
   <div class="page-shell">
@@ -24,19 +25,19 @@
           <strong>Pilot program</strong>
           <span>workflow fit</span>
           <span>controlled rollout</span>
-          <span>measurable operational feedback</span>
+          <span>survey-first qualification</span>
         </div>
-        <a class="topbar-link" href="/survey/">Take the workflow survey</a>
+        <a class="topbar-link" href="/survey/?src=maulya-pilot">Take the workflow survey</a>
       </div>
     </div>
-
+    
     <header class="site-header">
       <div class="shell">
         <a class="brand-lockup" href="/" aria-label="Maulya home">
           <img src="/assets/brand/maulya-icon.png" alt="Maulya" width="84" height="84" />
           <span class="brand-copy">
             <span class="brand-name">Maulya</span>
-            <span class="brand-sub">Pilot and rollout entry</span>
+            <span class="brand-sub">Valuation Operating System</span>
           </span>
         </a>
         <button class="nav-hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-drawer">
@@ -44,16 +45,11 @@
         </button>
         <div class="site-nav">
           <nav class="nav-links" aria-label="Primary">
-            <a href="/product/">Product</a>
-            <a href="/solutions/">Solutions</a>
-            <a href="/pricing/">Pricing</a>
-            <a href="/updates/">Updates</a>
-            <a href="/associates/">Associates</a>
-            <a href="/pilot/" aria-current="page">Pilot</a>
+            <a href="/product/">Product</a><a href="/solutions/">Solutions</a><a href="/survey/?src=maulya-pilot">Survey</a><a href="/updates/">Updates</a><a href="/associates/">Associates</a><a href="/pilot/" aria-current="page">Pilot</a>
           </nav>
           <div class="nav-actions">
-            <a class="link-chip" href="https://auth.maulya.in">Sign in</a>
-            <a class="btn btn-primary" href="https://app.maulya.in/">Open app</a>
+            <a class="link-chip" href="/updates/">Read updates</a>
+            <a class="btn btn-primary" href="/survey/?src=maulya-pilot">Take survey</a>
           </div>
         </div>
       </div>
@@ -61,16 +57,11 @@
 
     <aside class="mobile-drawer" id="mobile-drawer" aria-label="Mobile navigation">
       <nav>
-        <a href="/product/">Product</a>
-        <a href="/solutions/">Solutions</a>
-        <a href="/pricing/">Pricing</a>
-        <a href="/updates/">Updates</a>
-        <a href="/associates/">Associates</a>
-        <a href="/pilot/" aria-current="page">Pilot</a>
+        <a href="/product/">Product</a><a href="/solutions/">Solutions</a><a href="/survey/?src=maulya-pilot">Survey</a><a href="/updates/">Updates</a><a href="/associates/">Associates</a><a href="/pilot/" aria-current="page">Pilot</a>
       </nav>
       <div class="nav-actions-mobile">
-        <a class="link-chip" href="https://auth.maulya.in">Sign in</a>
-        <a class="btn btn-primary" href="https://app.maulya.in/">Open app</a>
+        <a class="link-chip" href="/updates/">Read updates</a>
+        <a class="btn btn-primary" href="/survey/?src=maulya-pilot">Take survey</a>
       </div>
     </aside>
 
@@ -80,7 +71,12 @@
           <div class="page-intro__copy reveal is-visible">
             <span class="eyebrow">Controlled rollout</span>
             <h1>Start with a pilot, not a blind platform switch.</h1>
-            <p>Maulya pilots are for valuation firms that want to test workflow fit, role boundaries, report-generation posture, and team adoption with a smaller, measurable rollout first.</p>
+            <p>Maulya pilots are for valuation firms that want to test workflow fit, role boundaries, report posture, and team adoption with a smaller, measurable rollout first.</p>
+            <div class="button-row">
+              <a class="btn btn-primary" href="/survey/?src=maulya-pilot">Take the workflow survey</a>
+              <a class="btn btn-secondary" href="#pilot-form">Request pilot</a>
+              <a class="btn btn-quiet" href="/updates/">Read updates</a>
+            </div>
           </div>
         </div>
       </section>
@@ -88,16 +84,19 @@
       <section class="section section-tight">
         <div class="shell split-layout">
           <article class="card reveal">
-            <span class="eyebrow">What a pilot is for</span>
-            <h3>Reduce chaos before you scale.</h3>
+            <span class="eyebrow">Best first step</span>
+            <h3>Most early teams should start with the survey.</h3>
+            <p>The survey is the stronger first conversion path because it stays live independently, captures useful workflow detail, and gives us better context before a pilot conversation.</p>
             <ul class="list-check">
-              <li>Test assignment and evidence flow with a real team</li>
-              <li>Validate who needs which surface and approval path</li>
-              <li>Understand commercial posture before larger rollout</li>
-              <li>Replace repeated follow-up with clearer state visibility</li>
+              <li>Tell us your volume, blockers, approval posture, and report pain</li>
+              <li>Help us qualify the right rollout lane faster</li>
+              <li>Useful even if live app onboarding is temporarily degraded</li>
             </ul>
+            <div class="button-row">
+              <a class="btn btn-primary" href="/survey/?src=maulya-pilot">Take the survey first</a>
+            </div>
           </article>
-          <form class="card intake-form reveal" action="https://app.maulya.in/api/partner/request-access/handoff" method="post">
+          <form class="card intake-form reveal" id="pilot-form" action="https://app.maulya.in/api/partner/request-access/handoff" method="post">
             <input type="hidden" name="source" value="maulya-public-pilot" />
             <span class="eyebrow">Request pilot</span>
             <h3>Tell us about your team.</h3>
@@ -122,7 +121,7 @@
               <textarea name="pain" rows="4" placeholder="Assignments, evidence, review delays, report generation, billing clarity..."></textarea>
             </label>
             <button class="btn btn-primary" type="submit">Start pilot request</button>
-            <p class="muted">This hands you into the live Maulya onboarding lane. We keep the marketing form short on purpose.</p>
+            <p class="muted">This hands you into the live Maulya onboarding lane. If you want the most resilient first step, use the survey above.</p>
           </form>
         </div>
       </section>
@@ -135,17 +134,17 @@
               <p>Firms that are serious about replacing scattered workflow with a controlled operating model, but want to start with one team or one slice of the process.</p>
             </div>
             <div class="callout-card reveal">
-              <h3>Optional first step</h3>
-              <p>If you want to give better context before the pilot conversation, use the workflow survey so we can see your current volume and friction points faster.</p>
+              <h3>Why the survey matters</h3>
+              <p>Survey responses give us current volume, friction, and workflow detail before the conversation, so pilot scoping starts with real context instead of generic discovery.</p>
               <div class="button-row" style="margin-top: 14px;">
-                <a class="btn btn-secondary" href="/survey/">Take the survey</a>
+                <a class="btn btn-secondary" href="/survey/?src=maulya-pilot">Take the survey</a>
               </div>
             </div>
           </div>
         </div>
       </section>
     </main>
-
+    
     <footer class="site-footer">
       <div class="shell">
         <div class="footer-grid">
@@ -154,35 +153,39 @@
               <img src="/assets/brand/maulya-icon.png" alt="Maulya" width="84" height="84" />
               <span class="brand-copy">
                 <span class="brand-name">Maulya</span>
-                <span class="brand-sub">Pilot and rollout entry</span>
+                <span class="brand-sub">Static marketing and survey-first public site</span>
               </span>
             </a>
-            <p>Small, measurable rollouts for firms that want to validate workflow fit before wider adoption.</p>
+            <p>Small, measurable rollouts for firms that want to validate workflow fit before wider adoption, with the survey now acting as the stronger first step.</p>
           </div>
           <div class="footer-card">
             <h3>Explore</h3>
             <a href="/product/">Product</a>
-            <a href="/pricing/">Pricing</a>
-            <a href="/associates/">Associates</a>
-            <a href="/survey/">Survey</a>
+            <a href="/solutions/">Solutions</a>
+            <a href="/survey/?src=maulya-pilot">Workflow survey</a>
+            <a href="/updates/">Updates</a>
           </div>
           <div class="footer-card">
-            <h3>Links</h3>
-            <a href="/survey/">Workflow survey</a>
+            <h3>Next steps</h3>
+            <a href="/pilot/">Request pilot</a>
+            <a href="/associates/">Associate lane</a>
             <a href="https://app.maulya.in/">Open app</a>
             <a href="/privacy/">Privacy</a>
             <a href="/terms/">Terms</a>
+            
           </div>
         </div>
         <div class="footer-bottom">
-          <span>© <span data-year></span> Maulya.</span>
+          <span>© <span data-year></span> Maulya. Public site for maulya.in and www.maulya.in.</span>
           <div class="footer-mini-links">
-            <a href="/survey/">Survey</a>
-            <a href="https://app.maulya.in/partner/request-access">Associate access</a>
+            <a href="/survey/?src=maulya-pilot">Survey</a>
+            <a href="/pilot/">Pilot</a>
+            <a href="https://app.maulya.in/updates">Updates reader</a>
           </div>
         </div>
       </div>
     </footer>
+
   </div>
   <script src="/assets/site.js"></script>
 </body>
