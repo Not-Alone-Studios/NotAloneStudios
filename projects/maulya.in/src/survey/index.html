@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#0f766e" />
   <title>Maulya · Workflow Fit Survey</title>
-  <meta name="description" content="Help us shape Maulya for valuation operations. 3 minutes, mostly taps, directly useful." />
+  <meta name="description" content="Help us shape Maulya for valuation operations through the main workflow survey." />
   <meta property="og:title" content="Maulya · Workflow Fit Survey" />
-  <meta property="og:description" content="3 minutes. Mostly taps. Helps us shape Maulya for valuation operations." />
+  <meta property="og:description" content="The main workflow survey for shaping Maulya around real valuation operations." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://maulya.in/survey/" />
   <link rel="icon" type="image/png" href="/assets/brand/maulya-icon.png" />
@@ -476,66 +476,67 @@
 
     const Q = [
       /* A */
-      { id:'a1', s:'a', lite:true,  t:'s', q:'Which best describes your current valuation practice structure?',
+      { id:'a1', s:'a', t:'s', q:'Which best describes your current valuation practice structure?',
         opts:['Independent practice','Compact team (2–5 people)','Established team (6–15 people)','Larger organization (15+ people)'], req:true },
-      { id:'a2', s:'a', lite:true,  t:'s', q:'On average, how many land and building valuation assignments do you handle in a week?',
+      { id:'a2', s:'a', t:'s', q:'On average, how many land and building valuation assignments do you handle in a week?',
         opts:['1–5 assignments','6–10 assignments','11–20 assignments','More than 20 assignments'], req:true },
-      { id:'a3', s:'a', lite:false, t:'s', q:'How many banks and financial institution empanelments do you currently hold?',
+      { id:'a3', s:'a', t:'s', q:'How many banks and financial institution empanelments do you currently hold?',
         opts:['None currently','1–2 empanelments','3–5 empanelments','More than 5 empanelments'], req:false },
-      { id:'a4', s:'a', lite:false, t:'s', q:'Which best describes your professional registration status?',
+      { id:'a4', s:'a', t:'s', q:'Which best describes your professional registration status?',
         hint:'You can choose "Prefer not to say" — responses are aggregated, never individual.',
         opts:['IBBI registered','Section 34AB / 34AP registered','Both IBBI and 34AB / 34AP registered','Prefer not to say'], req:false },
-      { id:'a5', s:'a', lite:false, t:'s', q:'How many years of experience do you have in valuation practice?',
+      { id:'a5', s:'a', t:'s', q:'How many years of experience do you have in valuation practice?',
         opts:['0–3 years','4–7 years','8–15 years','More than 15 years'], req:true },
       /* B */
-      { id:'b1', s:'b', lite:false, t:'s', q:'Who usually conducts the site visit for your assignments?',
+      { id:'b1', s:'b', t:'s', q:'Who usually conducts the site visit for your assignments?',
         opts:['I personally do all site visits','A team member usually handles site visits','I do some, my team does some','It depends on assignment type or urgency'], req:true },
-      { id:'b2', s:'b', lite:true,  t:'s', q:'After receiving a new assignment, how quickly is the site visit usually completed?',
+      { id:'b2', s:'b', t:'s', q:'After receiving a new assignment, how quickly is the site visit usually completed?',
         opts:['Within a few hours','On the same day','Within 1 day','In 2 days or more'], req:true },
-      { id:'b3', s:'b', lite:true,  t:'s', q:'After collecting all site data, how long does it usually take to prepare and finalize the report?',
+      { id:'b3', s:'b', t:'s', q:'After collecting all site data, how long does it usually take to prepare and finalize the report?',
         opts:['In less than 4 hours','On the same day','In 1 to 2 days','In more than 2 days'], req:true },
-      { id:'b4', s:'b', lite:false, t:'s', q:'How often do peak days create urgent assignment pressure on report delivery timelines?',
+      { id:'b4', s:'b', t:'s', q:'How often do peak days create urgent assignment pressure on report delivery timelines?',
         opts:['Very often','Sometimes','Rarely','Almost never'], req:false },
       /* C */
-      { id:'c1', s:'c', lite:true,  t:'s', q:'Which part of your current valuation workflow has the most scope for improvement?',
+      { id:'c1', s:'c', t:'s', q:'Which part of your current valuation workflow has the most scope for improvement?',
         opts:['Time taken to prepare reports','Finding reliable market rates and comparables','Manual calculations and checking','Managing multiple assignments at once'], req:true },
-      { id:'c2', s:'c', lite:true,  t:'s', q:'How often do manual calculations, formulas, or missed decimals create rework or risk in your reports?',
+      { id:'c2', s:'c', t:'s', q:'How often do manual calculations, formulas, or missed decimals create rework or risk in your reports?',
         opts:['Frequently','Occasionally','Rarely','Never'], req:true },
-      { id:'c3', s:'c', lite:true,  t:'s', q:'How do you currently manage long-term storage and retrieval of old valuation reports and supporting data?',
+      { id:'c3', s:'c', t:'s', q:'How do you currently manage long-term storage and retrieval of old valuation reports and supporting data?',
         opts:['Manual folders or physical files','Computer folders or external drives','Cloud storage or shared drives','No structured retention system'], req:true },
-      { id:'c4', s:'c', lite:false, t:'s', q:'How much time do you spend training new staff on your valuation format, process, and report preparation style?',
+      { id:'c4', s:'c', t:'s', q:'How much time do you spend training new staff on your valuation format, process, and report preparation style?',
         opts:['A lot — this is a major burden','A moderate amount','Very little','I do not usually hire or train staff'], req:false },
-      { id:'c5', s:'c', lite:false, t:'x', q:'What is the single biggest problem you face as a land and building valuer today?',
+      { id:'c5', s:'c', t:'x', q:'What is the single biggest problem you face as a land and building valuer today?',
         placeholder:'Share in your own words — 1 to 2 lines is fine.', req:false },
-      { id:'c6', s:'c', lite:false, t:'x', q:'What kind of solution would make that problem easier in day-to-day practice?',
+      { id:'c6', s:'c', t:'x', q:'What kind of solution would make that problem easier in day-to-day practice?',
         placeholder:'Be as specific or general as you like.', req:false },
       /* D */
-      { id:'d1', s:'d', lite:false, t:'s', q:'Which depreciation approach do you primarily follow for building valuation work?',
+      { id:'d1', s:'d', t:'s', q:'Which depreciation approach do you primarily follow for building valuation work?',
         opts:['Age-life / straight line basis','Written down value (WDV) basis','It depends on property type or assignment purpose','I use another approach'], req:false },
-      { id:'d2', s:'d', lite:true,  t:'s', q:'If a system handled calculations, templates, and data organization — but you still made the final value judgment — how would you feel?',
+      { id:'d2', s:'d', t:'s', q:'If a system handled calculations, templates, and data organization — but you still made the final value judgment — how would you feel?',
         opts:['More confident — saves effort while keeping me in control','Equally confident','Slightly hesitant','Not comfortable with that approach'], req:true },
-      { id:'d3', s:'d', lite:false, t:'s', q:'How important is it that you personally review and approve every final valuation before submission?',
+      { id:'d3', s:'d', t:'s', q:'How important is it that you personally review and approve every final valuation before submission?',
         opts:['Absolutely essential','Important','Somewhat important','Not necessary in every case'], req:false },
       /* E */
-      { id:'e1', s:'e', lite:true,  t:'s', q:'How do you currently track the status of multiple assignments?',
+      { id:'e1', s:'e', t:'s', q:'How do you currently track the status of multiple assignments?',
         opts:['Memory, WhatsApp, or calls','Notebook or diary','Excel or Google Sheets','Dedicated software or system'], req:true },
-      { id:'e2', s:'e', lite:true,  t:'s', q:'How useful would it be if one platform showed assignment status, report readiness, invoice status, and payment tracking in one place?',
+      { id:'e2', s:'e', t:'s', q:'How useful would it be if one platform showed assignment status, report readiness, invoice status, and payment tracking in one place?',
         opts:['Extremely useful','Useful','Somewhat useful','Not useful'], req:true },
-      { id:'e3', s:'e', lite:false, t:'s', q:'How helpful would it be if, in one click, you could notify the client that the report is ready — along with balance payment details and office pickup location?',
+      { id:'e3', s:'e', t:'s', q:'How helpful would it be if, in one click, you could notify the client that the report is ready — along with balance payment details and office pickup location?',
         opts:['Extremely helpful','Helpful','Somewhat helpful','Not needed'], req:false },
       /* F */
-      { id:'f1', s:'f', lite:false, t:'s', q:'If software could help prepare a report in under 10 minutes after data entry — how interested would you be in trying it?',
+      { id:'f1', s:'f', t:'s', q:'If software could help prepare a report in under 10 minutes after data entry — how interested would you be in trying it?',
         opts:['Very interested','Interested','Maybe, depending on workflow fit','Not interested'], req:false },
-      { id:'f2', s:'f', lite:false, t:'s', q:'How valuable would a location-wise rate reference database for land and building values be to your practice?',
+      { id:'f2', s:'f', t:'s', q:'How valuable would a location-wise rate reference database for land and building values be to your practice?',
         opts:['Extremely valuable','Useful','Somewhat useful','Not useful'], req:false },
-      { id:'f3', s:'f', lite:false, t:'s', q:'Would ready-made bank-wise formats, standard declarations, and compliance-oriented report sections reduce your report preparation effort?',
+      { id:'f3', s:'f', t:'s', q:'Would ready-made bank-wise formats, standard declarations, and compliance-oriented report sections reduce your report preparation effort?',
         opts:['Yes, significantly','Yes, somewhat','Very little difference','No'], req:false },
-      { id:'f4', s:'f', lite:true,  t:'s', q:'If one tool helped you generate and manage about 15–20 reports — how much monthly cost would feel worth it?',
+      { id:'f4', s:'f', t:'s', q:'If one tool helped you generate and manage about 15–20 reports — how much monthly cost would feel worth it?',
         hint:'Helps us understand early commercial expectations without publishing fake public pricing.',
         opts:['Below ₹3,000 / month','₹3,000–₹5,000 / month','₹5,000–₹9,000 / month','Above ₹9,000 / month'], req:false }
     ];
 
-    const STORAGE_KEY    = 'maulya_survey_v2';
+    const STORAGE_KEY    = 'maulya_survey_v3_full';
+    const LEGACY_STORAGE_KEY = 'maulya_survey_v2';
     const AUTO_MS        = 380;
     // ── Apps Script Web App /exec endpoint (NOT a library URL) ────────────
     // Must end in /exec and contain /macros/s/ — never /macros/library/ or /macros/edit
@@ -546,7 +547,6 @@
        STATE
        ============================================================ */
     const st = {
-      mode: 'lite',
       screens: [],
       idx: 0,
       answers: {},
@@ -560,9 +560,9 @@
     /* ============================================================
        SCREEN BUILDER
        ============================================================ */
-    function buildScreens(mode) {
+    function buildScreens() {
       const scr = [{ t: 'intro' }];
-      const qs = mode === 'lite' ? Q.filter(q => q.lite) : [...Q];
+      const qs = [...Q];
       let curSec = null;
       qs.forEach(q => {
         if (q.s !== curSec) {
@@ -607,19 +607,35 @@
        ============================================================ */
     function save() {
       try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify({ mode: st.mode, idx: st.idx, answers: st.answers }));
+        const current = st.screens[st.idx];
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          idx: st.idx,
+          answers: st.answers,
+          currentQuestionId: current && current.t === 'q' ? current.q.id : ''
+        }));
       } catch(e) {}
     }
 
     function load() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
-        return raw ? JSON.parse(raw) : null;
+        if (raw) return JSON.parse(raw);
+        const legacy = localStorage.getItem(LEGACY_STORAGE_KEY);
+        if (!legacy) return null;
+        const parsed = JSON.parse(legacy);
+        return {
+          idx: 1,
+          answers: parsed.answers || {},
+          currentQuestionId: ''
+        };
       } catch(e) { return null; }
     }
 
     function clearSaved() {
-      try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+      try {
+        localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem(LEGACY_STORAGE_KEY);
+      } catch(e) {}
     }
 
     /* ============================================================
@@ -652,7 +668,7 @@
        SUBMIT
        ============================================================ */
     function downloadJSON() {
-      const data = { version:2, timestamp:new Date().toISOString(), mode:st.mode, answers:st.answers };
+      const data = { version:3, timestamp:new Date().toISOString(), survey_version:'v3-full', answers:st.answers };
       const blob = new Blob([JSON.stringify(data, null, 2)], { type:'application/json' });
       const url  = URL.createObjectURL(blob);
       const a    = document.createElement('a');
@@ -681,7 +697,7 @@
       const payload = {
         timestamp_iso:   new Date().toISOString(),
         src:             getQueryParam('src') || 'unknown',
-        survey_version:  'v2-' + st.mode + '-' + Object.keys(st.answers).length + 'q',
+        survey_version:  'v3-full-' + Object.keys(st.answers).length + 'q',
         answers:         st.answers,
         page_url:        location.href,
         user_agent:      navigator.userAgent,
@@ -807,9 +823,9 @@
         <div class="sv-intro" role="region" aria-label="Survey introduction">
           <img src="/assets/brand/maulya-logo.png" alt="Maulya" class="sv-intro__logo" loading="eager" />
           <h1 class="sv-intro__title">Help us shape Maulya for valuation workflow.</h1>
-          <p class="sv-intro__sub">This short survey helps us tune assignments, evidence flow, approvals, reporting, and billing visibility for Indian valuation teams.</p>
+          <p class="sv-intro__sub">This workflow survey helps us tune assignments, evidence flow, approvals, reporting, and billing visibility for Indian valuation teams.</p>
           <div class="sv-intro__pills">
-            <span class="sv-pill"><span class="sv-pill__dot"></span>3 minutes</span>
+            <span class="sv-pill"><span class="sv-pill__dot"></span>Main survey</span>
             <span class="sv-pill"><span class="sv-pill__dot"></span>Mostly taps</span>
             <span class="sv-pill"><span class="sv-pill__dot"></span>Shapes roadmap</span>
             <span class="sv-pill"><span class="sv-pill__dot"></span>No client data</span>
@@ -896,8 +912,6 @@
 
     function buildDoneCard() {
       const profile = calcProfile();
-      const isLite  = st.mode === 'lite';
-      const fullQsLeft = Q.filter(q => !q.lite).length;
       return `
         <div class="sv-done" role="region" aria-label="Survey complete">
           <span class="sv-done__icon" aria-hidden="true">✓</span>
@@ -917,13 +931,6 @@
             <button id="sv-dl-json">⬇ Download copy</button>
             <button id="sv-mail-btn">✉ Send by mail</button>
           </div>
-          ${isLite ? `
-          <div class="sv-done__expand">
-            <p>Want to share more? The full survey has ${fullQsLeft} additional questions on methods, approvals, reporting, and commercial posture.</p>
-            <button class="sv-btn sv-btn--secondary" id="sv-go-full" style="min-height:44px;font-size:14px;">
-              Continue to full survey (${fullQsLeft} more) →
-            </button>
-          </div>` : ''}
         </div>`;
     }
 
@@ -1016,7 +1023,6 @@
       // Done: download / mail / expand
       card.querySelector('#sv-dl-json')?.addEventListener('click', downloadJSON);
       card.querySelector('#sv-mail-btn')?.addEventListener('click', sendMail);
-      card.querySelector('#sv-go-full')?.addEventListener('click', expandToFull);
 
       // Done: auto-submit to Google Sheet
       if (screen.t === 'done') {
@@ -1039,33 +1045,20 @@
     }
 
     /* ============================================================
-       EXPAND TO FULL
-       ============================================================ */
-    function expandToFull() {
-      st.mode = 'full';
-      st.screens = buildScreens('full');
-      rebuildQIdxMap();
-      // Find first unanswered full-only question
-      let target = st.screens.findIndex(s => s.t === 'q' && !st.answers[s.q.id] && !s.q.lite);
-      if (target === -1) target = st.screens.length - 2; // review
-      // Back up one if previous screen is a chapter
-      if (target > 0 && st.screens[target - 1].t === 'chapter') target--;
-      st.idx = Math.max(1, target);
-      save();
-      render(1);
-    }
-
-    /* ============================================================
        RESUME
        ============================================================ */
     function resumeFromSaved() {
       const saved = load();
       if (!saved) { goTo(1, 1); return; }
-      st.mode    = saved.mode || 'lite';
       st.answers = saved.answers || {};
-      st.screens = buildScreens(st.mode);
+      st.screens = buildScreens();
       rebuildQIdxMap();
-      const idx  = Math.min(saved.idx || 1, st.screens.length - 1);
+      let idx = 1;
+      if (saved.currentQuestionId && st.qIdxMap[saved.currentQuestionId] !== undefined) {
+        idx = st.qIdxMap[saved.currentQuestionId];
+      } else if (typeof saved.idx === 'number') {
+        idx = Math.min(saved.idx || 1, st.screens.length - 1);
+      }
       st.idx     = idx;
       render(1);
     }
@@ -1130,12 +1123,16 @@
       window.addEventListener('orientationchange', () => setTimeout(setVH, 100));
       setVH();
 
-      // URL params
       const p = new URLSearchParams(window.location.search);
-      if (p.get('full') === '1') st.mode = 'full';
+      ['full', 'lite', 'mode', 'variant'].forEach((key) => p.delete(key));
+      const canonicalQuery = p.toString();
+      const canonicalUrl = canonicalQuery ? `${location.pathname}?${canonicalQuery}` : location.pathname;
+      if (canonicalUrl !== `${location.pathname}${location.search}`) {
+        history.replaceState({}, '', canonicalUrl);
+      }
 
       // Build screens
-      st.screens = buildScreens(st.mode);
+      st.screens = buildScreens();
       rebuildQIdxMap();
 
       // Global nav buttons
