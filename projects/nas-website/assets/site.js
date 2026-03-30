@@ -887,7 +887,7 @@
     const hookCTA = hookEngine.querySelector("[data-hook-cta]");
     const hookRadios = hookEngine.querySelectorAll('input[name="hook"]');
     const hookMap = {
-      ops: "https://maulya.in/product/",
+      ops: "/products/maulya/",
       study: "/products/revalk/",
       custom: "/contact/#studio",
     };
@@ -1001,7 +1001,7 @@ p{line-height:1.6;margin-bottom:12px;color:#b8bcb4}.card{background:#1a2420;bord
         const pct = Math.round(30 + ((step + 1) / total) * 70);
         const label = page.includes("maulya") ? "Maulya" : page.includes("revalk") ? "Revalk" : "System Map";
         zeigLabel.textContent = `${label}: ${pct}% — `;
-        const dest = page.includes("maulya") ? "https://maulya.in/product/" : page.includes("revalk") ? "/products/revalk/" : "/";
+        const dest = page.includes("maulya") ? "/products/maulya/" : page.includes("revalk") ? "/products/revalk/" : "/";
         zeigContinue.href = dest;
         zeigContinue.textContent = "Continue";
 
@@ -1085,7 +1085,6 @@ p{line-height:1.6;margin-bottom:12px;color:#b8bcb4}.card{background:#1a2420;bord
     // Form submit → success (or Maulya handoff redirect)
     wizard.querySelectorAll("form[data-demo-form]").forEach((form) => {
       form.addEventListener("submit", (e) => {
-        e.preventDefault();
         // Inline validation
         let valid = true;
         form.querySelectorAll("[required]").forEach((field) => {
@@ -1093,15 +1092,17 @@ p{line-height:1.6;margin-bottom:12px;color:#b8bcb4}.card{background:#1a2420;bord
           field.setAttribute("aria-invalid", String(empty));
           if (empty) valid = false;
         });
-        if (!valid) return;
-
-        // Maulya handoff: POST then redirect
-        const action = form.getAttribute("action");
-        if (action && action.includes("maulya.in")) {
-          fetch(action, { method: "POST", body: new FormData(form) }).catch(() => {});
-          setTimeout(() => { window.location.href = "https://app.maulya.in/partner/request-access"; }, 600);
+        if (!valid) {
+          e.preventDefault();
           return;
         }
+
+        // Maulya handoff: keep native POST + server redirect so prefills survive
+        const action = form.getAttribute("action");
+        if (action && action.includes("app.maulya.in/api/partner/request-access/handoff")) {
+          return;
+        }
+        e.preventDefault();
         showWizardStep(3);
       });
     });

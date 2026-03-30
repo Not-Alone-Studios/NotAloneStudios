@@ -5,8 +5,8 @@ extensions = ['.html', '.css', '.js', '.md', '.txt']
 exclude_dirs = ['.git', 'node_modules', '.gemini', 'public_hostinger', 'public_clean', 'extracted-public-clean']
 
 replacements = {
-    '/products/maulya/': 'https://maulya.in/product/',
-    '/products/maulya': 'https://maulya.in/product/',
+    'https://maulya.in/product/': '/products/maulya/',
+    'https://maulya.in/product': '/products/maulya/',
 }
 
 for root, dirs, files in os.walk(directory):

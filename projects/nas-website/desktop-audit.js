@@ -67,7 +67,7 @@ const { chromium } = require('playwright');
 
   // 7. System Map (on Maulya products page)
   console.log('Navigating to Maulya product page...');
-  await page.goto('http://localhost:8080https://maulya.in/product/');
+  await page.goto('http://localhost:8080/products/maulya/');
   
   await page.evaluate(async () => {
     await new Promise((resolve) => {

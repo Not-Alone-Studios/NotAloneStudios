@@ -1,0 +1,1158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f766e" />
+  <title>Maulya · Workflow Survey</title>
+  <meta name="description" content="Help us shape Maulya for valuation practice. 3 minutes, mostly taps." />
+  <meta property="og:title" content="Maulya · Workflow Survey" />
+  <meta property="og:description" content="3 minutes. Mostly taps. Helps us build the right tool for Indian valuation practice." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://maulya.in/survey/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* =====================================================
+       RESET & BASE
+       ===================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%; overflow: hidden;
+      font-family: 'Manrope', -apple-system, system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+      background: #e4efec;
+    }
+
+    /* =====================================================
+       CUSTOM PROPERTIES
+       ===================================================== */
+    :root {
+      --teal: #0f766e; --teal-dark: #115e59; --teal-light: #14b8a6;
+      --text: #0f2420; --muted: #3d5c56; --muted-2: #5c7c74;
+      --surface: rgba(255,255,255,0.92); --surface-2: rgba(15,118,110,0.06);
+      --border: rgba(15,118,110,0.15); --border-sel: rgba(15,118,110,0.38);
+      --r-card: 20px; --r-opt: 14px;
+      --f-sans: 'Manrope', -apple-system, system-ui, sans-serif;
+      --f-serif: 'Fraunces', Georgia, serif;
+      --f-mono: 'IBM Plex Mono', monospace;
+      --t-fast: 150ms; --t-med: 280ms;
+      --ease: cubic-bezier(0.4,0,0.2,1);
+      --ease-out: cubic-bezier(0,0,0.2,1);
+      --ease-spring: cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    /* =====================================================
+       SURVEY SHELL
+       ===================================================== */
+    #sv {
+      position: fixed; inset: 0;
+      height: 100dvh;
+      height: calc(var(--vh,1vh) * 100);
+      display: flex; flex-direction: column; overflow: hidden;
+      background:
+        radial-gradient(circle at 8% 6%, rgba(15,118,110,0.18), transparent 46%),
+        radial-gradient(circle at 90% 8%, rgba(20,184,166,0.11), transparent 42%),
+        linear-gradient(175deg, #e4efec 0%, #edf4f0 38%, #f6fcf9 100%);
+    }
+
+    /* =====================================================
+       TOP BAR
+       ===================================================== */
+    .sv-top {
+      flex-shrink: 0;
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px;
+      padding-top: max(10px, env(safe-area-inset-top));
+    }
+    .sv-back, .sv-close {
+      flex-shrink: 0; width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      border: none; border-radius: 50%; cursor: pointer;
+      color: var(--teal); text-decoration: none;
+      background: rgba(15,118,110,0.08);
+      transition: background var(--t-fast) var(--ease), transform 100ms var(--ease);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .sv-back:active, .sv-close:active { background: rgba(15,118,110,0.16); transform: scale(0.9); }
+    .sv-back[hidden] { visibility: hidden; pointer-events: none; }
+    .sv-progress-wrap { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    .sv-progress-track {
+      height: 4px; background: rgba(15,118,110,0.15); border-radius: 99px; overflow: hidden;
+    }
+    .sv-progress-fill {
+      height: 100%; border-radius: 99px;
+      background: linear-gradient(90deg, #0d9488, #0f766e);
+      transition: width 0.55s var(--ease-spring);
+    }
+    .sv-progress-meta {
+      display: flex; justify-content: space-between;
+      font-family: var(--f-mono); font-size: 10px; color: var(--muted-2); opacity: 0.75;
+    }
+
+    /* =====================================================
+       STAGE
+       ===================================================== */
+    .sv-stage {
+      flex: 1; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      padding: 8px 14px;
+      touch-action: pan-y;
+    }
+
+    /* =====================================================
+       CARD BASE
+       ===================================================== */
+    .sv-card {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 8px 14px;
+      overflow-y: auto; overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+    }
+    .sv-card__inner { width: 100%; max-width: 460px; }
+
+    /* Card transitions */
+    @keyframes sv-in-r  { from{opacity:0;transform:translateX(32px) scale(0.97)} to{opacity:1;transform:none} }
+    @keyframes sv-in-l  { from{opacity:0;transform:translateX(-32px) scale(0.97)} to{opacity:1;transform:none} }
+    @keyframes sv-out-l { from{opacity:1;transform:none} to{opacity:0;transform:translateX(-24px) scale(0.97)} }
+    @keyframes sv-out-r { from{opacity:1;transform:none} to{opacity:0;transform:translateX(24px) scale(0.97)} }
+    @keyframes sv-fade-in  { from{opacity:0} to{opacity:1} }
+    @keyframes sv-fade-out { from{opacity:1} to{opacity:0} }
+
+    .sv-card--in-r  { animation: sv-in-r  var(--t-med) var(--ease-out) both; }
+    .sv-card--in-l  { animation: sv-in-l  var(--t-med) var(--ease-out) both; }
+    .sv-card--out-l { animation: sv-out-l var(--t-fast) var(--ease) both; pointer-events: none; }
+    .sv-card--out-r { animation: sv-out-r var(--t-fast) var(--ease) both; pointer-events: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .sv-card--in-r, .sv-card--in-l   { animation: sv-fade-in  var(--t-fast) var(--ease) both; }
+      .sv-card--out-l, .sv-card--out-r  { animation: sv-fade-out var(--t-fast) var(--ease) both; }
+      .sv-progress-fill { transition: width 0.25s ease; }
+    }
+
+    /* =====================================================
+       INTRO CARD
+       ===================================================== */
+    .sv-intro {
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 24px; padding: 32px 24px; text-align: center;
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 8px 40px rgba(15,118,110,0.08);
+    }
+    .sv-intro__logo { height: 28px; width: auto; margin: 0 auto 20px; display: block; opacity: 0.85; }
+    .sv-intro__title {
+      font-family: var(--f-serif); font-size: 21px; font-weight: 600;
+      color: var(--text); line-height: 1.35; margin-bottom: 10px;
+    }
+    .sv-intro__sub { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 22px; }
+    .sv-intro__pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 24px; }
+    .sv-pill {
+      display: flex; align-items: center; gap: 5px;
+      padding: 5px 10px; border-radius: 99px;
+      background: rgba(15,118,110,0.08); border: 1px solid rgba(15,118,110,0.18);
+      font-size: 12px; font-weight: 500; color: var(--muted);
+    }
+    .sv-pill__dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+
+    /* =====================================================
+       CHAPTER CARD
+       ===================================================== */
+    .sv-chapter {
+      padding: 32px 24px; text-align: center; border-radius: 24px;
+      background: linear-gradient(150deg, rgba(15,118,110,0.13), rgba(20,184,166,0.06));
+      border: 1.5px solid rgba(15,118,110,0.24);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 4px 24px rgba(15,118,110,0.06);
+    }
+    .sv-chapter__icon { font-size: 36px; display: block; margin-bottom: 12px; }
+    .sv-chapter__badge {
+      font-family: var(--f-mono); font-size: 10px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--teal); margin-bottom: 6px;
+    }
+    .sv-chapter__title {
+      font-family: var(--f-serif); font-size: 20px; font-weight: 600;
+      color: var(--text); margin-bottom: 6px;
+    }
+    .sv-chapter__count { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+    .sv-chapter__hint { font-size: 12px; color: var(--muted); opacity: 0.6; }
+
+    /* =====================================================
+       QUESTION CARD
+       ===================================================== */
+    .sv-q-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .sv-q-section {
+      font-family: var(--f-mono); font-size: 10px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.08em; color: var(--teal);
+      display: flex; align-items: center; gap: 5px;
+    }
+    .sv-q-section::before {
+      content: ''; display: inline-block; width: 7px; height: 7px;
+      background: var(--teal); border-radius: 50%;
+    }
+    .sv-q-num { font-family: var(--f-mono); font-size: 10px; color: var(--muted-2); opacity: 0.7; margin-left: auto; }
+
+    .sv-question {
+      font-family: var(--f-serif); font-weight: 600;
+      font-size: clamp(17px, 4.2vw, 20px); line-height: 1.45;
+      color: var(--text); margin-bottom: 6px;
+    }
+    .sv-hint {
+      font-size: 12px; color: var(--muted-2); line-height: 1.55; margin-bottom: 2px;
+      display: flex; align-items: flex-start; gap: 5px;
+    }
+    .sv-hint::before { content: 'ℹ'; font-size: 11px; flex-shrink: 0; margin-top: 1px; opacity: 0.7; }
+
+    .sv-options { display: flex; flex-direction: column; gap: 9px; margin-top: 18px; }
+
+    .sv-option {
+      display: flex; align-items: center; gap: 11px;
+      min-height: 56px; padding: 13px 14px;
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: var(--r-opt); cursor: pointer;
+      font-size: 14px; font-weight: 500; color: var(--text);
+      text-align: left; width: 100%;
+      transition: border-color var(--t-fast) var(--ease),
+        background var(--t-fast) var(--ease), transform 100ms var(--ease);
+      -webkit-tap-highlight-color: transparent;
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      position: relative; overflow: hidden;
+      user-select: none; -webkit-user-select: none;
+    }
+    .sv-option:active { transform: scale(0.975); }
+    .sv-option--sel {
+      border-color: var(--teal);
+      background: rgba(15,118,110,0.07);
+    }
+    .sv-option__dot {
+      flex-shrink: 0; width: 21px; height: 21px; border-radius: 50%;
+      border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+    }
+    .sv-option--sel .sv-option__dot { border-color: var(--teal); background: var(--teal); }
+    .sv-option--sel .sv-option__dot::after {
+      content: ''; display: block; width: 5px; height: 9px;
+      border-right: 2px solid #fff; border-bottom: 2px solid #fff;
+      transform: rotate(45deg) translate(-1px,-1px);
+    }
+    .sv-option__text { flex: 1; line-height: 1.4; }
+
+    /* Auto-advance ripple */
+    .sv-option--advancing::before {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(15,118,110,0.06);
+      animation: sv-ripple 0.35s var(--ease) both;
+    }
+    @keyframes sv-ripple { from{opacity:0} 50%{opacity:1} to{opacity:0} }
+
+    /* Textarea */
+    .sv-textarea {
+      width: 100%; min-height: 100px; margin-top: 16px;
+      padding: 13px 14px; border: 1.5px solid var(--border); border-radius: var(--r-opt);
+      font-family: var(--f-sans); font-size: 14px; color: var(--text);
+      background: var(--surface); resize: none; outline: none;
+      transition: border-color var(--t-fast) var(--ease);
+      -webkit-appearance: none;
+    }
+    .sv-textarea:focus { border-color: var(--teal); }
+    .sv-textarea::placeholder { color: var(--muted); opacity: 0.65; }
+
+    /* Swipe hint */
+    @keyframes sv-swipe { 0%,100%{opacity:0.5;transform:translateX(0)} 50%{opacity:1;transform:translateX(8px)} }
+    .sv-swipe-hint {
+      text-align: center; font-size: 11px; color: var(--muted); opacity: 0;
+      margin-top: 14px;
+      animation: sv-swipe 2.2s ease-in-out 1.8s 3 forwards;
+    }
+    .sv-swipe-hint svg { vertical-align: middle; margin-right: 4px; }
+
+    /* =====================================================
+       REVIEW CARD
+       ===================================================== */
+    .sv-review-head {
+      font-family: var(--f-serif); font-size: 19px; font-weight: 600;
+      color: var(--text); margin-bottom: 6px;
+    }
+    .sv-review-sub { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+    .sv-review-list { display: flex; flex-direction: column; gap: 7px; }
+    .sv-review-item {
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 12px; padding: 11px 13px;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 10px;
+    }
+    .sv-review-item__body { flex: 1; min-width: 0; }
+    .sv-review-item__sec {
+      font-family: var(--f-mono); font-size: 9px; text-transform: uppercase;
+      letter-spacing: 0.07em; color: var(--teal); margin-bottom: 2px;
+    }
+    .sv-review-item__q { font-size: 11px; color: var(--muted); margin-bottom: 3px; line-height: 1.4;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sv-review-item__a { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.35; }
+    .sv-review-item__edit {
+      background: none; border: none; color: var(--teal); font-size: 11px;
+      cursor: pointer; padding: 2px 4px; flex-shrink: 0;
+      text-decoration: underline; text-underline-offset: 2px; font-family: var(--f-sans);
+    }
+    .sv-review-skip { font-size: 12px; color: var(--muted); opacity: 0.55; font-style: italic; }
+
+    /* =====================================================
+       DONE CARD
+       ===================================================== */
+    .sv-done {
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 24px; padding: 28px 22px; text-align: center;
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 8px 40px rgba(15,118,110,0.08);
+    }
+    .sv-done__icon { font-size: 44px; display: block; margin-bottom: 12px; }
+    .sv-done__title {
+      font-family: var(--f-serif); font-size: 20px; font-weight: 600;
+      color: var(--text); margin-bottom: 8px;
+    }
+    .sv-done__sub { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+    .sv-done__profile {
+      display: inline-block; padding: 6px 14px; border-radius: 99px;
+      background: rgba(15,118,110,0.09); border: 1px solid rgba(15,118,110,0.22);
+      font-family: var(--f-mono); font-size: 11px; font-weight: 500;
+      color: var(--teal); letter-spacing: 0.04em; margin-bottom: 22px;
+    }
+    .sv-done__actions { display: flex; flex-direction: column; gap: 9px; }
+    .sv-done__mini { display: flex; gap: 8px; margin-top: 4px; }
+    .sv-done__mini button {
+      flex: 1; min-height: 38px; padding: 7px 10px;
+      background: rgba(255,255,255,0.55); border: 1px solid var(--border);
+      border-radius: 10px; font-family: var(--f-sans); font-size: 12px;
+      color: var(--muted); cursor: pointer; -webkit-tap-highlight-color: transparent;
+    }
+    .sv-done__mini button:active { background: rgba(15,118,110,0.08); }
+    .sv-done__expand {
+      margin-top: 16px; padding: 16px;
+      border: 1.5px dashed rgba(15,118,110,0.28); border-radius: 14px;
+    }
+    .sv-done__expand p { font-size: 13px; color: var(--muted); margin-bottom: 10px; line-height: 1.55; }
+
+    /* =====================================================
+       RESUME CARD
+       ===================================================== */
+    .sv-resume {
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 24px; padding: 32px 24px; text-align: center;
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    }
+    .sv-resume__icon { font-size: 36px; display: block; margin-bottom: 14px; }
+    .sv-resume__title { font-family: var(--f-serif); font-size: 19px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+    .sv-resume__sub { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 22px; }
+
+    /* =====================================================
+       BUTTONS
+       ===================================================== */
+    .sv-btn {
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      width: 100%; min-height: 52px; padding: 13px 20px;
+      border: none; border-radius: 14px; cursor: pointer;
+      font-family: var(--f-sans); font-size: 15px; font-weight: 700;
+      -webkit-tap-highlight-color: transparent; text-decoration: none;
+      transition: transform 100ms var(--ease), box-shadow 100ms var(--ease), background 100ms var(--ease);
+    }
+    .sv-btn:active { transform: scale(0.97); }
+    .sv-btn--primary {
+      background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+      color: #fff; box-shadow: 0 8px 24px rgba(15,118,110,0.28);
+    }
+    .sv-btn--primary:active { box-shadow: 0 4px 12px rgba(15,118,110,0.18); }
+    .sv-btn--secondary {
+      background: rgba(255,255,255,0.72); color: var(--teal);
+      border: 1.5px solid rgba(15,118,110,0.28);
+    }
+    .sv-btn--secondary:active { background: rgba(15,118,110,0.08); }
+    .sv-btn--ghost {
+      min-height: 42px; background: none; color: var(--muted);
+      font-size: 13px; font-weight: 500;
+    }
+    .sv-btn--ghost:active { color: var(--teal); }
+    .sv-btn[disabled] { opacity: 0.45; pointer-events: none; }
+
+    /* =====================================================
+       BOTTOM BAR
+       ===================================================== */
+    .sv-bottom {
+      flex-shrink: 0;
+      padding: 6px 14px;
+      padding-bottom: max(14px, env(safe-area-inset-bottom));
+      display: flex; flex-direction: column; gap: 5px;
+    }
+
+    /* =====================================================
+       SUBMIT STATUS (sheet submission feedback)
+       ===================================================== */
+    .sv-submit-status {
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.03em;
+      padding: 5px 14px; border-radius: 99px;
+      margin: 0 auto 14px; width: fit-content; min-height: 28px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .sv-submit-status--pending {
+      background: rgba(15,118,110,0.07); color: var(--muted-2);
+    }
+    .sv-submit-status--ok {
+      background: rgba(15,118,110,0.12); color: var(--teal); font-weight: 600;
+    }
+    .sv-submit-status--error {
+      background: rgba(180,50,50,0.07); color: #a83232; flex-wrap: wrap;
+      text-align: center; border-radius: 10px; padding: 8px 12px; font-size: 12px;
+      max-width: 280px;
+    }
+    .sv-submit-status--error button {
+      background: none; border: none; cursor: pointer;
+      color: var(--teal); font-family: var(--f-mono); font-size: 11px;
+      font-weight: 600; text-decoration: underline; padding: 0;
+    }
+    .sv-submit-spinner {
+      width: 10px; height: 10px; flex-shrink: 0;
+      border: 2px solid rgba(15,118,110,0.2);
+      border-top-color: var(--teal); border-radius: 50%;
+      animation: sv-spin 0.7s linear infinite;
+    }
+    @keyframes sv-spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div id="sv">
+    <!-- Top bar -->
+    <div class="sv-top" id="sv-top">
+      <button class="sv-back" id="sv-back" aria-label="Previous question" hidden>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="sv-progress-wrap">
+        <div class="sv-progress-track">
+          <div class="sv-progress-fill" id="sv-fill" style="width:0%"></div>
+        </div>
+        <div class="sv-progress-meta">
+          <span id="sv-section-lbl" style="font-family:var(--f-mono);font-size:10px;color:var(--muted-2)"></span>
+          <span id="sv-q-lbl" style="font-family:var(--f-mono);font-size:10px;color:var(--muted-2)"></span>
+        </div>
+      </div>
+      <a class="sv-close" id="sv-close" href="/" aria-label="Exit survey">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Stage: cards rendered here -->
+    <div class="sv-stage" id="sv-stage" role="main" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Bottom bar (shown for text/review) -->
+    <div class="sv-bottom" id="sv-bottom">
+      <button class="sv-btn sv-btn--primary" id="sv-next" style="display:none">Continue →</button>
+      <button class="sv-btn sv-btn--ghost"   id="sv-skip" style="display:none">Skip this question</button>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    'use strict';
+
+    /* ============================================================
+       DATA
+       ============================================================ */
+    const SECTIONS = [
+      { id:'a', label:'Respondent Profile',     icon:'◎' },
+      { id:'b', label:'Workflow & Timelines',   icon:'◷' },
+      { id:'c', label:'Pain Points',            icon:'◈' },
+      { id:'d', label:'Methods & Trust',        icon:'⚖' },
+      { id:'e', label:'Operations & Tracking',  icon:'◉' },
+      { id:'f', label:'Interest in Maulya',     icon:'◆' }
+    ];
+
+    const Q = [
+      /* A */
+      { id:'a1', s:'a', lite:true,  t:'s', q:'Which best describes your current valuation practice structure?',
+        opts:['Independent practice','Compact team (2–5 people)','Established team (6–15 people)','Larger organization (15+ people)'], req:true },
+      { id:'a2', s:'a', lite:true,  t:'s', q:'On average, how many land and building valuation assignments do you handle in a week?',
+        opts:['1–5 assignments','6–10 assignments','11–20 assignments','More than 20 assignments'], req:true },
+      { id:'a3', s:'a', lite:false, t:'s', q:'How many banks and financial institution empanelments do you currently hold?',
+        opts:['None currently','1–2 empanelments','3–5 empanelments','More than 5 empanelments'], req:false },
+      { id:'a4', s:'a', lite:false, t:'s', q:'Which best describes your professional registration status?',
+        hint:'You can choose "Prefer not to say" — responses are aggregated, never individual.',
+        opts:['IBBI registered','Section 34AB / 34AP registered','Both IBBI and 34AB / 34AP registered','Prefer not to say'], req:false },
+      { id:'a5', s:'a', lite:false, t:'s', q:'How many years of experience do you have in valuation practice?',
+        opts:['0–3 years','4–7 years','8–15 years','More than 15 years'], req:true },
+      /* B */
+      { id:'b1', s:'b', lite:false, t:'s', q:'Who usually conducts the site visit for your assignments?',
+        opts:['I personally do all site visits','A team member usually handles site visits','I do some, my team does some','It depends on assignment type or urgency'], req:true },
+      { id:'b2', s:'b', lite:true,  t:'s', q:'After receiving a new assignment, how quickly is the site visit usually completed?',
+        opts:['Within a few hours','On the same day','Within 1 day','In 2 days or more'], req:true },
+      { id:'b3', s:'b', lite:true,  t:'s', q:'After collecting all site data, how long does it usually take to prepare and finalize the report?',
+        opts:['In less than 4 hours','On the same day','In 1 to 2 days','In more than 2 days'], req:true },
+      { id:'b4', s:'b', lite:false, t:'s', q:'How often do peak days create urgent assignment pressure on report delivery timelines?',
+        opts:['Very often','Sometimes','Rarely','Almost never'], req:false },
+      /* C */
+      { id:'c1', s:'c', lite:true,  t:'s', q:'Which part of your current valuation workflow has the most scope for improvement?',
+        opts:['Time taken to prepare reports','Finding reliable market rates and comparables','Manual calculations and checking','Managing multiple assignments at once'], req:true },
+      { id:'c2', s:'c', lite:true,  t:'s', q:'How often do manual calculations, formulas, or missed decimals create rework or risk in your reports?',
+        opts:['Frequently','Occasionally','Rarely','Never'], req:true },
+      { id:'c3', s:'c', lite:true,  t:'s', q:'How do you currently manage long-term storage and retrieval of old valuation reports and supporting data?',
+        opts:['Manual folders or physical files','Computer folders or external drives','Cloud storage or shared drives','No structured retention system'], req:true },
+      { id:'c4', s:'c', lite:false, t:'s', q:'How much time do you spend training new staff on your valuation format, process, and report preparation style?',
+        opts:['A lot — this is a major burden','A moderate amount','Very little','I do not usually hire or train staff'], req:false },
+      { id:'c5', s:'c', lite:false, t:'x', q:'What is the single biggest problem you face as a land and building valuer today?',
+        placeholder:'Share in your own words — 1 to 2 lines is fine.', req:false },
+      { id:'c6', s:'c', lite:false, t:'x', q:'What kind of solution would make that problem easier in day-to-day practice?',
+        placeholder:'Be as specific or general as you like.', req:false },
+      /* D */
+      { id:'d1', s:'d', lite:false, t:'s', q:'Which depreciation approach do you primarily follow for building valuation work?',
+        opts:['Age-life / straight line basis','Written down value (WDV) basis','It depends on property type or assignment purpose','I use another approach'], req:false },
+      { id:'d2', s:'d', lite:true,  t:'s', q:'If a system handled calculations, templates, and data organization — but you still made the final value judgment — how would you feel?',
+        opts:['More confident — saves effort while keeping me in control','Equally confident','Slightly hesitant','Not comfortable with that approach'], req:true },
+      { id:'d3', s:'d', lite:false, t:'s', q:'How important is it that you personally review and approve every final valuation before submission?',
+        opts:['Absolutely essential','Important','Somewhat important','Not necessary in every case'], req:false },
+      /* E */
+      { id:'e1', s:'e', lite:true,  t:'s', q:'How do you currently track the status of multiple assignments?',
+        opts:['Memory, WhatsApp, or calls','Notebook or diary','Excel or Google Sheets','Dedicated software or system'], req:true },
+      { id:'e2', s:'e', lite:true,  t:'s', q:'How useful would it be if one platform showed assignment status, report readiness, invoice status, and payment tracking in one place?',
+        opts:['Extremely useful','Useful','Somewhat useful','Not useful'], req:true },
+      { id:'e3', s:'e', lite:false, t:'s', q:'How helpful would it be if, in one click, you could notify the client that the report is ready — along with balance payment details and office pickup location?',
+        opts:['Extremely helpful','Helpful','Somewhat helpful','Not needed'], req:false },
+      /* F */
+      { id:'f1', s:'f', lite:false, t:'s', q:'If software could help prepare a report in under 10 minutes after data entry — how interested would you be in trying it?',
+        opts:['Very interested','Interested','Maybe, depending on workflow fit','Not interested'], req:false },
+      { id:'f2', s:'f', lite:false, t:'s', q:'How valuable would a location-wise rate reference database for land and building values be to your practice?',
+        opts:['Extremely valuable','Useful','Somewhat useful','Not useful'], req:false },
+      { id:'f3', s:'f', lite:false, t:'s', q:'Would ready-made bank-wise formats, standard declarations, and compliance-oriented report sections reduce your report preparation effort?',
+        opts:['Yes, significantly','Yes, somewhat','Very little difference','No'], req:false },
+      { id:'f4', s:'f', lite:true,  t:'s', q:'If one tool helped you generate and manage about 15–20 reports — how much monthly cost would feel worth it?',
+        hint:'Helps us calibrate pricing for the Indian valuation market.',
+        opts:['Below ₹3,000 / month','₹3,000–₹5,000 / month','₹5,000–₹9,000 / month','Above ₹9,000 / month'], req:false }
+    ];
+
+    const STORAGE_KEY    = 'maulya_survey_v2';
+    const AUTO_MS        = 380;
+    // ── Apps Script Web App /exec endpoint (NOT a library URL) ────────────
+    // Must end in /exec and contain /macros/s/ — never /macros/library/ or /macros/edit
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbysv3x76e57dsR_VQKo3d85tbH59SDm0OCnNicxLQvPosIvZRULL37bei35SpFm7l4A/exec';
+    // ───────────────────────────────────────────────────────────────────────
+
+    /* ============================================================
+       STATE
+       ============================================================ */
+    const st = {
+      mode: 'lite',
+      screens: [],
+      idx: 0,
+      answers: {},
+      qIdxMap: {},   /* questionId → screenIndex */
+      autoTimer: null,
+      swipe: { x0: 0, y0: 0 },
+      didShowSwipeHint: false,
+      transitioning: false,
+    };
+
+    /* ============================================================
+       SCREEN BUILDER
+       ============================================================ */
+    function buildScreens(mode) {
+      const scr = [{ t: 'intro' }];
+      const qs = mode === 'lite' ? Q.filter(q => q.lite) : [...Q];
+      let curSec = null;
+      qs.forEach(q => {
+        if (q.s !== curSec) {
+          curSec = q.s;
+          scr.push({ t: 'chapter', sec: SECTIONS.find(s => s.id === curSec) });
+        }
+        scr.push({ t: 'q', q });
+      });
+      scr.push({ t: 'review' });
+      scr.push({ t: 'done' });
+      return scr;
+    }
+
+    function rebuildQIdxMap() {
+      st.qIdxMap = {};
+      st.screens.forEach((s, i) => { if (s.t === 'q') st.qIdxMap[s.q.id] = i; });
+    }
+
+    function questionScreens() { return st.screens.filter(s => s.t === 'q'); }
+
+    /* ============================================================
+       PROGRESS
+       ============================================================ */
+    function getProgress() {
+      const qscreens = questionScreens();
+      const screen = st.screens[st.idx];
+      let qNum = 0, pct = 0;
+      if (screen.t === 'q') {
+        qNum = qscreens.indexOf(screen) + 1;
+        pct  = (qNum / qscreens.length) * 100;
+      } else if (screen.t === 'review' || screen.t === 'done') {
+        qNum = qscreens.length; pct = 100;
+      } else if (screen.t === 'chapter') {
+        const prev = qscreens.filter(s => s.q.s < screen.sec.id).length;
+        pct = (prev / qscreens.length) * 100;
+      }
+      return { pct: Math.max(0, pct), qNum, total: qscreens.length };
+    }
+
+    /* ============================================================
+       SAVE / LOAD
+       ============================================================ */
+    function save() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ mode: st.mode, idx: st.idx, answers: st.answers }));
+      } catch(e) {}
+    }
+
+    function load() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : null;
+      } catch(e) { return null; }
+    }
+
+    function clearSaved() {
+      try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+    }
+
+    /* ============================================================
+       PROFILE CALCULATION
+       ============================================================ */
+    function calcProfile() {
+      const a  = st.answers;
+      const tags = [];
+      const a2 = a.a2 || '';
+      if (a2.includes('More than 20') || a2.includes('11–20')) tags.push('High throughput');
+      else if (a2.includes('6–10')) tags.push('Growing volume');
+      else tags.push('Focused practice');
+
+      const e1 = a.e1 || '';
+      if (e1.includes('Memory') || e1.includes('WhatsApp')) tags.push('Tracking gaps');
+      else if (e1.includes('Notebook')) tags.push('Manual ops');
+      else if (e1.includes('Excel')) tags.push('Spreadsheet-managed');
+      else if (e1.includes('Dedicated')) tags.push('Ops-ready');
+
+      const c1 = a.c1 || '';
+      if (c1.includes('Manual calc')) tags.push('Evidence risk');
+      else if (c1.includes('Managing multiple')) tags.push('Ops overload');
+      else if (c1.includes('market rates')) tags.push('Data sourcing gaps');
+      else if (c1.includes('Time taken')) tags.push('Throughput friction');
+
+      return tags.slice(0, 3).join(' · ');
+    }
+
+    /* ============================================================
+       SUBMIT
+       ============================================================ */
+    function downloadJSON() {
+      const data = { version:2, timestamp:new Date().toISOString(), mode:st.mode, answers:st.answers };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type:'application/json' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href     = url;
+      a.download = 'maulya-survey-' + Date.now() + '.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function sendMail() {
+      const body = Object.entries(st.answers).map(([k, v]) => k + ': ' + v).join('\n');
+      window.location.href = 'mailto:hello@maulya.in?subject=Maulya%20Survey%20Response&body=' + encodeURIComponent(body);
+    }
+
+    /* ============================================================
+       SHEET SUBMISSION
+       ============================================================ */
+    function getQueryParam(key) {
+      try { return new URLSearchParams(window.location.search).get(key) || ''; } catch(e) { return ''; }
+    }
+
+    function submitToSheet(onStatus) {
+      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'PASTE_YOUR_APPS_SCRIPT_URL_HERE') {
+        onStatus('no-url'); return;
+      }
+      const payload = {
+        timestamp_iso:   new Date().toISOString(),
+        src:             getQueryParam('src') || 'unknown',
+        survey_version:  'v2-' + st.mode + '-' + Object.keys(st.answers).length + 'q',
+        answers:         st.answers,
+        page_url:        location.href,
+        user_agent:      navigator.userAgent,
+        referrer:        document.referrer || '',
+        lang:            navigator.language || ''
+      };
+
+      let retried = false;
+      function attempt() {
+        // Use text/plain to avoid CORS preflight — Apps Script receives body
+        // in e.postData.contents and parses JSON server-side. application/json
+        // triggers an OPTIONS preflight that Apps Script does not handle.
+        fetch(APPS_SCRIPT_URL, {
+          method:  'POST',
+          headers: { 'Content-Type': 'text/plain' },
+          body:    JSON.stringify(payload)
+        })
+        .then(r => r.json())
+        .then(data => onStatus(data.ok ? 'ok' : 'error'))
+        .catch(() => {
+          if (!retried) { retried = true; setTimeout(attempt, 1200); }
+          else { onStatus('error'); }
+        });
+      }
+      attempt();
+    }
+
+    /* ============================================================
+       NAVIGATION
+       ============================================================ */
+    function goTo(newIdx, dir) {
+      if (st.transitioning) return;
+      if (newIdx < 0 || newIdx >= st.screens.length) return;
+      const oldIdx = st.idx;
+      st.idx = newIdx;
+      const d = dir !== undefined ? dir : (newIdx > oldIdx ? 1 : -1);
+      save();
+      render(d);
+    }
+
+    function goNext() {
+      const screen = st.screens[st.idx];
+      // For text questions, check if required
+      if (screen.t === 'q' && screen.q.t === 'x' && screen.q.req) {
+        const ta = document.querySelector('.sv-textarea');
+        if (ta && ta.value.trim().length < 2) { ta.focus(); return; }
+      }
+      goTo(st.idx + 1, 1);
+    }
+
+    function goBack() {
+      if (st.idx > 0) goTo(st.idx - 1, -1);
+    }
+
+    function skipQuestion() {
+      goTo(st.idx + 1, 1);
+    }
+
+    function selectOption(qId, val, el, autoAdvance) {
+      clearTimeout(st.autoTimer);
+      st.answers[qId] = val;
+      // Update selection UI
+      document.querySelectorAll('.sv-option').forEach(o => {
+        o.classList.toggle('sv-option--sel', o.dataset.val === val);
+      });
+      save();
+      if (autoAdvance) {
+        if (el) el.classList.add('sv-option--advancing');
+        st.autoTimer = setTimeout(() => goNext(), AUTO_MS);
+      }
+    }
+
+    function jumpToQuestion(qId) {
+      const idx = st.qIdxMap[qId];
+      if (idx !== undefined) goTo(idx, -1);
+    }
+
+    /* ============================================================
+       UPDATE TOP / BOTTOM BARS
+       ============================================================ */
+    function updateBars(screen) {
+      const back    = document.getElementById('sv-back');
+      const fill    = document.getElementById('sv-fill');
+      const secLbl  = document.getElementById('sv-section-lbl');
+      const qLbl    = document.getElementById('sv-q-lbl');
+      const nextBtn = document.getElementById('sv-next');
+      const skipBtn = document.getElementById('sv-skip');
+
+      // Back button: hide on intro, resume, done screens
+      const hideBack = screen.t === 'intro' || screen.t === 'done';
+      back.hidden = hideBack;
+
+      // Progress
+      const { pct, qNum, total } = getProgress();
+      fill.style.width = pct + '%';
+      if (screen.t === 'q') {
+        secLbl.textContent = SECTIONS.find(s => s.id === screen.q.s)?.label || '';
+        qLbl.textContent   = qNum + ' / ' + total;
+      } else if (screen.t === 'review') {
+        secLbl.textContent = 'Review'; qLbl.textContent = '';
+      } else if (screen.t === 'chapter') {
+        secLbl.textContent = screen.sec.label; qLbl.textContent = '';
+      } else {
+        secLbl.textContent = ''; qLbl.textContent = '';
+      }
+
+      // Bottom bar
+      const isText   = screen.t === 'q' && screen.q.t === 'x';
+      const isReview = screen.t === 'review';
+      nextBtn.style.display = (isText || isReview) ? '' : 'none';
+      skipBtn.style.display = (isText && !screen.q.req) ? '' : 'none';
+      if (isReview) nextBtn.textContent = 'Submit →';
+      else if (isText) nextBtn.textContent = 'Continue →';
+    }
+
+    /* ============================================================
+       CARD BUILDERS
+       ============================================================ */
+    function buildIntroCard() {
+      const saved = load();
+      const hasProgress = saved && Object.keys(saved.answers || {}).length > 0;
+      return `
+        <div class="sv-intro" role="region" aria-label="Survey introduction">
+          <img src="/assets/brand/maulya-logo.png" alt="Maulya" class="sv-intro__logo" loading="eager" />
+          <h1 class="sv-intro__title">Help us shape Maulya for valuation ops.</h1>
+          <p class="sv-intro__sub">We're building workflow software for Indian valuation teams. Your answers help us get the details right.</p>
+          <div class="sv-intro__pills">
+            <span class="sv-pill"><span class="sv-pill__dot"></span>3 minutes</span>
+            <span class="sv-pill"><span class="sv-pill__dot"></span>Mostly taps</span>
+            <span class="sv-pill"><span class="sv-pill__dot"></span>No client data</span>
+            <span class="sv-pill"><span class="sv-pill__dot"></span>Progress saves locally</span>
+          </div>
+          <button class="sv-btn sv-btn--primary" id="sv-start">Start survey →</button>
+          ${hasProgress ? `<button class="sv-btn sv-btn--ghost" id="sv-resume-btn" style="margin-top:6px">Resume where I left off</button>` : ''}
+        </div>`;
+    }
+
+    function buildChapterCard(sec) {
+      const qs = questionScreens().filter(s => s.q.s === sec.id);
+      return `
+        <div class="sv-chapter" role="region" aria-label="${sec.label} section">
+          <span class="sv-chapter__icon">${sec.icon}</span>
+          <div class="sv-chapter__badge">Section ${sec.id.toUpperCase()}</div>
+          <div class="sv-chapter__title">${sec.label}</div>
+          <div class="sv-chapter__count">${qs.length} question${qs.length !== 1 ? 's' : ''}</div>
+          <div class="sv-chapter__hint">Tap anywhere to continue →</div>
+        </div>`;
+    }
+
+    function buildQuestionCard(q) {
+      const qScreens = questionScreens();
+      const qNum = qScreens.findIndex(s => s.q.id === q.id) + 1;
+      const sec  = SECTIONS.find(s => s.id === q.s);
+      const cur  = st.answers[q.id] || '';
+
+      let innerHtml = '';
+      if (q.t === 's') {
+        innerHtml = `
+          <div class="sv-options" role="radiogroup" aria-label="${q.q}">
+            ${q.opts.map(opt => `
+              <button class="sv-option${cur === opt ? ' sv-option--sel' : ''}"
+                data-qid="${q.id}" data-val="${opt.replace(/"/g, '&quot;')}"
+                role="radio" aria-checked="${cur === opt ? 'true' : 'false'}"
+                aria-label="${opt}">
+                <span class="sv-option__dot" aria-hidden="true"></span>
+                <span class="sv-option__text">${opt}</span>
+              </button>`).join('')}
+          </div>
+          ${qNum === 1 ? `<p class="sv-swipe-hint" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Swipe left to advance</p>` : ''}`;
+      } else {
+        innerHtml = `<textarea class="sv-textarea" aria-label="${q.q}"
+          placeholder="${q.placeholder || 'Your answer...'}"
+          rows="4" maxlength="800">${cur}</textarea>`;
+      }
+
+      return `
+        <div class="sv-q-meta">
+          <span class="sv-q-section" aria-label="Section ${sec?.label}">${sec?.label}</span>
+          <span class="sv-q-num" aria-label="Question ${qNum} of ${qScreens.length}">Q ${qNum} / ${qScreens.length}</span>
+        </div>
+        <h2 class="sv-question">${q.q}</h2>
+        ${q.hint ? `<p class="sv-hint">${q.hint}</p>` : ''}
+        ${innerHtml}`;
+    }
+
+    function buildReviewCard() {
+      const qscreens = questionScreens();
+      const rows = qscreens.map(qs => {
+        const q    = qs.q;
+        const sec  = SECTIONS.find(s => s.id === q.s);
+        const ans  = st.answers[q.id];
+        const disp = ans ? (ans.length > 60 ? ans.slice(0, 60) + '…' : ans) : null;
+        const shortQ = q.q.length > 55 ? q.q.slice(0, 55) + '…' : q.q;
+        return `
+          <div class="sv-review-item">
+            <div class="sv-review-item__body">
+              <div class="sv-review-item__sec">${sec?.label}</div>
+              <div class="sv-review-item__q" title="${q.q}">${shortQ}</div>
+              <div class="sv-review-item__a">${disp || '<span class="sv-review-skip">Skipped</span>'}</div>
+            </div>
+            ${ans ? `<button class="sv-review-item__edit" data-edit="${q.id}" aria-label="Edit answer for ${q.q}">Edit</button>` : ''}
+          </div>`;
+      }).join('');
+      return `
+        <h2 class="sv-review-head">Review your answers</h2>
+        <p class="sv-review-sub">Tap Edit to change any answer before submitting.</p>
+        <div class="sv-review-list" role="list">${rows}</div>`;
+    }
+
+    function buildDoneCard() {
+      const profile = calcProfile();
+      const isLite  = st.mode === 'lite';
+      const fullQsLeft = Q.filter(q => !q.lite).length;
+      return `
+        <div class="sv-done" role="region" aria-label="Survey complete">
+          <span class="sv-done__icon" aria-hidden="true">✓</span>
+          <h2 class="sv-done__title">Thanks — responses received.</h2>
+          <p class="sv-done__sub">Your answers help us tune Maulya's workflow discipline, approval gates, and invoice follow-up.</p>
+          ${profile ? `<div class="sv-done__profile" aria-label="Your workflow profile">${profile}</div>` : ''}
+          <div id="sv-submit-status" class="sv-submit-status sv-submit-status--pending" role="status" aria-live="polite">
+            <span class="sv-submit-spinner" aria-hidden="true"></span>Submitting…
+          </div>
+          <div class="sv-done__actions">
+            <a href="https://app.maulya.in/partner/request-access" class="sv-btn sv-btn--primary" target="_blank" rel="noopener">
+              Request Associate Access →
+            </a>
+            <a href="/demo/" class="sv-btn sv-btn--secondary">Try Demo</a>
+          </div>
+          <div class="sv-done__mini">
+            <button id="sv-dl-json">⬇ Download copy</button>
+            <button id="sv-mail-btn">✉ Send by mail</button>
+          </div>
+          ${isLite ? `
+          <div class="sv-done__expand">
+            <p>Want to share more? The full survey has ${fullQsLeft} additional questions on methods, compliance, and pricing.</p>
+            <button class="sv-btn sv-btn--secondary" id="sv-go-full" style="min-height:44px;font-size:14px;">
+              Continue to full survey (${fullQsLeft} more) →
+            </button>
+          </div>` : ''}
+        </div>`;
+    }
+
+    /* ============================================================
+       RENDER ENGINE
+       ============================================================ */
+    function render(dir) {
+      const stage  = document.getElementById('sv-stage');
+      const screen = st.screens[st.idx];
+
+      let html = '';
+      if (screen.t === 'intro')   html = buildIntroCard();
+      else if (screen.t === 'chapter') html = buildChapterCard(screen.sec);
+      else if (screen.t === 'q')  html = buildQuestionCard(screen.q);
+      else if (screen.t === 'review') html = buildReviewCard();
+      else if (screen.t === 'done')   html = buildDoneCard();
+
+      // Wrap in card div
+      const card = document.createElement('div');
+      card.className = 'sv-card';
+      card.innerHTML = `<div class="sv-card__inner">${html}</div>`;
+
+      // Animate old card out
+      const old = stage.querySelector('.sv-card');
+      if (old) {
+        st.transitioning = true;
+        old.classList.add(dir >= 0 ? 'sv-card--out-l' : 'sv-card--out-r');
+        setTimeout(() => {
+          old.remove();
+          st.transitioning = false;
+          // Animate new card in
+          card.classList.add(dir >= 0 ? 'sv-card--in-r' : 'sv-card--in-l');
+          stage.appendChild(card);
+          updateBars(screen);
+          attachEvents(card, screen);
+        }, 160);
+      } else {
+        card.classList.add('sv-card--in-r');
+        stage.appendChild(card);
+        updateBars(screen);
+        attachEvents(card, screen);
+      }
+    }
+
+    /* ============================================================
+       EVENT ATTACHMENT
+       ============================================================ */
+    function attachEvents(card, screen) {
+      // Intro
+      card.querySelector('#sv-start')?.addEventListener('click', () => goTo(st.idx + 1, 1));
+      card.querySelector('#sv-resume-btn')?.addEventListener('click', resumeFromSaved);
+
+      // Chapter: tap anywhere to advance (after 0.5s debounce)
+      if (screen.t === 'chapter') {
+        let chapterTimer = setTimeout(() => {}, 600);
+        card.addEventListener('click', () => {
+          clearTimeout(chapterTimer);
+          chapterTimer = setTimeout(() => goNext(), 50);
+        });
+      }
+
+      // Question: single-choice options
+      card.querySelectorAll('.sv-option[data-qid]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const qid = btn.dataset.qid;
+          const val = btn.dataset.val;
+          selectOption(qid, val, btn, true);
+        });
+      });
+
+      // Question: textarea
+      const ta = card.querySelector('.sv-textarea');
+      if (ta) {
+        ta.value = st.answers[screen.q?.id] || '';
+        ta.addEventListener('input', () => {
+          if (screen.q) st.answers[screen.q.id] = ta.value;
+          save();
+        });
+        // Keep input visible above keyboard on iOS
+        ta.addEventListener('focus', () => {
+          setTimeout(() => ta.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 300);
+        });
+      }
+
+      // Review: edit buttons
+      card.querySelectorAll('.sv-review-item__edit').forEach(btn => {
+        btn.addEventListener('click', () => jumpToQuestion(btn.dataset.edit));
+      });
+
+      // Done: download / mail / expand
+      card.querySelector('#sv-dl-json')?.addEventListener('click', downloadJSON);
+      card.querySelector('#sv-mail-btn')?.addEventListener('click', sendMail);
+      card.querySelector('#sv-go-full')?.addEventListener('click', expandToFull);
+
+      // Done: auto-submit to Google Sheet
+      if (screen.t === 'done') {
+        const statusEl = card.querySelector('#sv-submit-status');
+        clearSaved();
+        submitToSheet((state) => {
+          if (!statusEl) return;
+          if (state === 'ok') {
+            statusEl.className = 'sv-submit-status sv-submit-status--ok';
+            statusEl.textContent = 'Submitted ✅';
+          } else if (state === 'no-url') {
+            statusEl.style.display = 'none';
+          } else {
+            statusEl.className = 'sv-submit-status sv-submit-status--error';
+            statusEl.innerHTML = '⚠ Could not submit automatically. <button id="sv-dl-fallback">Download JSON instead</button>';
+            statusEl.querySelector('#sv-dl-fallback')?.addEventListener('click', downloadJSON);
+          }
+        });
+      }
+    }
+
+    /* ============================================================
+       EXPAND TO FULL
+       ============================================================ */
+    function expandToFull() {
+      st.mode = 'full';
+      st.screens = buildScreens('full');
+      rebuildQIdxMap();
+      // Find first unanswered full-only question
+      let target = st.screens.findIndex(s => s.t === 'q' && !st.answers[s.q.id] && !s.q.lite);
+      if (target === -1) target = st.screens.length - 2; // review
+      // Back up one if previous screen is a chapter
+      if (target > 0 && st.screens[target - 1].t === 'chapter') target--;
+      st.idx = Math.max(1, target);
+      save();
+      render(1);
+    }
+
+    /* ============================================================
+       RESUME
+       ============================================================ */
+    function resumeFromSaved() {
+      const saved = load();
+      if (!saved) { goTo(1, 1); return; }
+      st.mode    = saved.mode || 'lite';
+      st.answers = saved.answers || {};
+      st.screens = buildScreens(st.mode);
+      rebuildQIdxMap();
+      const idx  = Math.min(saved.idx || 1, st.screens.length - 1);
+      st.idx     = idx;
+      render(1);
+    }
+
+    /* ============================================================
+       SWIPE / TOUCH
+       ============================================================ */
+    function initSwipe() {
+      const stage = document.getElementById('sv-stage');
+      stage.addEventListener('pointerdown', e => {
+        st.swipe.x0 = e.clientX;
+        st.swipe.y0 = e.clientY;
+      }, { passive: true });
+      stage.addEventListener('pointerup', e => {
+        const dx = e.clientX - st.swipe.x0;
+        const dy = e.clientY - st.swipe.y0;
+        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 44) {
+          const screen = st.screens[st.idx];
+          if (dx < 0) {
+            // swipe left = next (only if question answered or text or chapter)
+            if (screen.t === 'chapter' || screen.t === 'intro') { goNext(); return; }
+            if (screen.t === 'q') {
+              if (screen.q.t === 'x' || st.answers[screen.q.id]) goNext();
+            }
+          } else {
+            // swipe right = back
+            goBack();
+          }
+        }
+      }, { passive: true });
+    }
+
+    /* ============================================================
+       KEYBOARD
+       ============================================================ */
+    function handleKey(e) {
+      const screen = st.screens[st.idx];
+      if (e.key === 'ArrowRight' || (e.key === 'Enter' && screen.t === 'chapter')) {
+        goNext();
+      } else if (e.key === 'ArrowLeft') {
+        goBack();
+      } else if (e.key === 'Enter' && screen.t === 'q' && screen.q.t === 's') {
+        // Enter on single-choice: submit selected
+        const ans = st.answers[screen.q.id];
+        if (ans) goNext();
+      } else if ((e.key === '1'||e.key==='2'||e.key==='3'||e.key==='4') && screen.t === 'q' && screen.q.t === 's') {
+        const n = parseInt(e.key) - 1;
+        if (screen.q.opts[n]) {
+          const el = document.querySelectorAll('.sv-option')[n];
+          selectOption(screen.q.id, screen.q.opts[n], el, true);
+        }
+      }
+    }
+
+    /* ============================================================
+       INIT
+       ============================================================ */
+    function init() {
+      // iOS --vh fix
+      const setVH = () => document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
+      window.addEventListener('resize', setVH, { passive: true });
+      window.addEventListener('orientationchange', () => setTimeout(setVH, 100));
+      setVH();
+
+      // URL params
+      const p = new URLSearchParams(window.location.search);
+      if (p.get('full') === '1') st.mode = 'full';
+
+      // Build screens
+      st.screens = buildScreens(st.mode);
+      rebuildQIdxMap();
+
+      // Global nav buttons
+      document.getElementById('sv-back').addEventListener('click', goBack);
+      document.getElementById('sv-next').addEventListener('click', goNext);
+      document.getElementById('sv-skip').addEventListener('click', skipQuestion);
+
+      // Keyboard
+      document.addEventListener('keydown', handleKey);
+
+      // Swipe
+      initSwipe();
+
+      // Render intro
+      render(1);
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  })();
+  </script>
+</body>
+</html>

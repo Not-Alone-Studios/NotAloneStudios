@@ -3,97 +3,188 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maulya Associates — Frictionless Onboarding</title>
-  <meta name="description" content="Controlled onboarding keeps partner access branded, structured, and role-aware for external field users." />
-  <meta property="og:title" content="Maulya Associates" />
-  <meta property="og:description" content="Controlled onboarding for external field users." />
+  <title>Maulya Associates — Controlled Access for External Roles</title>
+  <meta name="description" content="Maulya gives associates and external field users a controlled onboarding and work lane that stays simpler than the internal workspace." />
+  <meta property="og:title" content="Maulya Associates — Controlled Access for External Roles" />
+  <meta property="og:description" content="External users get a clearer, narrower path into valuation work." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://maulya.in/associates/" />
-  <meta property="og:image" content="/assets/icons/og-associates.png" />
-
+  <meta property="og:image" content="https://maulya.in/assets/media/maulya/marketing/live-associate-access.png" />
+  <link rel="icon" type="image/png" href="/assets/brand/maulya-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;700;800&family=Sora:wght@500;700;800&display=swap" rel="stylesheet" />
-  
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/site.css" />
 </head>
-<body data-theme="maulya" class="page-maulya-v2">
+<body>
   <div class="page-shell">
-    <div class="noise-glow" aria-hidden="true"></div>
-    <div class="grain" aria-hidden="true"></div>
-    <div class="nav-overlay" aria-hidden="true"></div>
+    <div class="site-topbar">
+      <div class="shell">
+        <div class="surface-map">
+          <strong>Associate lane</strong>
+          <span>request access</span>
+          <span>upload and respond</span>
+          <span>track status without internal clutter</span>
+        </div>
+        <a class="topbar-link" href="https://app.maulya.in/partner/request-access">Request associate access</a>
+      </div>
+    </div>
+
     <header class="site-header">
       <div class="shell">
-        <a class="brand brand-text" href="/" aria-label="Maulya" style="font-family: Fraunces, serif; font-size: 1.5rem; color: #142017; text-decoration: none;">Maulya</a>
-        <button class="nav-hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">
+        <a class="brand-lockup" href="/" aria-label="Maulya home">
+          <img src="/assets/brand/maulya-icon.png" alt="Maulya" width="84" height="84" />
+          <span class="brand-copy">
+            <span class="brand-name">Maulya</span>
+            <span class="brand-sub">Associate and field-facing access</span>
+          </span>
+        </a>
+        <button class="nav-hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-drawer">
           <span></span><span></span><span></span>
         </button>
-        <nav class="nav" id="primary-nav" aria-label="Primary">
-          <a href="/product/">Product</a>
-          <a href="/demo/">Demo</a>
-          <a href="/associates/" aria-current="page">Associates</a>
-          <a href="/pilot/" class="nav-cta">Pilot</a>
-        </nav>
+        <div class="site-nav">
+          <nav class="nav-links" aria-label="Primary">
+            <a href="/product/">Product</a>
+            <a href="/solutions/">Solutions</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="/updates/">Updates</a>
+            <a href="/associates/" aria-current="page">Associates</a>
+            <a href="/pilot/">Pilot</a>
+          </nav>
+          <div class="nav-actions">
+            <a class="link-chip" href="https://auth.maulya.in">Sign in</a>
+            <a class="btn btn-primary" href="https://app.maulya.in/partner/request-access">Request access</a>
+          </div>
+        </div>
       </div>
     </header>
 
+    <aside class="mobile-drawer" id="mobile-drawer" aria-label="Mobile navigation">
+      <nav>
+        <a href="/product/">Product</a>
+        <a href="/solutions/">Solutions</a>
+        <a href="/pricing/">Pricing</a>
+        <a href="/updates/">Updates</a>
+        <a href="/associates/" aria-current="page">Associates</a>
+        <a href="/pilot/">Pilot</a>
+      </nav>
+      <div class="nav-actions-mobile">
+        <a class="link-chip" href="https://auth.maulya.in">Sign in</a>
+        <a class="btn btn-primary" href="https://app.maulya.in/partner/request-access">Request access</a>
+      </div>
+    </aside>
+
     <main>
-      <section class="section section-tight" data-river-anchor="associates">
-        <div class="shell premium-support-grid" style="margin-top: 48px;">
-          <article class="premium-support-card reveal">
-            <div style="padding-right: 48px;">
-              <p class="small-label">Associate onboarding</p>
-              <h2>External associates can onboard without friction.</h2>
-              <p>Controlled onboarding keeps partner access branded, structured, and role-aware instead of dropping prospects into an internal-only flow.</p>
-              
-              <div class="button-row" style="margin-top: 32px">
-                <a class="btn btn-primary" href="https://app.maulya.in/partner/request-access">Start associate onboarding</a>
+      <section class="page-hero">
+        <div class="shell">
+          <div class="hero-grid">
+            <div class="hero-copy reveal is-visible">
+              <span class="eyebrow">External associates and field users</span>
+              <h1>External users get a clearer path into the work.</h1>
+              <p class="hero-lead">Associates do not need the full internal workspace. They need controlled onboarding, a simpler view of what to upload or respond to, and enough visibility to move work forward without confusion.</p>
+              <div class="hero-meta">
+                <span class="meta-chip">Controlled onboarding</span>
+                <span class="meta-chip">Upload and clarification flow</span>
+                <span class="meta-chip">Status and payment-proof visibility</span>
               </div>
-              <div class="action-link-row" style="margin-top: 16px">
-                <a href="https://app.maulya.in/">Go to Workspace</a>
+              <div class="button-row">
+                <a class="btn btn-primary" href="https://app.maulya.in/partner/request-access">Request associate access</a>
+                <a class="btn btn-secondary" href="https://app.maulya.in/">Go to workspace</a>
+                <a class="btn btn-quiet" href="/pilot/">Need a team rollout?</a>
               </div>
             </div>
-            <figure class="screen-frame media-mode-proof" data-theme="maulya">
-              <div class="screen-frame__chrome" aria-hidden="true"><span class="screen-frame__dot"></span><span class="screen-frame__dot"></span><span class="screen-frame__dot"></span></div>
-              <div class="screen-frame__viewport"><img src="/assets/media/maulya/marketing/live-associate-access.png" alt="Maulya associate access request page for controlled onboarding." loading="lazy" decoding="async" /></div>
-            </figure>
-          </article>
+            <div class="hero-stage reveal is-visible">
+              <div class="screen-stack">
+                <figure class="screen screen--dashboard">
+                  <img src="/assets/media/maulya/marketing/live-associate-access.png" alt="Maulya associate access request interface." loading="eager" decoding="async" />
+                </figure>
+                <figure class="screen screen--phone">
+                  <img src="/assets/media/maulya/marketing/mobile-home-preview.png" alt="Maulya mobile associate workspace preview." loading="eager" decoding="async" />
+                </figure>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="section section-tight premium-final-cta" data-river-anchor="footer">
+      <section class="section section-tight">
         <div class="shell">
-          <div class="cta-band reveal text-center">
-            <div>
-              <p class="kicker">Ready?</p>
-              <h2>Move assignment operations onto one control surface.</h2>
-            </div>
-            <div class="button-row" style="margin-top: 32px">
-              <a class="btn btn-primary" href="https://app.maulya.in/partner/request-access">Request Associate Access</a>
-              <a class="btn btn-secondary" href="https://app.maulya.in/">Open Workspace</a>
-            </div>
-            <div class="action-link-row" style="margin-top: 16px; justify-content: center;">
-              <a href="https://app.maulya.in/login">Client &amp; Ops Login</a>
-            </div>
+          <div class="grid-3">
+            <article class="card reveal">
+              <span class="small-label">Onboarding</span>
+              <h3>Request access through a controlled lane.</h3>
+              <p>Associates, valuers, and field-facing users can request access without entering admin-only or governance-heavy surfaces.</p>
+            </article>
+            <article class="card reveal">
+              <span class="small-label">Workflow</span>
+              <h3>Upload, respond, and progress work with less friction.</h3>
+              <p>Evidence and clarification activity can sit inside a clearer path instead of bouncing across email and chat threads.</p>
+            </article>
+            <article class="card reveal">
+              <span class="small-label">Trust</span>
+              <h3>See what matters without getting buried in the full workspace.</h3>
+              <p>Status, payment-proof, profile, and notification flows stay visible without exposing the internal machine unnecessarily.</p>
+            </article>
           </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="shell split-layout">
+          <article class="card reveal">
+            <span class="eyebrow">Why this exists</span>
+            <h3>Not every user should get the same operating surface.</h3>
+            <p>Associates and external users care about a narrower set of tasks. Maulya treats that as a product truth, not a permissions afterthought.</p>
+            <ul class="list-check">
+              <li>Cleaner join-request path</li>
+              <li>Role-aware access instead of one overloaded workspace</li>
+              <li>Better support for firms working with external operator networks</li>
+            </ul>
+          </article>
+          <article class="quote-card reveal">
+            <span class="small-label">Good fit</span>
+            <h3>Best for teams replacing scattered follow-up.</h3>
+            <p>If your current flow depends on chat messages, repeated reminders, and manually forwarded evidence, the associate lane is one of the fastest ways to reduce noise.</p>
+          </article>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
       <div class="shell">
-        <div class="footer-top">
-          <a class="brand brand-text" href="/" aria-label="Maulya" style="font-family: Fraunces, serif; font-size: 1.5rem; color: #142017; text-decoration: none;">Maulya</a>
-          <div class="footer-links">
+        <div class="footer-grid">
+          <div class="footer-card">
+            <a class="brand-lockup" href="/" aria-label="Maulya home">
+              <img src="/assets/brand/maulya-icon.png" alt="Maulya" width="84" height="84" />
+              <span class="brand-copy">
+                <span class="brand-name">Maulya</span>
+                <span class="brand-sub">Associate onboarding and field lane</span>
+              </span>
+            </a>
+            <p>Controlled onboarding for external associates, field users, and simpler external collaboration paths.</p>
+          </div>
+          <div class="footer-card">
+            <h3>Explore</h3>
             <a href="/product/">Product</a>
-            <a href="/demo/">Demo</a>
-            <a href="/associates/">Associates</a>
-            <a href="/pilot/">Pilot</a>
+            <a href="/solutions/">Solutions</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="/updates/">Updates</a>
+          </div>
+          <div class="footer-card">
+            <h3>Links</h3>
+            <a href="https://app.maulya.in/partner/request-access">Request access</a>
+            <a href="https://app.maulya.in/">Open app</a>
             <a href="/privacy/">Privacy</a>
             <a href="/terms/">Terms</a>
           </div>
         </div>
-        <p class="footer-note">© 2026 Maulya (Not Alone Studios).</p>
+        <div class="footer-bottom">
+          <span>© <span data-year></span> Maulya.</span>
+          <div class="footer-mini-links">
+            <a href="https://app.maulya.in/partner/request-access">Access request</a>
+            <a href="/pilot/">Pilot</a>
+          </div>
+        </div>
       </div>
     </footer>
   </div>

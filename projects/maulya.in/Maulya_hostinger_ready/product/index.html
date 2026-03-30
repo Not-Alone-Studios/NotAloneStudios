@@ -3,166 +3,227 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maulya Product — Deep Dive & Governance</title>
-  <meta name="description" content="Explore the deterministic workflow spine of Maulya. Prevent dropped handoffs, missing evidence, and unbilled assignments." />
-  <meta property="og:title" content="Maulya Product — Deep Dive" />
-  <meta property="og:description" content="Explore the deterministic workflow spine of Maulya." />
+  <title>Maulya Product — Operating System for Valuation Workflows</title>
+  <meta name="description" content="See how Maulya brings assignments, evidence, approvals, report generation, billing visibility, and release gates into one role-aware valuation workspace." />
+  <meta property="og:title" content="Maulya Product — Operating System for Valuation Workflows" />
+  <meta property="og:description" content="Assignments, evidence, approvals, repogen, and commercial clarity in one valuation platform." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://maulya.in/product/" />
-  <meta property="og:image" content="/assets/icons/og-product.png" />
-
+  <meta property="og:image" content="https://maulya.in/assets/media/maulya/marketing/live-assignments.png" />
+  <link rel="icon" type="image/png" href="/assets/brand/maulya-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;700;800&family=Sora:wght@500;700;800&display=swap" rel="stylesheet" />
-  
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/site.css" />
 </head>
-<body data-theme="maulya" class="page-maulya-v2">
+<body>
   <div class="page-shell">
-    <div class="noise-glow" aria-hidden="true"></div>
-    <div class="grain" aria-hidden="true"></div>
-    <div class="nav-overlay" aria-hidden="true"></div>
+    <div class="site-topbar">
+      <div class="shell">
+        <div class="surface-map">
+          <strong>Product truth</strong>
+          <span>Public site explains the system</span>
+          <span>App host owns workflow, updates, and participation</span>
+          <span>Auth host owns sign-in</span>
+        </div>
+        <a class="topbar-link" href="https://app.maulya.in/">Open workspace</a>
+      </div>
+    </div>
+
     <header class="site-header">
       <div class="shell">
-        <a class="brand" href="/" aria-label="Maulya"><img src="/assets/brand/maulya-logo.png" alt="Maulya" width="800" height="243" class="brand-logo" style="height: 30px; width: auto; display: block;" /></a>
-        <button class="nav-hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">
+        <a class="brand-lockup" href="/" aria-label="Maulya home">
+          <img src="/assets/brand/maulya-icon.png" alt="Maulya" width="84" height="84" />
+          <span class="brand-copy">
+            <span class="brand-name">Maulya</span>
+            <span class="brand-sub">Valuation Operating System</span>
+          </span>
+        </a>
+        <button class="nav-hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-drawer">
           <span></span><span></span><span></span>
         </button>
-        <nav class="nav" id="primary-nav" aria-label="Primary">
-          <a href="/product/" aria-current="page">Product</a>
-          <a href="/demo/">Demo</a>
-          <a href="/associates/">Associates</a>
-          <a href="/pilot/" class="nav-cta">Pilot</a>
-        </nav>
+        <div class="site-nav">
+          <nav class="nav-links" aria-label="Primary">
+            <a href="/product/" aria-current="page">Product</a>
+            <a href="/solutions/">Solutions</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="/updates/">Updates</a>
+            <a href="/associates/">Associates</a>
+            <a href="/pilot/">Pilot</a>
+          </nav>
+          <div class="nav-actions">
+            <a class="link-chip" href="https://auth.maulya.in">Sign in</a>
+            <a class="btn btn-primary" href="https://app.maulya.in/">Open app</a>
+          </div>
+        </div>
       </div>
     </header>
 
+    <aside class="mobile-drawer" id="mobile-drawer" aria-label="Mobile navigation">
+      <nav>
+        <a href="/product/" aria-current="page">Product</a>
+        <a href="/solutions/">Solutions</a>
+        <a href="/pricing/">Pricing</a>
+        <a href="/updates/">Updates</a>
+        <a href="/associates/">Associates</a>
+        <a href="/pilot/">Pilot</a>
+      </nav>
+      <div class="nav-actions-mobile">
+        <a class="link-chip" href="https://auth.maulya.in">Sign in</a>
+        <a class="btn btn-primary" href="https://app.maulya.in/">Open app</a>
+      </div>
+    </aside>
+
     <main>
-      <section class="page-hero maulya-hero-v2" style="padding-bottom: 0;">
+      <section class="page-hero">
         <div class="shell">
-          <div class="surface-strong reveal is-visible">
-            <div class="text-center" style="max-width: 680px; margin: 0 auto 48px auto;">
-              <div class="maulya-status-badge" style="justify-content: center;" data-testid="maulya-status-badge-product">
-                <span class="maulya-status-badge__dot" aria-hidden="true"></span>
-                <span>V1 live · V2 in governance rollout</span>
+          <div class="hero-grid">
+            <div class="hero-copy reveal is-visible">
+              <span class="eyebrow">Product overview</span>
+              <h1>Maulya helps valuation firms run the work behind the report.</h1>
+              <p class="hero-lead">Maulya gives valuation firms a role-aware workspace for assignment flow, evidence capture, approvals, assisted report generation, billing visibility, and final release. This page reflects the current operating model in practical terms.</p>
+              <div class="hero-meta">
+                <span class="meta-chip">Backend-owned capability truth</span>
+                <span class="meta-chip">Default-deny report generation</span>
+                <span class="meta-chip">Mobile-first execution subset</span>
               </div>
-              <p class="kicker">Product Deep Dive</p>
-              <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 24px;">The Deterministic Spine.</h1>
-              <p style="font-size: 1.25rem; opacity: 0.9; line-height: 1.6;">Maulya gives teams a V1 execution layer built for operational pressure, perfectly paired with a clean V2 governance layer for management visibility.</p>
-              
-              <div class="button-row" style="margin-top: 32px; justify-content: center;">
-                <a class="btn btn-primary" href="https://app.maulya.in/partner/request-access">Request Associate Access</a>
-                <a class="btn btn-secondary" href="https://app.maulya.in/">Open Workspace</a>
+              <div class="button-row">
+                <a class="btn btn-primary" href="https://app.maulya.in/">Open workspace</a>
+                <a class="btn btn-secondary" href="/pilot/">Request a pilot</a>
+                <a class="btn btn-quiet" href="/pricing/">See commercial framing</a>
               </div>
-              <div class="action-link-row" style="margin-top: 16px; justify-content: center;">
-                <a href="https://demo.maulya.in/">Try Demo</a>
-                <a href="https://app.maulya.in/login">Client &amp; Ops Login</a>
+            </div>
+            <div class="hero-stage reveal is-visible">
+              <div class="screen-stack">
+                <figure class="screen screen--dashboard">
+                  <img src="/assets/media/maulya/control-tower.png" alt="Maulya operational control workspace for valuation work." loading="eager" decoding="async" />
+                </figure>
+                <div class="screen-orbit">
+                  <strong>Why this matters</strong>
+                  <p>The platform is designed so older and non-technical users can still tell what is blocked, what is approved, and what to do next.</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section section-tight" data-river-anchor="deep-dive">
+      <section class="section section-tight">
         <div class="shell">
-          <div class="section-head text-center reveal">
-            <p class="kicker">Execution vs Governance</p>
-            <h2>V1 execution depth, reframed as a cleaner V2 control plane.</h2>
-            <p class="section-so-what">Same deterministic spine. Two layers of visibility for two types of users.</p>
+          <div class="workflow-grid">
+            <article class="workflow-step reveal"><span>01</span><strong>Onboard</strong><p>Tenant state, company details, approval posture, and user roles shape what the workspace exposes.</p></article>
+            <article class="workflow-step reveal"><span>02</span><strong>Assign</strong><p>Assignments move through queues instead of disappearing into ad hoc desk ownership.</p></article>
+            <article class="workflow-step reveal"><span>03</span><strong>Evidence</strong><p>Uploads and clarifications stay attached to the work so readiness is visible.</p></article>
+            <article class="workflow-step reveal"><span>04</span><strong>Generate</strong><p>Repogen is a governed lane with processing, review, and release implications.</p></article>
+            <article class="workflow-step reveal"><span>05</span><strong>Bill</strong><p>Billing posture and credits move closer to product truth instead of staying hidden in beta cards.</p></article>
+            <article class="workflow-step reveal"><span>06</span><strong>Release</strong><p>Approvals, readiness, and commercial state decide what leaves the system.</p></article>
           </div>
-          <div class="proof-grid premium-proof-grid">
-            <article class="proof-card reveal">
-              <figure class="screen-frame media-mode-proof" data-theme="maulya">
-                <div class="screen-frame__chrome" aria-hidden="true"><span class="screen-frame__dot"></span><span class="screen-frame__dot"></span><span class="screen-frame__dot"></span></div>
-                <div class="screen-frame__viewport"><img src="/assets/media/maulya/control-tower.png" alt="Maulya V1 control tower view showing workload pressure and action center." width="1280" height="1236" loading="eager" decoding="async" /></div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="shell">
+          <div class="surface-panel reveal">
+            <div class="surface-panel__copy">
+              <span class="eyebrow">Assignments and evidence</span>
+              <h3>Queues are the product, not just the wrapper.</h3>
+              <p>Maulya is strongest when the assignment stops being a long detail page and becomes a real workspace: queues, previews, warnings, ownership, evidence, and next actions in one surface.</p>
+              <ul class="list-check">
+                <li>Assignment flow designed for operators, reviewers, and field users</li>
+                <li>Evidence capture and readiness surfaced before release</li>
+                <li>Mobile execution subset for on-the-go actions instead of desktop-only assumptions</li>
+              </ul>
+            </div>
+            <div class="surface-panel__visual">
+              <figure class="screen screen--dashboard">
+                <img src="/assets/media/maulya/marketing/live-assignments.png" alt="Maulya assignments queue and control surface." loading="lazy" decoding="async" />
               </figure>
-              <div class="proof-caption"><span class="small">V1 ops engine</span><h3>Execution layer</h3><p>Dense, operational, and battle-tested. This is where queue pressure and real production flow live.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="shell">
+          <div class="proof-grid">
+            <article class="proof-card reveal">
+              <figure class="screen screen--phone">
+                <img src="/assets/media/maulya/marketing/mobile-create-preview.png" alt="Maulya mobile create flow for draft-first assignment capture." loading="lazy" decoding="async" />
+              </figure>
+              <span class="small-label">Field capture</span>
+              <h3>Draft-first creation and uploads</h3>
+              <p>The mobile lane favors safer capture, uploads, and follow-up instead of pretending complex desk flows translate cleanly to phone screens.</p>
             </article>
             <article class="proof-card reveal">
-              <figure class="screen-frame media-mode-proof" data-theme="maulya">
-                <div class="screen-frame__chrome" aria-hidden="true"><span class="screen-frame__dot"></span><span class="screen-frame__dot"></span><span class="screen-frame__dot"></span></div>
-                <div class="screen-frame__viewport"><img src="/assets/media/maulya/invoice-ledger.png" alt="Maulya V2 invoice ledger showing billing state and operator follow-up controls." width="1280" height="2151" loading="eager" decoding="async" /></div>
+              <figure class="screen screen--phone">
+                <img src="/assets/media/maulya/marketing/mobile-approvals-preview.png" alt="Maulya mobile approvals surface for pending decisions." loading="lazy" decoding="async" />
               </figure>
-              <div class="proof-caption"><span class="small">V2 control plane</span><h3>Governance layer</h3><p>Lighter, clearer, and easier to reason about without losing the deterministic operating spine underneath.</p></div>
+              <span class="small-label">Approvals</span>
+              <h3>Blocked states should explain themselves</h3>
+              <p>The product direction is explicit about why something is blocked: role, workflow, approval, plan, add-on, quota, or credit posture.</p>
+            </article>
+            <article class="proof-card reveal">
+              <figure class="screen screen--phone">
+                <img src="/assets/media/maulya/marketing/mobile-invoices-preview.png" alt="Maulya invoice and payment visibility on mobile." loading="lazy" decoding="async" />
+              </figure>
+              <span class="small-label">Billing visibility</span>
+              <h3>Commercial truth belongs inside the workflow</h3>
+              <p>Billing and credits should appear where users make report and release decisions, not only inside a separate admin lane.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section section-tight" data-river-anchor="system-map">
+      <section class="section section-tight">
+        <div class="shell split-layout">
+          <article class="card reveal">
+            <span class="eyebrow">Repogen</span>
+            <h3>Assisted report generation without pretending it is simple.</h3>
+            <p>Repogen is not marketed here as magic. It is positioned as an assisted reporting lane with processing, review, regeneration, release, and commercial implications.</p>
+            <ul class="list-check">
+              <li>Tenant-side commissioning and clearer processing surfaces</li>
+              <li>Approval and finalization tied to capability truth</li>
+              <li>Future tariff-aware charging instead of flat beta-era claims</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <span class="eyebrow">Governance</span>
+            <h3>Studio and tenant roles stay visible but distinct.</h3>
+            <p>Core tenant, approved tenant, operators, reviewers, tenant admins, associates, and studio/governance users do not need the same UI or language. The public site now reflects that instead of flattening everyone into one generic story.</p>
+            <ul class="list-check">
+              <li>Default-deny report generation until approval gates clear</li>
+              <li>Studio oversight kept separate from tenant-side work</li>
+              <li>Associate surface intentionally narrower than internal workflow surfaces</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-tight">
         <div class="shell">
-          <div class="section-head reveal">
-            <p class="kicker">The operating spine</p>
-            <h2>Click each step to see what it enforces.</h2>
-          </div>
-          <div class="system-map reveal" data-step-details='["Evidence: Docs, photos, and assignment fields stay linked so missing evidence is visible immediately.","Rules: Warnings, derived values, and release checks prevent quiet slippage.","Readiness: Readiness gating blocks incomplete delivery. Nothing ships until every gate clears.","Release: Billing-gated release with audit trail. Paid, credits, or override-with-reason state is explicit."]'>
-            <div class="system-map__progress"><div class="system-map__progress-fill"></div></div>
-            <div class="system-map__steps">
-              <div class="system-map__step" data-active="true"><span class="system-map__step-num">01</span><span class="system-map__step-name">Evidence</span></div>
-              <div class="system-map__step"><span class="system-map__step-num">02</span><span class="system-map__step-name">Rules</span></div>
-              <div class="system-map__step"><span class="system-map__step-num">03</span><span class="system-map__step-name">Readiness</span></div>
-              <div class="system-map__step"><span class="system-map__step-num">04</span><span class="system-map__step-name">Release</span></div>
+          <div class="callout-grid">
+            <div class="callout-card reveal">
+              <h3>What Maulya prevents</h3>
+              <p>Operational drift across intake, upload, approval, invoice follow-up, and release. The platform is most useful where teams currently lose time to unclear ownership and quiet backlog growth.</p>
             </div>
-            <div class="system-map__detail">Evidence: Docs, photos, and assignment fields stay linked so missing evidence is visible immediately.</div>
+            <div class="callout-card reveal">
+              <h3>What Maulya clarifies</h3>
+              <p>Whether the next blocker is workflow state, capability state, billing posture, or tenant approval state. The public marketing story now matches that more mature truth.</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="section section-tight" data-river-anchor="prevents">
-        <div class="shell split-band reveal">
-          <div class="side">
-            <p class="kicker">Prevents</p>
-            <h2>What Maulya stops.</h2>
-            <ul class="check-list">
-              <li>Dropped follow-ups across desk, field, and partner handoffs</li>
-              <li>Missing docs and evidence gaps surfacing too late</li>
-              <li>Approval blind spots and unclear release ownership</li>
-              <li>Invoice confusion and weak payment visibility</li>
-            </ul>
-          </div>
-          <div class="side">
-            <p class="kicker">Ensures</p>
-            <h2>What teams get instead.</h2>
-            <ul class="check-list">
-              <li>Clear ownership from draft to final release</li>
-              <li>Readiness checks that block incomplete delivery</li>
-              <li>Approval trail and billing state attached to workflow</li>
-              <li>Transparent visibility for ops, field users, and associates</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Survey CTA Band -->
-      <section class="section section-tight" aria-label="Workflow survey">
+      <section class="section section-tight">
         <div class="shell">
-          <div class="survey-band reveal">
-            <div class="survey-band__inner">
-              <div class="survey-band__badge">3-minute survey</div>
-              <h2 class="survey-band__title">Take the workflow survey. Help us build the right tool.</h2>
-              <p class="survey-band__sub">Mostly taps. No client data. Your answers shape approvals, evidence discipline, and invoice follow-up priorities.</p>
-              <a href="/survey/?src=maulya-product" class="survey-band__cta">Take the 3-minute survey →</a>
-              <span class="survey-band__meta">Aggregated results only · Progress saves locally</span>
+          <div class="cta-panel reveal">
+            <span class="eyebrow">Continue</span>
+            <h2>Use this page to understand the operating model. Use the next pages to see how Maulya is packaged and deployed publicly.</h2>
+            <div class="button-row">
+              <a class="btn btn-primary" href="/solutions/">See role-based solutions</a>
+              <a class="btn btn-secondary" href="/pricing/">See commercial framing</a>
+              <a class="btn btn-quiet" href="/updates/">Read updates</a>
             </div>
-          </div>
-        </div>
-      </section>
-      <section class="section section-tight premium-final-cta" data-river-anchor="footer">
-        <div class="shell">
-          <div class="cta-band reveal text-center">
-            <div>
-              <p class="kicker">Next step</p>
-              <h2>Move assignment operations onto one control surface.</h2>
-            </div>
-            <div class="button-row" style="margin-top: 32px">
-              <a class="btn btn-primary" href="https://app.maulya.in/partner/request-access">Request Associate Access</a>
-              <a class="btn btn-secondary" href="https://app.maulya.in/">Open Workspace</a>
-            </div>
-            <div class="action-link-row" style="margin-top: 16px; justify-content: center;">
-              <a href="https://demo.maulya.in/">Try Demo</a>
-              <a href="https://app.maulya.in/login">Client &amp; Ops Login</a>
-            </div>
-            <div class="cta-micro-row" style="justify-content: center; margin-top: 12px;"><span>Public demo available</span><span>Verified pilot onboarding</span><span>No commitment</span></div>
           </div>
         </div>
       </section>
@@ -170,19 +231,39 @@
 
     <footer class="site-footer">
       <div class="shell">
-        <div class="footer-top">
-          <a class="brand" href="/" aria-label="Maulya"><img src="/assets/brand/maulya-logo.png" alt="Maulya" width="800" height="243" class="brand-logo" style="height: 30px; width: auto; display: block;" /></a>
-          <div class="footer-links">
-            <a href="/product/">Product</a>
-            <a href="/demo/">Demo</a>
+        <div class="footer-grid">
+          <div class="footer-card">
+            <a class="brand-lockup" href="/" aria-label="Maulya home">
+              <img src="/assets/brand/maulya-icon.png" alt="Maulya" width="84" height="84" />
+              <span class="brand-copy">
+                <span class="brand-name">Maulya</span>
+                <span class="brand-sub">Static marketing and product overview</span>
+              </span>
+            </a>
+            <p>This product page now reflects the current platform direction: valuation workflow, governed reporting, commercial clarity, and public/app/auth host separation.</p>
+          </div>
+          <div class="footer-card">
+            <h3>Pages</h3>
+            <a href="/solutions/">Solutions</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="/updates/">Updates</a>
             <a href="/associates/">Associates</a>
-            <a href="/pilot/">Pilot</a>
-            <a href="/survey/">Survey</a>
+          </div>
+          <div class="footer-card">
+            <h3>Links</h3>
+            <a href="https://app.maulya.in/">Open app</a>
+            <a href="https://auth.maulya.in">Sign in</a>
             <a href="/privacy/">Privacy</a>
             <a href="/terms/">Terms</a>
           </div>
         </div>
-        <p class="footer-note">© 2026 Maulya (Not Alone Studios).</p>
+        <div class="footer-bottom">
+          <span>© <span data-year></span> Maulya.</span>
+          <div class="footer-mini-links">
+            <a href="/pilot/">Request pilot</a>
+            <a href="https://app.maulya.in/updates">Updates reader</a>
+          </div>
+        </div>
       </div>
     </footer>
   </div>

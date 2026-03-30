@@ -3,79 +3,120 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maulya Demo — See It In Action</title>
-  <meta name="description" content="See Maulya in action before requesting access. Explore the deterministic workflow in a safe evaluation path." />
-  <meta property="og:title" content="Maulya Demo — See It In Action" />
-  <meta property="og:description" content="Explore Maulya's operating spine before requesting full access." />
+  <title>Maulya Demo — Safe Public Evaluation Lane</title>
+  <meta name="description" content="Explore Maulya through the public demo lane before requesting access. Demo access stays separate from the production workspace." />
+  <meta property="og:title" content="Maulya Demo — Safe Public Evaluation Lane" />
+  <meta property="og:description" content="Explore the workflow without confusing the demo with the live workspace." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://maulya.in/demo/" />
-  <meta property="og:image" content="/assets/icons/og-demo.png" />
-
+  <meta property="og:image" content="https://maulya.in/assets/media/maulya/marketing/demo-login-desktop.png" />
+  <link rel="icon" type="image/png" href="/assets/brand/maulya-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;700;800&family=Sora:wght@500;700;800&display=swap" rel="stylesheet" />
-  
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/site.css" />
 </head>
-<body data-theme="maulya" class="page-maulya-v2">
+<body>
   <div class="page-shell">
-    <div class="noise-glow" aria-hidden="true"></div>
-    <div class="grain" aria-hidden="true"></div>
-    <div class="nav-overlay" aria-hidden="true"></div>
+    <div class="site-topbar">
+      <div class="shell">
+        <div class="surface-map">
+          <strong>Demo lane</strong>
+          <span>sample data</span>
+          <span>safe evaluation</span>
+          <span>separate from live workspace</span>
+        </div>
+        <a class="topbar-link" href="https://demo.maulya.in/">Open demo</a>
+      </div>
+    </div>
+
     <header class="site-header">
       <div class="shell">
-        <a class="brand" href="/" aria-label="Maulya"><img src="/assets/brand/maulya-logo.png" alt="Maulya" width="800" height="243" class="brand-logo" style="height: 30px; width: auto; display: block;" /></a>
-        <button class="nav-hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">
+        <a class="brand-lockup" href="/" aria-label="Maulya home">
+          <img src="/assets/brand/maulya-icon.png" alt="Maulya" width="84" height="84" />
+          <span class="brand-copy">
+            <span class="brand-name">Maulya</span>
+            <span class="brand-sub">Demo and evaluation lane</span>
+          </span>
+        </a>
+        <button class="nav-hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-drawer">
           <span></span><span></span><span></span>
         </button>
-        <nav class="nav" id="primary-nav" aria-label="Primary">
-          <a href="/product/">Product</a>
-          <a href="/demo/" aria-current="page">Demo</a>
-          <a href="/associates/">Associates</a>
-          <a href="/pilot/" class="nav-cta">Pilot</a>
-        </nav>
+        <div class="site-nav">
+          <nav class="nav-links" aria-label="Primary">
+            <a href="/product/">Product</a>
+            <a href="/solutions/">Solutions</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="/updates/">Updates</a>
+            <a href="/associates/">Associates</a>
+            <a href="/pilot/">Pilot</a>
+          </nav>
+          <div class="nav-actions">
+            <a class="link-chip" href="https://auth.maulya.in">Sign in</a>
+            <a class="btn btn-primary" href="https://demo.maulya.in/">Open demo</a>
+          </div>
+        </div>
       </div>
     </header>
 
+    <aside class="mobile-drawer" id="mobile-drawer" aria-label="Mobile navigation">
+      <nav>
+        <a href="/product/">Product</a>
+        <a href="/solutions/">Solutions</a>
+        <a href="/pricing/">Pricing</a>
+        <a href="/updates/">Updates</a>
+        <a href="/associates/">Associates</a>
+        <a href="/pilot/">Pilot</a>
+      </nav>
+      <div class="nav-actions-mobile">
+        <a class="link-chip" href="https://auth.maulya.in">Sign in</a>
+        <a class="btn btn-primary" href="https://demo.maulya.in/">Open demo</a>
+      </div>
+    </aside>
+
     <main>
-      <section class="section section-tight" data-river-anchor="demo">
-        <div class="shell premium-support-grid" style="margin-top: 48px;">
-          <article class="premium-support-card reveal" id="demo-landing">
-            <div style="padding-right: 48px;">
-              <p class="small-label">Demo lane</p>
-              <h1>See Maulya in action before requesting access.</h1>
-              <p>The demo stays visible but subordinate. It is a safe evaluation path with isolated sample data and clear demo markers.</p>
-              
-              <div class="button-row" style="margin-top: 32px">
-                <a class="btn btn-secondary" href="https://demo.maulya.in/">Open Demo Landing</a>
-              </div>
-              <div class="action-link-row" style="margin-top: 16px">
-                <a href="https://demo.maulya.in/login">Go to demo login</a>
+      <section class="page-hero">
+        <div class="shell">
+          <div class="hero-grid">
+            <div class="hero-copy reveal is-visible">
+              <span class="eyebrow">Public evaluation lane</span>
+              <h1>See how Maulya works without confusing the demo with the live product.</h1>
+              <p class="hero-lead">The demo is a safe entry point for curiosity and evaluation. It uses sample data, keeps expectations bounded, and should not replace the real onboarding lane for firms and associates.</p>
+              <div class="button-row">
+                <a class="btn btn-primary" href="https://demo.maulya.in/">Open demo landing</a>
+                <a class="btn btn-secondary" href="https://demo.maulya.in/login">Go to demo login</a>
+                <a class="btn btn-quiet" href="/pilot/">Need a controlled rollout?</a>
               </div>
             </div>
-            <figure class="screen-frame media-mode-proof" data-theme="maulya">
-              <div class="screen-frame__chrome" aria-hidden="true"><span class="screen-frame__dot"></span><span class="screen-frame__dot"></span><span class="screen-frame__dot"></span></div>
-              <div class="screen-frame__viewport"><img src="/assets/media/maulya/marketing/demo-login-desktop.png" alt="Maulya public demo entry showing a branded demo environment." width="1420" height="1107" loading="eager" decoding="async" /></div>
-            </figure>
-          </article>
+            <div class="hero-stage reveal is-visible">
+              <div class="screen-stack">
+                <figure class="screen screen--dashboard">
+                  <img src="/assets/media/maulya/marketing/demo-login-desktop.png" alt="Maulya demo login and public evaluation screen." loading="eager" decoding="async" />
+                </figure>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="section section-tight premium-final-cta" data-river-anchor="footer">
+      <section class="section section-tight">
         <div class="shell">
-          <div class="cta-band reveal text-center">
-            <div>
-              <p class="kicker">Ready?</p>
-              <h2>Move assignment operations onto one control surface.</h2>
-            </div>
-            <div class="button-row" style="margin-top: 32px">
-              <a class="btn btn-primary" href="https://app.maulya.in/partner/request-access">Request Associate Access</a>
-              <a class="btn btn-secondary" href="https://app.maulya.in/">Open Workspace</a>
-            </div>
-            <div class="action-link-row" style="margin-top: 16px; justify-content: center;">
-              <a href="https://app.maulya.in/login">Client &amp; Ops Login</a>
-            </div>
-            <div class="cta-micro-row" style="justify-content: center; margin-top: 12px;"><span>Public demo available</span><span>Sample data only</span><span>No commitment</span></div>
+          <div class="grid-3">
+            <article class="card reveal">
+              <span class="small-label">What demo is for</span>
+              <h3>Quick product feel</h3>
+              <p>Use the demo to understand the operating model, navigation, and workflow feel before requesting real access.</p>
+            </article>
+            <article class="card reveal">
+              <span class="small-label">What demo is not</span>
+              <h3>Not your production workspace</h3>
+              <p>The demo should not be mistaken for a live tenant, real onboarding, or the place where public updates participation is managed.</p>
+            </article>
+            <article class="card reveal">
+              <span class="small-label">Best next step</span>
+              <h3>Use demo first, then pick the right live lane.</h3>
+              <p>Associates should request access. Firms should request a pilot. Readers should use the updates lane. The demo stays subordinate.</p>
+            </article>
           </div>
         </div>
       </section>
@@ -83,19 +124,39 @@
 
     <footer class="site-footer">
       <div class="shell">
-        <div class="footer-top">
-          <a class="brand" href="/" aria-label="Maulya"><img src="/assets/brand/maulya-logo.png" alt="Maulya" width="800" height="243" class="brand-logo" style="height: 30px; width: auto; display: block;" /></a>
-          <div class="footer-links">
+        <div class="footer-grid">
+          <div class="footer-card">
+            <a class="brand-lockup" href="/" aria-label="Maulya home">
+              <img src="/assets/brand/maulya-icon.png" alt="Maulya" width="84" height="84" />
+              <span class="brand-copy">
+                <span class="brand-name">Maulya</span>
+                <span class="brand-sub">Demo and evaluation lane</span>
+              </span>
+            </a>
+            <p>A safer path for exploration. Real onboarding and participation continue to live on their proper hosts.</p>
+          </div>
+          <div class="footer-card">
+            <h3>Explore</h3>
             <a href="/product/">Product</a>
-            <a href="/demo/">Demo</a>
+            <a href="/pricing/">Pricing</a>
             <a href="/associates/">Associates</a>
             <a href="/pilot/">Pilot</a>
-            <a href="/survey/">Survey</a>
+          </div>
+          <div class="footer-card">
+            <h3>Links</h3>
+            <a href="https://demo.maulya.in/">Open demo</a>
+            <a href="https://app.maulya.in/">Open app</a>
             <a href="/privacy/">Privacy</a>
             <a href="/terms/">Terms</a>
           </div>
         </div>
-        <p class="footer-note">© 2026 Maulya (Not Alone Studios).</p>
+        <div class="footer-bottom">
+          <span>© <span data-year></span> Maulya.</span>
+          <div class="footer-mini-links">
+            <a href="https://demo.maulya.in/">Demo</a>
+            <a href="/pilot/">Pilot</a>
+          </div>
+        </div>
       </div>
     </footer>
   </div>

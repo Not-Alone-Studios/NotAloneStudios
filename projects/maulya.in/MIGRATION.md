@@ -1,17 +1,86 @@
-# Maulya.in Migration & DNS Strategy
+# Maulya Public Site Hosting Notes
 
-This document outlines the required DNS configuration for the standalone `maulya.in` marketing site and its associated application environments.
+This project contains the external static marketing/public site for:
+- `maulya.in`
+- `www.maulya.in`
 
-## DNS A-Records (Required)
-Ensure the following records are set in your DNS provider pointing to your Traefik VPS IP:
+It is intentionally separate from the application runtime.
 
-- `A maulya.in -> [VPS_IP]`
+## Host ownership
+
+- `maulya.in` and `www.maulya.in`
+  - static marketing/public site
+  - product pages, pricing framing, updates discovery, policies, pilot/contact entry
+- `app.maulya.in`
+  - workspace shell
+  - live onboarding and request-access flows
+  - public updates reader
+  - public account/comment/admin participation flows
+- `auth.maulya.in`
+  - browser auth origin
+- `demo.maulya.in`
+  - demo/evaluation lane
+
+## Source of truth
+
+- editable source pages live in `projects/maulya.in/src/`
+- deploy mirrors are generated from that source:
+  - `projects/maulya.in/public_clean/`
+  - `projects/maulya.in/public_hostinger/`
+  - `projects/maulya.in/Maulya_hostinger_ready/`
+
+Do not treat a deploy mirror as the canonical place to edit the site.
+
+## Static deployment model
+
+The public site is meant to stay plain static HTML/CSS/JS for easier server hosting and lower DNS/runtime complexity.
+
+Key implications:
+- no app rebuild here
+- no duplication of workspace flows here
+- public CTAs should route into the correct live hosts
+- updates/articles should currently link into `https://app.maulya.in/updates`
+
+## Important public-route expectations
+
+Primary internal routes on the static site:
+- `/`
+- `/product/`
+- `/solutions/`
+- `/pricing/`
+- `/updates/`
+- `/associates/`
+- `/demo/`
+- `/pilot/`
+- `/survey/`
+- `/privacy/`
+- `/terms/`
+
+Primary external/product links:
+- workspace: `https://app.maulya.in/`
+- associate access: `https://app.maulya.in/partner/request-access`
+- pilot handoff form: `https://app.maulya.in/api/partner/request-access/handoff`
+- updates reader: `https://app.maulya.in/updates`
+- updates account: `https://app.maulya.in/updates/account`
+- sign in: `https://auth.maulya.in`
+- demo: `https://demo.maulya.in/`
+
+## Publishing flow
+
+1. Edit the source under `projects/maulya.in/src/`
+2. Sync source into the deploy mirrors
+3. Regenerate `Maulya_hostinger_ready/` and `Maulya_hostinger_ready.zip`
+4. Upload the Hostinger-ready output to the static host if using Hostinger
+
+## DNS / routing reminders
+
+Expected DNS targets:
+- `A maulya.in -> [STATIC_HOST_OR_VPS]`
+- `A www.maulya.in -> [STATIC_HOST_OR_VPS]`
 - `A app.maulya.in -> [VPS_IP]`
+- `A auth.maulya.in -> [VPS_IP]`
 - `A demo.maulya.in -> [VPS_IP]`
 
-*(Note: Traefik redirect labels for `zenops.notalonestudios.com` managed in previous migration steps still apply for legacy traffic).*
+## Public-site policy positioning
 
-## Application Routing Targets
-- **Maulya Marketing Site**: Deployed statically to Hostinger (mapped to `maulya.in`)
-- **Maulya Workspace App**: Handled via Traefik (mapped to `app.maulya.in`)
-- **Maulya Demo App**: Handled via Traefik (mapped to `demo.maulya.in`)
+This repo can expose privacy/terms visibility and public disclaimers, but authoritative product/account/comment acceptance may still happen on the app host where the interaction actually occurs.
