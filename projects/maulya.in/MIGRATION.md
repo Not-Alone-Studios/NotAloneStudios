@@ -58,11 +58,12 @@ Primary internal routes on the static site:
 
 Primary external/product links:
 - workspace: `https://app.maulya.in/`
-- associate access: `https://app.maulya.in/partner/request-access`
-- pilot handoff form: `https://app.maulya.in/api/partner/request-access/handoff`
+- sign up: `https://app.maulya.in/auth/sign-up`
+- associate access: `https://app.maulya.in/auth/sign-up?mode=associate`
+- pilot contact: `mailto:support@maulya.in?subject=Maulya%20pilot%20request`
 - updates reader: `https://app.maulya.in/updates`
 - updates account: `https://app.maulya.in/updates/account`
-- sign in: `https://auth.maulya.in`
+- sign in: `https://app.maulya.in/auth/sign-in`
 - demo: `https://demo.maulya.in/`
 
 ## Publishing flow

@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /pricing/
 
 Sitemap: https://maulya.in/sitemap.xml

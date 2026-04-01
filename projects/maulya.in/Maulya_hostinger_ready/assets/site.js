@@ -16,13 +16,25 @@
   const body = document.body;
   const navButton = document.querySelector(".nav-hamburger");
   const mobileDrawer = document.querySelector(".mobile-drawer");
+  let returnFocusNode = null;
   const closeMobileNav = () => {
+    const wasOpen = body.classList.contains("nav-open");
     body.classList.remove("nav-open");
     if (navButton) navButton.setAttribute("aria-expanded", "false");
+    if (wasOpen && returnFocusNode instanceof HTMLElement) {
+      returnFocusNode.focus({ preventScroll: true });
+    }
   };
   const openMobileNav = () => {
+    returnFocusNode = document.activeElement;
     body.classList.add("nav-open");
     if (navButton) navButton.setAttribute("aria-expanded", "true");
+    const firstLink = mobileDrawer?.querySelector("a");
+    if (firstLink instanceof HTMLElement) {
+      window.requestAnimationFrame(() => {
+        firstLink.focus({ preventScroll: true });
+      });
+    }
   };
 
   if (navButton && mobileDrawer) {
@@ -40,6 +52,10 @@
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") closeMobileNav();
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 920) closeMobileNav();
     });
 
     document.addEventListener("click", (event) => {
