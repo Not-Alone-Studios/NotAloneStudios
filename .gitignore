@@ -22,3 +22,6 @@ coverage/
 
 # A browser saved-login file found in the repo root (MLP/ARK-668): never add it
 Login Data
+
+# maulya.in: its build/ is source (the site generator), not output (MLP/ARK-668)
+!projects/maulya.in/build/

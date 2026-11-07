@@ -1,0 +1,19 @@
+[
+ {"name":"desk-home-owner","path":"/?as=owner","webp":[1440,960]},
+ {"name":"desk-queue-owner","path":"/assignments?as=owner","webp":[1440,960]},
+ {"name":"desk-file-overview","path":"/assignments/assignment-ui-review-001?as=owner","webp":[1440,960]},
+ {"name":"desk-new-file","path":"/assignments/new?as=owner","webp":[1440,960]},
+ {"name":"desk-home-office-staff","path":"/?as=office-staff","webp":[1440,960]},
+ {"name":"desk-home-site-engineer","path":"/?as=site-engineer","webp":[1440,960]},
+ {"name":"desk-home-associate","path":"/?as=associate-valuer","webp":[1440,960]},
+ {"name":"desk-home-assistant","path":"/?as=assistant-valuer","webp":[1440,960]},
+ {"name":"desk-plan-owner","path":"/settings/plan?as=owner","webp":[1440,960]},
+ {"name":"phone-home-owner","path":"/m/home?phone=v2&as=owner","w":390,"h":844,"mobile":true,"webp":[780,390]},
+ {"name":"phone-home-office-staff","path":"/m/home?phone=v2&as=office-staff","w":390,"h":844,"mobile":true,"webp":[780,390]},
+ {"name":"phone-home-site-engineer","path":"/m/home?phone=v2&as=site-engineer","w":390,"h":844,"mobile":true,"webp":[780,390]},
+ {"name":"phone-files-owner","path":"/m/assignments?phone=v2&as=owner","w":390,"h":844,"mobile":true,"webp":[780,390]},
+ {"name":"phone-visit","path":"/m/visits/review-visit-1?phone=v2&as=site-engineer","w":390,"h":844,"mobile":true,"webp":[780,390]},
+ {"name":"phone-visit-photos","path":"/m/visits/review-visit-1?phone=v2&as=site-engineer&part=photos","w":390,"h":844,"mobile":true,"webp":[780,390]},
+ {"name":"phone-visits-list","path":"/m/visits?phone=v2&as=site-engineer","w":390,"h":844,"mobile":true,"webp":[780,390]},
+ {"name":"chrome-files-owner","path":"/m/assignments?as=owner","w":390,"h":844,"mobile":true,"webp":[780,390]}
+]
