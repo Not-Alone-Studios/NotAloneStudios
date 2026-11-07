@@ -20,6 +20,7 @@ export default ({ L }) => ({
         <span class="kicker">Pricing</span>
         <h1>Plain prices, the same ones the app shows.</h1>
         <p class="lead">Every plan has room for 7 people and 100 GB for your files. Prices are a month, before GST.</p>
+        <p class="lead">Firms chosen for early access use Maulya free for six weeks. <a href="/early-access/">About early access</a>.</p>
       </div>
     </section>
     <section class="section">
@@ -81,14 +82,14 @@ export default ({ L }) => ({
           <details><summary>Which plan do I need if my firm makes reports in Maulya?</summary><div><p>Platform has the files, people and office tools, without making reports. Tier 1 adds 100 reports a month.</p></div></details>
           <details><summary>What if we are more than 7 people?</summary><div><p>Each extra place is ₹500 a month + GST, on any plan. Larger firms can agree places, reports and price with us on Enterprise.</p></div></details>
           <details><summary>What is Assisted?</summary><div><p>A plan with the same 100 reports a month where we help fill in the report's details from what you send. It is coming soon and can't be chosen yet. The valuer reviews everything, and the report stays the valuer's.</p></div></details>
-          <details><summary>Can I see the product first?</summary><div><p>Yes. <a href="/product/">The product page</a> shows the app's screens, and we can walk you through it when we set up your firm.</p></div></details>
+          <details><summary>Can I see the product first?</summary><div><p>Yes. <a href="/product/">The product page</a> shows the app's screens.</p></div></details>
         </div>
       </div>
     </section>
     <section class="closing on-body">
       <div class="wrap">
-        <h2>Tell us about your office, and we will set up your firm.</h2>
-        <div class="actions"><a class="btn btn-gold" href="${L.start}">Start your firm</a><a class="btn btn-line" href="${L.mail("Maulya plan")}">Write to us</a></div>
+        <h2>Early access is free for six weeks.</h2>
+        <div class="actions">${L.apply("btn btn-gold")}<a class="btn btn-line" href="${L.mail("Maulya plan")}">Write to us</a></div>
       </div>
     </section>
 `,

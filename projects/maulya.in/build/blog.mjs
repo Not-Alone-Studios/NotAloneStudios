@@ -232,7 +232,7 @@ export function postBody(post, all, { L, preview, isLive }) {
         <div class="post-foot">
           <p class="small muted">Maulya organises the work around the valuer's judgment. It does not decide a property's value. Articles are informational and not legal, financial or regulatory advice.</p>
           ${rel.length ? `<h2 style="font-size:1.375rem;border:0;padding:0;margin-top:24px">Read next</h2><div class="related">${rel.map((p) => card(p, 3, { preview, isLive })).join("")}</div>` : ""}
-          <div class="actions"><a class="btn btn-gold" href="${L.start}">Start your firm</a><a class="btn btn-line" href="/blog/">All articles</a></div>
+          <div class="actions">${L.apply("btn btn-gold")}<a class="btn btn-line" href="/blog/">All articles</a></div>
         </div>
       </article>
     </div>`;

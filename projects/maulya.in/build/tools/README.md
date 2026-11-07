@@ -16,4 +16,4 @@ They use Playwright from the app repo's checkout (`~/V3-lanes/site-shots`, `npm 
 
 - **`check-site.cjs <base> <outdir> <widths>`:** every page at each width. It reports one `h1`, console errors, failed requests and sideways scroll, and takes full-page screenshots. Serve a build first: `python3 -m http.server 8768 --bind 127.0.0.1` inside `dist/preview/Maulya_preview_all_posts`.
 
-- **`keys-site.cjs <outdir>`:** the keyboard walk. Home's tab order, the file scale's arrow keys, "Start your firm" → `/start/`, and the phone menu with Enter and Escape.
+- **`keys-site.cjs <outdir>`:** the keyboard walk. Home's tab order, the file scale's arrow keys, "Apply for early access" → `/early-access/` (or the form, once `earlyAccess.formUrl` is set), and the phone menu with Enter and Escape.

@@ -76,8 +76,8 @@ export default ({ L, shot }) => ({
     </section>
     <section class="closing on-body">
       <div class="wrap">
-        <h2>Set up your firm and bring your team in.</h2>
-        <div class="actions"><a class="btn btn-gold" href="${L.start}">Start your firm</a><a class="btn btn-line" href="/pricing/">See the prices</a></div>
+        <h2>Early access is free for six weeks.</h2>
+        <div class="actions">${L.apply("btn btn-gold")}<a class="btn btn-line" href="/pricing/">See the prices</a></div>
       </div>
     </section>
 `,

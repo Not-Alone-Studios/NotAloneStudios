@@ -15,12 +15,14 @@ export default {
     signUpPath: "/auth/sign-up",
   },
 
-  start: {
-    // Where the site's main button ("Start your firm") goes.
-    //   "page": the site's own /start/ page, which says how joining works today (the app has no public sign-up yet,
-    //           FUNNEL.md steps 3 and 7). #29's call, ARK may overrule.
-    //   "app":  straight to app.origin + app.signUpPath, the day the app's sign-up works.
-    mode: "page",
+  earlyAccess: {
+    // MLP/ARK-683: the site's one gold button, "Apply for early access" (header, hero, the end of each page).
+    //   formUrl: the Google Form's address (Shrinivas sends it). While it is empty the build still works, every button
+    //            goes to the site's own /early-access/ page, and the build prints a loud warning. Paste the link
+    //            here, run `node build/build.mjs`, and every button goes straight to the form (same tab).
+    //   open:    false turns every button into the words "Applications are closed" (when the 10 to 15 are chosen).
+    formUrl: "",
+    open: true,
   },
 
   survey: {

@@ -13,7 +13,7 @@ export default ({ L, shot }) => ({
         <span class="kicker">The product</span>
         <h1>One file, from intake to hand-over.</h1>
         <p class="lead">Maulya is a web app for the whole office, on a computer at the desk and on a phone at the site. Here is what is on each screen today, in the app's own words.</p>
-        <div class="actions"><a class="btn btn-gold" href="${L.start}">Start your firm</a><a class="btn btn-line" href="#scale">How a file moves</a></div>
+        <div class="actions">${L.apply("btn btn-gold")}<a class="btn btn-line" href="#scale">How a file moves</a></div>
       </div>
     </section>
 
@@ -110,8 +110,8 @@ export default ({ L, shot }) => ({
     <section class="closing on-body">
       <div class="wrap">
         <h2>See it with your own files.</h2>
-        <p class="lead">We set up your firm with you, and you bring your team in, each person with their own job.</p>
-        <div class="actions"><a class="btn btn-gold" href="${L.start}">Start your firm</a><a class="btn btn-line" href="/for-whom/">Who it's for</a></div>
+        <p class="lead">We are choosing 10 to 15 valuation firms from the applications. They use Maulya free for six weeks, in return for real use and feedback.</p>
+        <div class="actions">${L.apply("btn btn-gold")}<a class="btn btn-line" href="/for-whom/">Who it's for</a></div>
       </div>
     </section>
 `,

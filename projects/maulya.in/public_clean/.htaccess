@@ -2,6 +2,7 @@
 ErrorDocument 404 /404.html
 Redirect 301 /solutions/ https://maulya.in/for-whom/
 Redirect 301 /associates/ https://maulya.in/for-whom/
-Redirect 301 /pilot/ https://maulya.in/start/
+Redirect 301 /pilot/ https://maulya.in/early-access/
+Redirect 301 /start/ https://maulya.in/early-access/
 Redirect 301 /demo/ https://maulya.in/product/
 Redirect 301 /updates/ https://maulya.in/blog/

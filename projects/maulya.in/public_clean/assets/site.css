@@ -414,3 +414,7 @@ thead th { border-bottom: 2px solid var(--green); font-size: var(--s-small); col
 @media (max-width: 860px) { [data-stack] { grid-template-columns: 1fr !important; gap: 32px !important; } }
 .hero-side .lead { margin-top: 8px; }
 .minute .at-glance { padding: 0; }
+
+/* MLP/ARK-683: "Applications are closed" in place of the gold button (earlyAccess.open: false) */
+.btn-closed { display: inline-block; padding: 12px 20px; border: 2px dashed currentColor; border-radius: 10px; font-weight: 700; opacity: .85; }
+.foot .btn-closed { padding: 0; border: 0; opacity: .85; font-weight: 400; }

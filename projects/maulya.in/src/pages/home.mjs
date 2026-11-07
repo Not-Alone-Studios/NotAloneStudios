@@ -22,7 +22,7 @@ export default ({ L, shot, latest, card }) => ({
           <div class="hero-side">
             <p class="lead">Maulya keeps a bank valuation file in one place, from the day it comes in to the day the report goes out. Everyone in the office sees who has it and what is next.</p>
             <div class="actions">
-              <a class="btn btn-gold" href="${L.start}">Start your firm</a>
+              ${L.apply("btn btn-gold")}
               <a class="btn btn-line" href="#how-a-file-moves">See how a file moves</a>
             </div>
             <p class="hero-note">Already invited by your firm? <a href="${L.signIn}">Sign in</a>.</p>
@@ -155,9 +155,9 @@ export default ({ L, shot, latest, card }) => ({
     <section class="closing on-body">
       <div class="wrap">
         <h2>Bring your firm's files into one place.</h2>
-        <p class="lead">Tell us about your office, and we will set up your firm with you. Payments aren't open in the app yet; we set up your plan together.</p>
+        <p class="lead">We are choosing 10 to 15 valuation firms from the applications. They use Maulya free for six weeks, in return for real use and feedback.</p>
         <div class="actions">
-          <a class="btn btn-gold" href="${L.start}">Start your firm</a>
+          ${L.apply("btn btn-gold")}
           <a class="btn btn-line" href="/pricing/">See the prices</a>
         </div>
       </div>

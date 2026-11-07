@@ -1,5 +1,10 @@
 # Changelog - maulya.in
 
+## [2026-11-07] - "Apply for early access" (MLP/ARK-683)
+- The site's one gold button is now "Apply for early access" (header, hero, the end of Home, Product, Who it's for, Pricing, About and each article; also the footer and the survey's last screen). "Start your firm" is gone.
+- One setting, `earlyAccess: { formUrl, open }` in `site.config.mjs`. Empty `formUrl`: buttons go to `/early-access/` and the build warns loudly. Set: buttons go straight to the Google Form, same tab. `open: false`: "Applications are closed".
+- New `/early-access/` page (10 to 15 valuation firms chosen from the applications; free for six weeks; real use and feedback in return). `/start/` and `/pilot/` now 301 to it. Pricing has one line about it. Privacy has one sentence on what the application's details are used for.
+
 ## [2026-11-07] - The new maulya.in (MLP/ARK-668)
 - New site in the app's own design language. Pages: Home, Product, Who it's for, Pricing, About, Start, Blog, Survey, Privacy, Terms, 404.
 - Pictures are the current app (web and phone) in review mode.

@@ -22,6 +22,7 @@ export const privacy = ({ L }) => ({
         <li>Basic visit and hosting information needed to serve the site.</li>
         <li>Survey answers you choose to send through the workflow survey. They are about how your office works; the survey does not ask for your name or phone number.</li>
         <li>Emails you choose to send us from the site's links.</li>
+        <li>An application for early access: the details you give in the application form are used to choose firms and to contact them.</li>
         <li>Your move into the app when you choose to sign in.</li>
       </ul>
       <p>The site sets no advertising cookies. The blog's checklists and search work only in your browser and are not sent anywhere.</p>
@@ -70,7 +71,7 @@ export const notFound = ({ L }) => ({
           <li><a href="/product/">The product</a><span></span></li>
           <li><a href="/pricing/">Pricing</a><span></span></li>
           <li><a href="/blog/">The blog</a><span></span></li>
-          <li><a href="/start/">Start your firm</a><span></span></li>
+          <li><a href="/early-access/">Early access</a><span></span></li>
           <li><a href="${L.signIn}">Sign in to Maulya</a><span></span></li>
         </ul>
       </div>

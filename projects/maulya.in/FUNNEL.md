@@ -111,7 +111,7 @@ App paths are relative to the app repo.
 **(C) Self-serve sign-up** (Google, then set up your firm, then onboarding).
 - Needs: app tasks 1–3, 6, 7, 9, 10, and app.maulya.in fixed. It is the most work, and the founders' record put the app.maulya.in fix "for later".
 
-**Switching between them on the site** is one line in `site.config.mjs`: `app.origin`, `app.signUpPath`, `app.signInPath`, or `start.mode`.
+**Switching between them on the site** is one line in `site.config.mjs`: `app.origin`, `app.signUpPath`, `app.signInPath`. (ARK-683, 7 Nov night: the site's main button is now "Apply for early access", set by `earlyAccess` in the same file; the old `start.mode` and the `/start/` page are gone, and `/start/` redirects to `/early-access/`. The road described below is the one that was built before that; the app still has no public sign-up.)
 
 ## Tasks for the app's lanes (not done here: this lane does not edit the app repo)
 

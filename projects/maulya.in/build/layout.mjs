@@ -8,7 +8,15 @@ export function links(cfg) {
     app,
     signIn: app + cfg.app.signInPath,
     signUp,
-    start: cfg.start.mode === "app" ? signUp : "/start/",
+    // MLP/ARK-683: every "Apply for early access" button. The form's address if it is set, else the site's own page.
+    apply: (cls = "btn btn-gold", label = "Apply for early access") => {
+      const ea = cfg.earlyAccess;
+      if (!ea.open) return `<span class="btn-closed">Applications are closed</span>`;
+      const form = String(ea.formUrl || "").trim();
+      return form
+        ? `<a class="${cls}" href="${esc(form)}" rel="noopener">${label}</a>`
+        : `<a class="${cls}" href="/early-access/">${label}</a>`;
+    },
     survey: "/survey/",
     mail: (subject) => `mailto:${cfg.site.supportEmail}${subject ? "?subject=" + encodeURIComponent(subject) : ""}`,
   };
@@ -85,7 +93,7 @@ export function page(cfg, opts) {
         <nav class="nav" aria-label="Main">${navLinks}</nav>
         <div class="nav-actions">
           <a class="btn btn-quiet" href="${L.signIn}">Sign in</a>
-          <a class="btn btn-gold" href="${L.start}">Start your firm</a>
+          ${L.apply("btn btn-gold")}
         </div>
       </div>
     </div>
@@ -106,7 +114,7 @@ ${body}
       </nav>
       <nav class="foot-nav" aria-label="Getting started">
         <h2 class="foot-h">Getting started</h2>
-        <a href="${L.start}">Start your firm</a><a href="${L.signIn}">Sign in</a><a href="/survey/">The office survey</a><a href="${L.mail("Maulya")}">${esc(cfg.site.supportEmail)}</a>
+        ${L.apply("")}<a href="${L.signIn}">Sign in</a><a href="/survey/">The office survey</a><a href="${L.mail("Maulya")}">${esc(cfg.site.supportEmail)}</a>
       </nav>
       <nav class="foot-nav" aria-label="Policies">
         <h2 class="foot-h">Policies</h2>

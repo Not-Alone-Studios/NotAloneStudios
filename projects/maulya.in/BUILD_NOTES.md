@@ -2,7 +2,7 @@
 
 ## One command
 `node build/build.mjs` (Node 18+, no packages). Sources:
-- `site.config.mjs`: **every app and survey address**, the "Start your firm" target, and the blog's publish rule. The host change is one line.
+- `site.config.mjs`: **every app and survey address**, the early-access form address and open/closed switch (`earlyAccess`, MLP/ARK-683), and the blog's publish rule. The host change is one line.
 - `src/pages/*.mjs`: the pages (Home, Product, Who it's for, Pricing, About, Start, Privacy, Terms, 404). `src/assets/`: css, js, fonts (Atkinson Hyperlegible Next, OFL), brand, the app's pictures.
 - `src/survey/index.html`: the canonical survey, kept as it was. Its Apps Script address comes from the config.
 - `content/blog/*.md`: the blog (see `content/blog/README.md`).
@@ -23,4 +23,4 @@ It writes `public_clean/`, `public_hostinger/`, `Maulya_hostinger_ready/` and `M
 - To retake them, see the shooter notes in `~/Downloads/Maulya/7_STATUS/LW.md`.
 
 ## Old addresses
-`/solutions/` and `/associates/` go to `/for-whom/`, `/pilot/` to `/start/`, `/demo/` to `/product/`, and `/updates/` to `/blog/`. Each is a 301 in `.htaccess`, plus a small page for hosts that ignore it.
+`/solutions/` and `/associates/` go to `/for-whom/`, `/pilot/` and `/start/` to `/early-access/`, `/demo/` to `/product/`, and `/updates/` to `/blog/`. Each is a 301 in `.htaccess`, plus a small page for hosts that ignore it.

@@ -53,7 +53,7 @@ export default ({ L }) => ({
     <section class="closing on-body">
       <div class="wrap">
         <h2>Talk to the people who built it.</h2>
-        <div class="actions"><a class="btn btn-gold" href="${L.start}">Start your firm</a><a class="btn btn-line" href="${L.mail("Hello from maulya.in")}">Write to us</a></div>
+        <div class="actions">${L.apply("btn btn-gold")}<a class="btn btn-line" href="${L.mail("Hello from maulya.in")}">Write to us</a></div>
       </div>
     </section>
 `,

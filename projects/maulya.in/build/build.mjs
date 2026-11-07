@@ -20,7 +20,7 @@ import product from "../src/pages/product.mjs";
 import forWhom from "../src/pages/for-whom.mjs";
 import pricing from "../src/pages/pricing.mjs";
 import about from "../src/pages/about.mjs";
-import start from "../src/pages/start.mjs";
+import earlyAccess from "../src/pages/early-access.mjs";
 import { privacy, terms, notFound } from "../src/pages/legal.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -32,12 +32,13 @@ cfg.__buildId = Date.now().toString(36);
 const MOVED = {
   "/solutions/": "/for-whom/",
   "/associates/": "/for-whom/",
-  "/pilot/": "/start/",
+  "/pilot/": "/early-access/",
+  "/start/": "/early-access/", // the Nov 2026 "Start your firm" page: ARK-683 folded it into /early-access/
   "/demo/": "/product/",
   "/updates/": "/blog/",
 };
 
-const STATIC_PAGES = [home, product, forWhom, pricing, about, start, privacy, terms, notFound];
+const STATIC_PAGES = [home, product, forWhom, pricing, about, earlyAccess, privacy, terms, notFound];
 
 function rm(p) { fs.rmSync(p, { recursive: true, force: true }); }
 function write(file, text) { fs.mkdirSync(path.dirname(file), { recursive: true }); fs.writeFileSync(file, text); }
@@ -102,7 +103,8 @@ function buildSite(dir, { preview }) {
   // the survey: kept as it is (its own full-screen page); only its addresses come from the config
   let survey = fs.readFileSync(path.join(SRC, "survey", "index.html"), "utf8");
   survey = survey.replace(/const APPS_SCRIPT_URL = '[^']*';/, `const APPS_SCRIPT_URL = '${cfg.survey.appsScriptUrl}';`)
-    .replace('href="/pilot/?src=maulya-survey-done"', `href="${L.start}"`)
+    .replace(/<a href="\/pilot\/\?src=maulya-survey-done" class="sv-btn sv-btn--primary">\s*Apply for early access →\s*<\/a>/,
+      cfg.earlyAccess.open ? L.apply("sv-btn sv-btn--primary", "Apply for early access →") : `<span class="sv-btn sv-btn--secondary">Applications are closed</span>`)
     .replace('<a href="/updates/" class="sv-btn sv-btn--secondary">Read product notes</a>', '<a href="/blog/" class="sv-btn sv-btn--secondary">Read the blog</a>');
   write(path.join(dir, "survey", "index.html"), survey);
   sitemap.push("/survey/");
@@ -149,4 +151,10 @@ const size = (f) => (fs.statSync(f).size / 1024 / 1024).toFixed(2) + " MB";
 console.log(`Built maulya.in: ${live.pages} pages in the sitemap; blog: ${live.posts} of ${live.all} posts live (status in ${JSON.stringify(cfg.blog.publishStatuses)}).`);
 console.log(`  Maulya_hostinger_ready.zip   ${size(path.join(ROOT, "Maulya_hostinger_ready.zip"))}`);
 console.log(`  Maulya_preview_all_posts.zip ${size(path.join(ROOT, "Maulya_preview_all_posts.zip"))} (all ${prev.posts} posts, not for upload)`);
-console.log(`  App sign-in: ${links(cfg).signIn}   "Start your firm": ${links(cfg).start}`);
+const ea = cfg.earlyAccess;
+console.log(`  App sign-in: ${links(cfg).signIn}`);
+console.log(`  "Apply for early access": ${!ea.open ? "CLOSED (open: false): the buttons say \"Applications are closed\"" : ea.formUrl ? ea.formUrl + " (same tab)" : "/early-access/ (no form link yet)"}`);
+if (ea.open && !String(ea.formUrl || "").trim()) {
+  const bar = "!".repeat(78);
+  console.warn(`\n${bar}\n!! WARNING: earlyAccess.formUrl in site.config.mjs is EMPTY.\n!! Every "Apply for early access" button goes to the site's own /early-access/ page, which has no form\n!! to send people to (its button falls back to an email). Paste Shrinivas's Google Form link into\n!! site.config.mjs, run \`node build/build.mjs\` again, and only then upload the zip.\n${bar}\n`);
+}

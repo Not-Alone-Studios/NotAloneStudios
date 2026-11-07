@@ -9,13 +9,13 @@ const { chromium } = require(process.env.HOME + "/V3-lanes/site-shots/node_modul
   await p.focus("#st-0"); await p.keyboard.press("ArrowRight"); await p.keyboard.press("ArrowRight");
   console.log("Scale after 2x ArrowRight:", await p.evaluate(() => document.activeElement.id + " selected=" + document.activeElement.getAttribute("aria-selected") + " panelVisible=" + !document.getElementById("sp-2").hidden + " otherHidden=" + document.getElementById("sp-0").hidden));
   await p.screenshot({ path: out + "/keys-scale.png" });
-  // Start your firm by keyboard: from the header
+  // Apply for early access by keyboard: from the header
   await p.goto("http://127.0.0.1:8768/", { waitUntil: "networkidle" });
   for (let i = 0; i < 9; i++) await p.keyboard.press("Tab");
   console.log("Focused:", await p.evaluate(() => document.activeElement.textContent.trim()));
-  await p.keyboard.press("Enter"); await p.waitForLoadState("networkidle"); console.log("Now at:", p.url());
+  await p.keyboard.press("Enter"); await p.waitForURL(/early-access/); await p.waitForLoadState("networkidle"); console.log("Now at:", p.url());
   const s = []; for (let i = 0; i < 14; i++) { await p.keyboard.press("Tab"); s.push(await p.evaluate(() => (document.activeElement.textContent || "").trim().slice(0, 25) + " -> " + (document.activeElement.getAttribute("href") || "").slice(0, 45))); }
-  console.log("Start tabs:", s.join(" | "));
+  console.log("Early-access tabs:", s.join(" | "));
   // Mobile menu by keyboard
   const m = await b.newPage({ viewport: { width: 390, height: 844 } });
   await m.goto("http://127.0.0.1:8768/", { waitUntil: "networkidle" });
