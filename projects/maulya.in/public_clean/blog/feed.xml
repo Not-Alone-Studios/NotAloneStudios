@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Maulya blog</title>
+  <subtitle>Practical notes for valuation offices</subtitle>
+  <link href="https://maulya.in/blog/feed.xml" rel="self"/>
+  <link href="https://maulya.in/blog/"/>
+  <id>https://maulya.in/blog/</id>
+  <updated>2026-11-07T00:00:00+05:30</updated>
+  <author><name>Shrinivas</name></author>
+
+</feed>

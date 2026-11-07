@@ -1,535 +1,293 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-IN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maulya — Valuation software for property valuers</title>
-  <meta name="description" content="Run your valuation practice from one place. Maulya helps property valuers manage assignments, generate bank-ready reports, track billing, and keep the whole team in sync." />
-  <meta property="og:title" content="Maulya — Valuation software for property valuers" />
-  <meta property="og:description" content="Assignments, reports, team, billing — all in one system built for property valuers." />
+  <meta charset="utf-8" />
+  <script>document.documentElement.classList.add("js")</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Maulya: office software for property valuers</title>
+  <meta name="description" content="Maulya keeps each bank valuation file in one place, from the day it comes in to the day the report goes out: site visits, photos, documents, reports, approvals and fees. The valuation stays the valuer's." />
+  <link rel="canonical" href="https://maulya.in/" />
+  
+  <meta name="theme-color" content="#094030" />
+  <meta property="og:site_name" content="Maulya" />
+  <meta property="og:title" content="Maulya: office software for property valuers" />
+  <meta property="og:description" content="Maulya keeps each bank valuation file in one place, from the day it comes in to the day the report goes out: site visits, photos, documents, reports, approvals and fees. The valuation stays the valuer's." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://maulya.in/" />
-  <meta property="og:image" content="https://maulya.in/assets/media/maulya/showcase/dashboard-desktop.png" />
+  <meta property="og:image" content="https://maulya.in/assets/media/app/og-maulya.png" />
+  <meta property="og:locale" content="en_IN" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" href="/assets/brand/maulya-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/site.css" />
+  <link rel="alternate" type="application/atom+xml" title="Maulya blog" href="/blog/feed.xml" />
+  <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/site.css?v=mw67s0a8" />
+  
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Maulya","url":"https://maulya.in/","logo":"https://maulya.in/assets/brand/maulya-icon.png","email":"support@maulya.in","parentOrganization":{"@type":"Organization","name":"Not Alone Studios"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Maulya","applicationCategory":"BusinessApplication","operatingSystem":"Web browser, on a computer or a phone","description":"Workflow software for property valuation offices in India: files, site visits, evidence, reports, approvals and fees.","offers":{"@type":"Offer","price":"2000","priceCurrency":"INR","description":"Platform plan, a month, before GST"}}</script>
 </head>
-<body>
-  <div class="page-shell">
-    <div class="site-topbar">
-      <div class="shell">
-        <div class="surface-map">
-          <strong>Early-access beta pricing</strong>
-          <span>first 50 firms</span>
-          <span>Beta cohort now open</span>
-          <span>survey helps shape onboarding</span>
+<body class="">
+  <a class="skip" href="#main">Skip to the content</a>
+  <header class="top">
+    <div class="wrap top-row">
+      <a class="brand" href="/" aria-label="Maulya, home"><img src="/assets/brand/maulya-logo-sm.png" alt="" width="132" height="40" class="brand-img" /></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <div class="nav-panel" id="site-nav">
+        <nav class="nav" aria-label="Main"><a href="/product/">Product</a><a href="/for-whom/">Who it's for</a><a href="/pricing/">Pricing</a><a href="/blog/">Blog</a><a href="/about/">About</a></nav>
+        <div class="nav-actions">
+          <a class="btn btn-quiet" href="https://app.maulya.in/auth/sign-in">Sign in</a>
+          <a class="btn btn-gold" href="/start/">Start your firm</a>
         </div>
-        <a class="topbar-link" href="/pricing/">See pricing</a>
       </div>
     </div>
+  </header>
+  <main id="main">
 
-    <header class="site-header">
-      <div class="shell">
-        <a class="brand-lockup" href="/" aria-label="Maulya home">
-          <img src="/assets/brand/maulya-icon.png" alt="Maulya" width="84" height="84" />
-          <span class="brand-copy">
-            <span class="brand-name">Maulya</span>
-            <span class="brand-sub">Valuation software</span>
-          </span>
-        </a>
-        <button class="nav-hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-drawer">
-          <span></span><span></span><span></span>
-        </button>
-        <div class="site-nav">
-          <nav class="nav-links" aria-label="Primary">
-            <a href="/product/">Product</a>
-            <a href="/pricing/">Pricing</a>
-            <a href="/updates/">Updates</a>
-            <a href="/about/">About</a>
-          </nav>
-          <div class="nav-actions">
-            <a class="link-chip" href="https://app.maulya.in/auth/sign-in">Sign in</a>
-            <a class="btn btn-primary" href="https://app.maulya.in/auth/sign-up">Try free</a>
+    <section class="hero on-body">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <span class="kicker">For property valuers and their offices</span>
+          <h1>Know where every valuation file stands.</h1>
+          <div class="hero-side">
+            <p class="lead">Maulya keeps a bank valuation file in one place, from the day it comes in to the day the report goes out. Everyone in the office sees who has it and what is next.</p>
+            <div class="actions">
+              <a class="btn btn-gold" href="/start/">Start your firm</a>
+              <a class="btn btn-line" href="#how-a-file-moves">See how a file moves</a>
+            </div>
+            <p class="hero-note">Already invited by your firm? <a href="https://app.maulya.in/auth/sign-in">Sign in</a>.</p>
+          </div>
+        </div>
+        <div class="hero-stage">
+          <figure class="frame-desk"><img class="shot shot-desk " src="/assets/media/app/desk-home-owner-960.webp" srcset="/assets/media/app/desk-home-owner-960.webp 960w, /assets/media/app/desk-home-owner-1440.webp 1440w" sizes="(min-width: 1200px) 1000px, 94vw" width="1440" height="900" alt="Maulya's Home for the owner: readouts for files with you, waiting at the desk, visits today, ready to go and payments late, then the files, longest waiting first, each with what to do next." fetchpriority="high" decoding="async" /></figure>
+          <figure class="frame-phone"><img class="shot shot-phone " src="/assets/media/app/phone-home-owner-390.webp" srcset="/assets/media/app/phone-home-owner-390.webp 390w, /assets/media/app/phone-home-owner-780.webp 780w" sizes="(min-width: 900px) 300px, 70vw" width="390" height="844" alt="Maulya on a phone: 2 reports are waiting for your approval, and tiles for files not given to anyone, late files, reports to fix and payments late." fetchpriority="high" decoding="async" /></figure>
+        </div>
+      </div>
+      <div class="hero-tail"></div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Today, one file lives in five places.</h2>
+          <p>A bank assignment arrives as a forwarded message or a phone call. Then the file spreads out. Nobody is careless; the work simply moves through messages and memory.</p>
+        </div>
+        <ul class="scatter scatter-wrap">
+          <li><strong>WhatsApp</strong><span>the borrower's number and the address</span></li>
+          <li><strong>An Excel sheet</strong><span>the pending list, kept by one person</span></li>
+          <li><strong>A phone gallery</strong><span>site photos, mixed with personal ones</span></li>
+          <li><strong>A laptop folder</strong><span>drafts, scans and the final report</span></li>
+          <li><strong>The valuer's memory</strong><span>which branch called, and what they wanted</span></li>
+        </ul>
+        <div class="into-one">
+          <svg class="equals" viewBox="0 0 44 30" aria-hidden="true" data-equals><rect x="2" y="6" width="40" height="6" rx="1"/><rect x="2" y="18" width="40" height="6" rx="1"/></svg>
+          <p style="margin:0"><strong>In Maulya it is one file.</strong> The bank and branch, the borrower and property, the site visit, the photos and documents, the report, the approval and the fee, together, with the person who has it now.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section face" id="how-a-file-moves">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">How a file moves</span>
+          <h2>Seven places, the same on every screen.</h2>
+          <p>These are the app's own words for where a file is. Pick one to see what happens there, who does it, and the screen they work on.</p>
+        </div>
+        
+        <div class="scale" data-scale>
+          <ol class="scale-rule" role="tablist" aria-label="Where a file is">
+            <li role="presentation"><button class="scale-btn" role="tab" id="st-0" aria-controls="sp-0" aria-selected="true" tabindex="0"><span class="scale-dot" aria-hidden="true"></span><span class="scale-name">Not started</span></button></li><li role="presentation"><button class="scale-btn" role="tab" id="st-1" aria-controls="sp-1" aria-selected="false" tabindex="-1"><span class="scale-dot" aria-hidden="true"></span><span class="scale-name">At site</span></button></li><li role="presentation"><button class="scale-btn" role="tab" id="st-2" aria-controls="sp-2" aria-selected="false" tabindex="-1"><span class="scale-dot" aria-hidden="true"></span><span class="scale-name">Waiting at desk</span></button></li><li role="presentation"><button class="scale-btn" role="tab" id="st-3" aria-controls="sp-3" aria-selected="false" tabindex="-1"><span class="scale-dot" aria-hidden="true"></span><span class="scale-name">At desk</span></button></li><li role="presentation"><button class="scale-btn" role="tab" id="st-4" aria-controls="sp-4" aria-selected="false" tabindex="-1"><span class="scale-dot" aria-hidden="true"></span><span class="scale-name">With the valuer</span></button></li><li role="presentation"><button class="scale-btn" role="tab" id="st-5" aria-controls="sp-5" aria-selected="false" tabindex="-1"><span class="scale-dot" aria-hidden="true"></span><span class="scale-name">Ready to go</span></button></li><li role="presentation"><button class="scale-btn" role="tab" id="st-6" aria-controls="sp-6" aria-selected="false" tabindex="-1"><span class="scale-dot" aria-hidden="true"></span><span class="scale-name">Delivered</span></button></li>
+          </ol>
+          <div class="scale-panels">
+          <div class="scale-panel" role="tabpanel" id="sp-0" aria-labelledby="st-0" tabindex="0">
+            <div>
+              <p class="small muted" style="margin:0 0 6px">1 of 7, Not started</p>
+              <h3>The file comes in</h3>
+              <p>The file is made once: who sent it (a bank, a client directly or another valuer), the bank and branch, the property and the borrower, where it is, and who does the work. You can save a draft and come back to it.</p>
+              
+              <p class="said"><strong>On the screen:</strong> "Documents this bank will need", "Choose the bank and the kind of property to see the documents this bank will need."</p>
+              <ul class="who" aria-label="Who works here"><li>Owner</li><li>Associate valuer</li><li>Assistant valuer</li><li>Office staff</li></ul>
+            </div>
+            <div class="panel-pics"><figure class="frame-desk"><img class="shot shot-desk " src="/assets/media/app/desk-new-file-960.webp" srcset="/assets/media/app/desk-new-file-960.webp 960w, /assets/media/app/desk-new-file-1440.webp 1440w" sizes="(min-width: 1200px) 1000px, 94vw" width="1440" height="900" alt="The New file form: details filled 1 of 7, the documents the bank will need, and the report's due date, with sections for who sent it, the property and the borrower, where it is, and who does the work." loading="lazy" decoding="async" /></figure></div>
+          </div>
+          <div class="scale-panel" role="tabpanel" id="sp-1" aria-labelledby="st-1" tabindex="0">
+            <div>
+              <p class="small muted" style="margin:0 0 6px">2 of 7, At site</p>
+              <h3>The site visit</h3>
+              <p>The site engineer sees the visit on the phone: when and where, who to meet, the site's exact location, and a check of the site in steps. Photos are taken against the list the report needs.</p>
+              
+              <p class="said"><strong>On the screen:</strong> "Photos for the report", "Take each photo the report needs. Each one is kept on this phone first, then goes to the office by itself."</p>
+              <ul class="who" aria-label="Who works here"><li>Site engineer</li><li>Assistant valuer</li></ul>
+            </div>
+            <div class="panel-pics"><figure class="frame-phone"><img class="shot shot-phone " src="/assets/media/app/phone-visit-390.webp" srcset="/assets/media/app/phone-visit-390.webp 390w, /assets/media/app/phone-visit-780.webp 780w" sizes="(min-width: 900px) 300px, 70vw" width="390" height="844" alt="A site visit on the phone with the time, place, who to meet and buttons to go there and to call." loading="lazy" decoding="async" /></figure><figure class="frame-phone"><img class="shot shot-phone " src="/assets/media/app/phone-visit-photos-390.webp" srcset="/assets/media/app/phone-visit-photos-390.webp 390w, /assets/media/app/phone-visit-photos-780.webp 780w" sizes="(min-width: 900px) 300px, 70vw" width="390" height="844" alt="The visit's photos: 1 of 2 needed photos taken and sent." loading="lazy" decoding="async" /></figure></div>
+          </div>
+          <div class="scale-panel" role="tabpanel" id="sp-2" aria-labelledby="st-2" tabindex="0">
+            <div>
+              <p class="small muted" style="margin:0 0 6px">3 of 7, Waiting at desk</p>
+              <h3>The evidence arrives</h3>
+              <p>Photos and documents land on the file, not in someone's gallery. The file says what has come and what is still missing, so the office can ask for it while the field person can still be reached.</p>
+              
+              <p class="said"><strong>On the screen:</strong> "Documents", "3 of 5 in. 2 missing."</p>
+              <ul class="who" aria-label="Who works here"><li>Office staff</li><li>Assistant valuer</li></ul>
+            </div>
+            <div class="panel-pics"><figure class="frame-desk"><img class="shot shot-desk " src="/assets/media/app/desk-file-overview-960.webp" srcset="/assets/media/app/desk-file-overview-960.webp 960w, /assets/media/app/desk-file-overview-1440.webp 1440w" sizes="(min-width: 1200px) 1000px, 94vw" width="1440" height="900" alt="A file's page: where the work stands on a seven-step scale, the documents with 3 of 5 in and 2 missing, the site visit, and who has the file now." loading="lazy" decoding="async" /></figure></div>
+          </div>
+          <div class="scale-panel" role="tabpanel" id="sp-3" aria-labelledby="st-3" tabindex="0">
+            <div>
+              <p class="small muted" style="margin:0 0 6px">4 of 7, At desk</p>
+              <h3>The report is prepared</h3>
+              <p>The desk prepares the report from what is on the file: the property, the photos, the documents and the valuer's figures. The file shows who has it and since when.</p>
+              
+              <p class="said"><strong>On the screen:</strong> "Where the file is now", "At desk. Report being written."</p>
+              <ul class="who" aria-label="Who works here"><li>Office staff</li><li>Assistant valuer</li></ul>
+            </div>
+            <div class="panel-pics"><figure class="frame-desk"><img class="shot shot-desk " src="/assets/media/app/desk-home-office-staff-960.webp" srcset="/assets/media/app/desk-home-office-staff-960.webp 960w, /assets/media/app/desk-home-office-staff-1440.webp 1440w" sizes="(min-width: 1200px) 1000px, 94vw" width="1440" height="900" alt="Home for office staff: files with you, waiting at the desk, visits today and ready to go, with each file's next step." loading="lazy" decoding="async" /></figure></div>
+          </div>
+          <div class="scale-panel" role="tabpanel" id="sp-4" aria-labelledby="st-4" tabindex="0">
+            <div>
+              <p class="small muted" style="margin:0 0 6px">5 of 7, With the valuer</p>
+              <h3>The valuer checks and approves</h3>
+              <p>The report comes back to the valuer to check. Approving it is the valuer's step, shown as its own step, never assumed. Figures, approval and finalising stay with the valuer; office staff never do them.</p>
+              <p style="display:flex;gap:12px;align-items:center"><svg class="equals" viewBox="0 0 44 30" aria-hidden="true" data-equals><rect x="2" y="6" width="40" height="6" rx="1"/><rect x="2" y="18" width="40" height="6" rx="1"/></svg><span class="small">In the app, the equals mark levels when a registered valuer finalises.</span></p>
+              <p class="said"><strong>On the screen:</strong> "The report is ready to check", "Approve the report"</p>
+              <ul class="who" aria-label="Who works here"><li>Owner</li><li>Associate valuer</li></ul>
+            </div>
+            <div class="panel-pics"><figure class="frame-desk"><img class="shot shot-desk " src="/assets/media/app/desk-home-owner-960.webp" srcset="/assets/media/app/desk-home-owner-960.webp 960w, /assets/media/app/desk-home-owner-1440.webp 1440w" sizes="(min-width: 1200px) 1000px, 94vw" width="1440" height="900" alt="The owner's Home with two files waiting for approval, each with an Approve button." loading="lazy" decoding="async" /></figure></div>
+          </div>
+          <div class="scale-panel" role="tabpanel" id="sp-5" aria-labelledby="st-5" tabindex="0">
+            <div>
+              <p class="small muted" style="margin:0 0 6px">6 of 7, Ready to go</p>
+              <h3>Printed and signed</h3>
+              <p>The report is ready to hand over. The file shows what is left, such as signing the printed report.</p>
+              
+              <p class="said"><strong>On the screen:</strong> "Ready to go", "Sign the printed report"</p>
+              <ul class="who" aria-label="Who works here"><li>Owner</li><li>Associate valuer</li><li>Office staff</li></ul>
+            </div>
+            <div class="panel-pics"><figure class="frame-desk"><img class="shot shot-desk " src="/assets/media/app/desk-home-associate-960.webp" srcset="/assets/media/app/desk-home-associate-960.webp 960w, /assets/media/app/desk-home-associate-1440.webp 1440w" sizes="(min-width: 1200px) 1000px, 94vw" width="1440" height="900" alt="Home for an associate valuer, with files ready to go." loading="lazy" decoding="async" /></figure></div>
+          </div>
+          <div class="scale-panel" role="tabpanel" id="sp-6" aria-labelledby="st-6" tabindex="0">
+            <div>
+              <p class="small muted" style="margin:0 0 6px">7 of 7, Delivered</p>
+              <h3>Handed over, and kept</h3>
+              <p>The finished report stays with its file: the photos, the documents and the history of who did what. Months later, when a bank or borrower asks about an old report, it can be found.</p>
+              
+              <p class="said"><strong>On the screen:</strong> "Files you worked on", "Finished"</p>
+              <ul class="who" aria-label="Who works here"><li>Everyone who worked on it</li></ul>
+            </div>
+            <div class="panel-pics"><figure class="frame-desk"><img class="shot shot-desk " src="/assets/media/app/desk-queue-owner-960.webp" srcset="/assets/media/app/desk-queue-owner-960.webp 960w, /assets/media/app/desk-queue-owner-1440.webp 1440w" sizes="(min-width: 1200px) 1000px, 94vw" width="1440" height="900" alt="The Queue with the Finished tab and every file by where it is." loading="lazy" decoding="async" /></figure></div>
+          </div>
           </div>
         </div>
       </div>
-    </header>
+    </section>
 
-    <aside class="mobile-drawer" id="mobile-drawer" aria-label="Mobile navigation">
-      <nav>
-        <a href="/product/">Product</a>
-        <a href="/pricing/">Pricing</a>
-        <a href="/updates/">Updates</a>
-        <a href="/about/">About</a>
+    <section class="section">
+      <div class="wrap">
+        <div class="feature">
+          <div>
+            <span class="kicker">On the computer</span>
+            <h2>The desk sees what needs it first.</h2>
+            <p>Home opens on "Needs your attention": files with you, files waiting at the desk, visits today, reports ready to go and payments late. Below that, the files, longest waiting first, each with one thing to do.</p>
+            <ul>
+              <li>The Queue shows every file by where it is: given to you, with you, waiting at desk, at site, ready to go, finished.</li>
+              <li>A file's page shows where the work stands, which documents have come and which are missing, and the site visit.</li>
+              <li>A new file asks only what the office knows, and shows the documents that bank will need.</li>
+            </ul>
+            <p style="margin-top:20px"><a href="/product/">The whole product</a></p>
+          </div>
+          <figure class="frame-desk"><img class="shot shot-desk " src="/assets/media/app/desk-queue-owner-960.webp" srcset="/assets/media/app/desk-queue-owner-960.webp 960w, /assets/media/app/desk-queue-owner-1440.webp 1440w" sizes="(min-width: 1200px) 1000px, 94vw" width="1440" height="900" alt="Maulya's Queue: tabs for all files, given to you, with you, waiting at desk, at desk, at site, not started, ready to go and finished; each file with its reference, borrower, bank branch, where it is and its next step." loading="lazy" decoding="async" /></figure>
+        </div>
+
+        <div class="feature flip">
+          <div>
+            <span class="kicker">On the phone</span>
+            <h2>The site engineer's visit, step by step.</h2>
+            <p>The visit opens with when and where, who to meet, buttons to go there and to call, the site's exact location from the phone, and a check of the site in steps.</p>
+            <ul>
+              <li>Each photo is kept on the phone first, then goes to the office by itself.</li>
+              <li>The office sees what came, while the engineer can still be reached.</li>
+              <li>"Done at the site" when the visit is finished.</li>
+            </ul>
+            <p class="small muted" style="margin-top:16px"><span class="tag">In beta</span> Maulya works in the phone's browser today. The new phone design in these pictures is in beta.</p>
+          </div>
+          <div class="phones">
+            <figure class="frame-phone"><img class="shot shot-phone " src="/assets/media/app/phone-visit-390.webp" srcset="/assets/media/app/phone-visit-390.webp 390w, /assets/media/app/phone-visit-780.webp 780w" sizes="(min-width: 900px) 300px, 70vw" width="390" height="844" alt="A site visit on the phone: today at 9:30 am, the address and survey number, who to meet, buttons to go there, call to meet and call the office, and the site's exact location." loading="lazy" decoding="async" /></figure>
+            <figure class="frame-phone"><img class="shot shot-phone " src="/assets/media/app/phone-visit-photos-390.webp" srcset="/assets/media/app/phone-visit-photos-390.webp 390w, /assets/media/app/phone-visit-photos-780.webp 780w" sizes="(min-width: 900px) 300px, 70vw" width="390" height="844" alt="Photos for the report on the phone: 1 of 2 needed photos, each kept on this phone first then sent to the office by itself." loading="lazy" decoding="async" /></figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section face">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Who uses it</span>
+          <h2>Six jobs, each with its own view.</h2>
+          <p>Everyone in the firm signs in as themselves and sees the work that is theirs. These follow the app's own line for each job.</p>
+        </div>
+        <div class="jobs">
+          <div class="job"><h3>Owner</h3><p class="line">Sees every file, the money and the team, and looks after the firm's Maulya plan.</p></div>
+          <div class="job"><h3>Associate valuer</h3><p class="line">Sees every file, the money and the team. Everything except the subscription.</p></div>
+          <div class="job"><h3>Assistant valuer</h3><p class="line">Sees every file at every stage. Makes files, gives them out, visits, enters figures and prepares reports.</p></div>
+          <div class="job"><h3>Office staff</h3><p class="line">Makes files, gives site visits, prepares the report and hands it over.</p></div>
+          <div class="job"><h3>Site engineer</h3><p class="line">Sees the files given to them, for the site visit.</p></div>
+          <div class="job"><h3>Admin</h3><p class="line">Looks after the firm's settings. Sees no files and no money.</p></div>
+        </div>
+        <p style="margin-top:24px"><a href="/for-whom/">What each job does in Maulya</a></p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">What Maulya is not</span>
+          <h2>Maulya organises the work around the valuer's judgment. It does not decide a property's value.</h2>
+        </div>
+        <div class="boundary">
+          <div><h3>Not a value calculator</h3><p>It does not produce a figure on its own, and it is not "AI valuation".</p></div>
+          <div><h3>Not a replacement for the valuer</h3><p>Inspection, method, rates, adjustments and the final opinion stay the valuer's professional responsibility.</p></div>
+          <div><h3>Not a legal guarantee</h3><p>It makes no claim about title, ownership or approvals.</p></div>
+          <div><h3>Not for borrowers or buyers</h3><p>It is for valuation offices: valuers, firms, site engineers and office staff.</p></div>
+        </div>
+        <p class="small muted" style="margin-top:16px">From <a href="/blog/does-maulya-decide-property-value/">Does Maulya automatically decide property value?</a> and <a href="/blog/what-is-maulya-valuation-workflow-platform/">What is Maulya?</a></p>
+      </div>
+    </section>
+
+    
+
+    <section class="closing on-body">
+      <div class="wrap">
+        <h2>Bring your firm's files into one place.</h2>
+        <p class="lead">Tell us about your office, and we will set up your firm with you. Payments aren't open in the app yet; we set up your plan together.</p>
+        <div class="actions">
+          <a class="btn btn-gold" href="/start/">Start your firm</a>
+          <a class="btn btn-line" href="/pricing/">See the prices</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <footer class="foot">
+    <div class="wrap foot-grid">
+      <div class="foot-brand">
+        <p class="foot-name">Maulya</p>
+        <p>Office software for property valuers in India: files, site visits, photos, reports and fees in one place. The valuation stays the valuer's.</p>
+        <p>Built by Not Alone Studios, Karnataka.</p>
+      </div>
+      <nav class="foot-nav" aria-label="Site">
+        <h2 class="foot-h">The site</h2>
+        <a href="/product/">Product</a><a href="/for-whom/">Who it's for</a><a href="/pricing/">Pricing</a><a href="/blog/">Blog</a><a href="/about/">About</a>
       </nav>
-      <div class="nav-actions-mobile">
-        <a class="link-chip" href="https://app.maulya.in/auth/sign-in">Sign in</a>
-        <a class="btn btn-primary" href="https://app.maulya.in/auth/sign-up">Try free</a>
-      </div>
-    </aside>
-
-    <main>
-      <section class="page-hero">
-        <div class="shell">
-          <div class="hero-grid">
-            <div class="hero-copy reveal is-visible">
-              <span class="eyebrow">Valuation software for real firms</span>
-              <h1>Run your valuation practice from one place.</h1>
-              <p class="hero-lead">Assignments, reports, team, billing — all in one system built for property valuers.</p>
-              <p>Maulya replaces the WhatsApp groups, Excel sheets, and phone calls you use to manage valuation work. Track assignments, generate bank-ready reports, manage your team, and follow your billing from one dashboard.</p>
-              <div class="button-row">
-                <a class="btn btn-primary" href="https://app.maulya.in/auth/sign-up">Try free</a>
-                <a class="btn btn-secondary" href="#features">See how it works</a>
-                <a class="btn btn-quiet" href="/pricing/">See pricing</a>
-              </div>
-              <div class="hero-meta">
-                <span class="meta-chip">Beta open for the first 50 firms</span>
-                <span class="meta-chip">Pricing published up front</span>
-                <span class="meta-chip">No payment required to start</span>
-              </div>
-              <div class="link-row">
-                <a href="https://app.maulya.in/auth/sign-in">Already have an account? Sign in</a>
-                <a href="/survey/">Take the survey later</a>
-                <a href="/updates/">Read updates</a>
-              </div>
-            </div>
-            <div class="hero-stage reveal is-visible">
-              <div class="screen-stack">
-                <!-- TODO: replace with light-theme screenshot when available -->
-                <figure class="screen screen--dashboard">
-                  <img src="/assets/media/maulya/showcase/dashboard-desktop.png" alt="Maulya dashboard showing assignments, reports, billing, and team activity." loading="eager" decoding="async" />
-                </figure>
-                <!-- TODO: replace with light-theme screenshot when available -->
-                <figure class="screen screen--phone">
-                  <img src="/assets/media/maulya/showcase/assignments-mobile.png" alt="Maulya mobile assignments view showing task status and follow-up details." loading="eager" decoding="async" />
-                </figure>
-                <div class="screen-orbit">
-                  <strong>Static site stays useful</strong>
-                  <p>You can understand the product, pricing, and next steps here even when the app is under pressure.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-tight">
-        <div class="shell">
-          <div class="kpi-grid">
-            <div class="kpi reveal">
-              <span>Growth plan</span>
-              <strong>₹4,000 / month</strong>
-              <p>Self-service report generation with 50 monthly credits.</p>
-            </div>
-            <div class="kpi reveal">
-              <span>Starter plan</span>
-              <strong>₹2,000 / month</strong>
-              <p>Assignments, documents, team roles, and billing for up to 5 users.</p>
-            </div>
-            <div class="kpi reveal">
-              <span>Team size</span>
-              <strong>Up to 5 users</strong>
-              <p>Included on Starter, Growth, and Studio.</p>
-            </div>
-            <div class="kpi reveal">
-              <span>Beta</span>
-              <strong>50 firms</strong>
-              <p>Early-access pricing for the first cohort.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-tight">
-        <div class="shell">
-          <div class="section-head reveal">
-            <span class="eyebrow">Sound familiar?</span>
-            <h2>The work is real. The system around it is usually not.</h2>
-            <p>Most valuation firms are still running the day through chat, memory, phone calls, and scattered files. That works until volume rises or a bank asks for something urgently.</p>
-          </div>
-          <div class="grid-3">
-            <article class="card reveal">
-              <span class="small-label">Assignments</span>
-              <h3>Assignments tracked in WhatsApp groups.</h3>
-              <p>No clear status. No visible deadlines. No easy handoff between staff.</p>
-            </article>
-            <article class="card reveal">
-              <span class="small-label">Documents</span>
-              <h3>Photos and documents live in personal folders.</h3>
-              <p>What is uploaded, what is missing, and what was sent last week becomes guesswork.</p>
-            </article>
-            <article class="card reveal">
-              <span class="small-label">Formats</span>
-              <h3>Report formats change by bank and branch.</h3>
-              <p>The right template is often remembered by one person instead of stored in a system.</p>
-            </article>
-            <article class="card reveal">
-              <span class="small-label">Deadlines</span>
-              <h3>Overdue work becomes visible only when the bank calls.</h3>
-              <p>There is no single queue telling you what is late and what needs attention now.</p>
-            </article>
-            <article class="card reveal">
-              <span class="small-label">Billing</span>
-              <h3>Payments are tracked in a notebook. Or not tracked at all.</h3>
-              <p>Invoice status, pending amounts, and completed work rarely stay in one place.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-tight" id="features">
-        <div class="shell">
-          <div class="section-head reveal">
-            <span class="eyebrow">One system for your whole valuation practice</span>
-            <h2>See the work clearly from intake to payment.</h2>
-            <p>Maulya is built for the actual workflow: incoming assignments, property details, report generation, review, submission, and billing follow-up.</p>
-          </div>
-          <div class="feature-stack">
-            <article class="surface-panel reveal">
-              <div class="surface-panel__copy">
-                <span class="small-label">Assignments</span>
-                <h3>See every assignment in one queue.</h3>
-                <p>Know what is pending, what is overdue, and who is working on it. Assignments move through clear stages instead of disappearing into chat threads.</p>
-                <ul class="list-check">
-                  <li>New, in progress, under review, and completed states</li>
-                  <li>Clear ownership and next action</li>
-                  <li>One list instead of scattered chats</li>
-                </ul>
-              </div>
-              <div class="surface-panel__visual">
-                <!-- TODO: replace with light-theme screenshot when available -->
-                <figure class="screen screen--feature">
-                  <img src="/assets/media/maulya/showcase/assignment-list-desktop.png" alt="Assignment list showing status, deadlines, and ownership." loading="lazy" decoding="async" />
-                </figure>
-              </div>
-            </article>
-
-            <article class="surface-panel reveal">
-              <div class="surface-panel__visual">
-                <!-- TODO: replace with light-theme screenshot when available -->
-                <figure class="screen screen--feature">
-                  <img src="/assets/media/maulya/showcase/repogen-pack-desktop.png" alt="Repogen report generation screen showing valuation details and report state." loading="lazy" decoding="async" />
-                </figure>
-              </div>
-              <div class="surface-panel__copy">
-                <span class="small-label">Report Generation · Repogen</span>
-                <h3>Fill in the details once. Get the bank-ready report.</h3>
-                <p>Enter the property details in a structured form. Maulya generates the report in the right bank format. If something changes, edit and regenerate without retyping the whole file.</p>
-                <ul class="list-check">
-                  <li>SBI, nationalised, and cooperative bank formats</li>
-                  <li>Self-service or assisted generation</li>
-                  <li>Regeneration without format drift</li>
-                </ul>
-              </div>
-            </article>
-
-            <article class="surface-panel reveal">
-              <div class="surface-panel__copy">
-                <span class="small-label">Documents</span>
-                <h3>Photos and documents stay with the assignment.</h3>
-                <p>Upload site photos, maps, and supporting documents directly to the assignment. Your team can see what is present and what is still missing before the report goes out.</p>
-                <ul class="list-check">
-                  <li>Supporting material attached to each job</li>
-                  <li>Missing uploads become obvious earlier</li>
-                  <li>Better review before submission</li>
-                </ul>
-              </div>
-              <div class="surface-panel__visual">
-                <!-- TODO: replace with light-theme screenshot when available -->
-                <figure class="screen screen--feature">
-                  <img src="/assets/media/maulya/showcase/assignment-documents-desktop.png" alt="Assignment documents area showing uploaded files and missing items." loading="lazy" decoding="async" />
-                </figure>
-              </div>
-            </article>
-
-            <article class="surface-panel reveal">
-              <div class="surface-panel__visual">
-                <!-- TODO: replace with light-theme screenshot when available -->
-                <figure class="screen screen--feature">
-                  <img src="/assets/media/maulya/showcase/billing-desktop.png" alt="Billing screen showing invoices, payments, and outstanding amounts." loading="lazy" decoding="async" />
-                </figure>
-              </div>
-              <div class="surface-panel__copy">
-                <span class="small-label">Team &amp; Billing</span>
-                <h3>Give your staff access. Track your money.</h3>
-                <p>Set roles for owners, staff, reviewers, and field users. Track invoices, payments, and pending amounts without running a separate spreadsheet on the side.</p>
-                <ul class="list-check">
-                  <li>Role-based access for the team</li>
-                  <li>Billing and invoice tracking in one place</li>
-                  <li>Less guessing about what was billed and paid</li>
-                </ul>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-tight">
-        <div class="shell split-layout">
-          <article class="card reveal">
-            <span class="eyebrow">Built for valuation firms</span>
-            <h3>This is for you if:</h3>
-            <ul class="list-check">
-              <li>You are a registered property valuer empanelled with banks</li>
-              <li>You run a practice, even if it is just you and one assistant</li>
-              <li>You want assignments, reports, and billing in one system</li>
-              <li>You are tired of using WhatsApp and Excel to run your work</li>
-            </ul>
-          </article>
-          <article class="quote-card reveal">
-            <span class="eyebrow">Not for everyone</span>
-            <h3>This is not for you if:</h3>
-            <ul class="list-check">
-              <li>You are a real estate agent or broker</li>
-              <li>You want fully automated valuation without site visits</li>
-              <li>You need a general accounting or CRM tool</li>
-            </ul>
-            <p>Maulya assists the valuer. It does not replace the valuer.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section section-tight">
-        <div class="shell">
-          <div class="section-head reveal">
-            <span class="eyebrow">Repogen deep-dive</span>
-            <h2>Report generation that understands bank formats.</h2>
-            <p>Repogen is the report generation engine inside Maulya. You fill in the property details, measurements, rates, calculations, and photos. Maulya produces the report in the format your bank expects.</p>
-          </div>
-          <div class="split-layout">
-            <article class="surface-panel reveal">
-              <div class="surface-panel__copy">
-                <span class="small-label">How it works</span>
-                <h3>Fill, generate, review, regenerate.</h3>
-                <p><strong>Self-service:</strong> You fill in the property details form. Maulya generates the report.</p>
-                <p><strong>Assisted:</strong> You send basic data. We fill the detailed form for you. You review everything before the report is generated.</p>
-                <p>Changed a measurement or updated a rate? Edit the details and regenerate. Core fields like borrower name, property address, and bank stay locked after the first generation to prevent errors.</p>
-              </div>
-              <div class="surface-panel__visual">
-                <!-- TODO: replace with light-theme screenshot when available -->
-                <figure class="screen screen--feature">
-                  <img src="/assets/media/maulya/showcase/assignment-detail-desktop.png" alt="Assignment detail showing property data and report workflow." loading="lazy" decoding="async" />
-                </figure>
-              </div>
-            </article>
-            <article class="card reveal">
-              <span class="small-label">Current format support</span>
-              <div class="table-wrap">
-                <table class="data-table">
-                  <thead>
-                    <tr>
-                      <th>Format</th>
-                      <th>Used for</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>SBI (below ₹5 crore)</td>
-                      <td>SBI format for loans under ₹5 crore</td>
-                    </tr>
-                    <tr>
-                      <td>Standard nationalised</td>
-                      <td>BOI, PNB, Canara, and SBI above ₹5 crore</td>
-                    </tr>
-                    <tr>
-                      <td>Cooperative</td>
-                      <td>Lighter format used by cooperative banks</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="table-wrap">
-                <table class="data-table">
-                  <thead>
-                    <tr>
-                      <th>Report type</th>
-                      <th>Self-service</th>
-                      <th>Assisted add-on</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Nationalised bank</td>
-                      <td>3 credits</td>
-                      <td>2 additional</td>
-                    </tr>
-                    <tr>
-                      <td>Cooperative bank</td>
-                      <td>2 credits</td>
-                      <td>1 additional</td>
-                    </tr>
-                    <tr>
-                      <td>Progress / estimation</td>
-                      <td>1 credit</td>
-                      <td>1 additional</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <p class="muted">Progress and estimation templates are coming soon. Credit behavior will follow this table when those templates go live.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-tight">
-        <div class="shell">
-          <div class="section-head reveal">
-            <span class="eyebrow">Simple plans. Honest pricing.</span>
-            <h2>Choose the plan that matches how your firm works.</h2>
-            <p>These are early-access beta prices for the first 50 firms. After that, new firms move to the waitlist while we expand the rollout.</p>
-          </div>
-          <div class="grid-4">
-            <article class="plan-card reveal">
-              <span class="small-label">Starter</span>
-              <h3>₹2,000 / month</h3>
-              <p>Assignment queue, photo and document management, roles, and billing for up to 5 team members.</p>
-              <ul class="list-check">
-                <li>No report generation</li>
-                <li>Assignment tracking</li>
-                <li>Billing and invoice visibility</li>
-              </ul>
-            </article>
-            <article class="plan-card reveal">
-              <span class="small-label">Growth</span>
-              <h3>₹4,000 / month</h3>
-              <p>Everything in Starter plus self-service report generation with 50 credits every month.</p>
-              <ul class="list-check">
-                <li>All bank formats supported</li>
-                <li>Regenerate at no extra charge</li>
-                <li>Best fit for independent firms</li>
-              </ul>
-            </article>
-            <article class="plan-card reveal">
-              <span class="small-label">Studio</span>
-              <h3>₹7,000 / month</h3>
-              <p>Everything in Growth plus assisted report generation, 60 credits, and priority support.</p>
-              <ul class="list-check">
-                <li>Send basic data, we fill the form</li>
-                <li>You review before generation</li>
-                <li>Priority support</li>
-              </ul>
-            </article>
-            <article class="plan-card reveal">
-              <span class="small-label">Enterprise</span>
-              <h3>Custom</h3>
-              <p>For larger firms that need more than 5 users, custom credits, or guided onboarding.</p>
-              <ul class="list-check">
-                <li>Flexible user count</li>
-                <li>Custom credit allocation</li>
-                <li>Dedicated rollout support</li>
-              </ul>
-            </article>
-          </div>
-          <div class="page-banner reveal">
-            <span class="eyebrow">What 50 credits means</span>
-            <p>About 16 nationalised bank reports, 25 cooperative bank reports, or a mixed month like 10 nationalised + 5 cooperative + 5 progress reports.</p>
-            <div class="button-row">
-              <a class="btn btn-secondary" href="/pricing/">See the full pricing breakdown</a>
-              <a class="btn btn-primary" href="https://app.maulya.in/auth/sign-up">Try free</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-tight">
-        <div class="shell">
-          <div class="note-band note-band--accent reveal">
-            <span class="eyebrow">Try Maulya free. No payment needed.</span>
-            <h3>Start with early-access onboarding.</h3>
-            <p>Sign up to enter the live beta flow. If the first 50-firm cohort is full, Maulya will move your firm into the waitlist and confirm that you've joined it. Use the survey to share workflow details that help us shape onboarding and follow-up.</p>
-            <p><strong>Beta note:</strong> beta access is currently limited to the first 50 firms and is targeted through the end of May 2026.</p>
-            <div class="button-row">
-              <a class="btn btn-primary" href="https://app.maulya.in/auth/sign-up">Try free</a>
-              <a class="btn btn-secondary" href="/survey/">See the survey</a>
-              <a class="btn btn-quiet" href="/pricing/">Read pricing details</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-tight">
-        <div class="shell">
-          <div class="section-head reveal">
-            <span class="eyebrow">Stay informed on what matters to your practice</span>
-            <h2>Use updates to follow the rules, formats, and product changes that affect your work.</h2>
-            <p>The static site gives you the overview. The full article reader stays on the app host for now.</p>
-          </div>
-          <div class="grid-3">
-            <article class="article-card reveal">
-              <span class="small-label">Regulatory updates</span>
-              <h3>How new IT rules affect property valuation reports</h3>
-              <p>Understand what changed, what it means for your reports, and what to check before submission.</p>
-              <a class="link-chip" href="https://app.maulya.in/updates">Read in updates</a>
-            </article>
-            <article class="article-card reveal">
-              <span class="small-label">Bank format changes</span>
-              <h3>What valuers need to know when formats change</h3>
-              <p>Follow new format expectations without depending on WhatsApp forwards and old Word files.</p>
-              <a class="link-chip" href="https://app.maulya.in/updates">Read in updates</a>
-            </article>
-            <article class="article-card reveal">
-              <span class="small-label">Product guidance</span>
-              <h3>Understanding report generation credits in Maulya</h3>
-              <p>See how credits, regeneration, and assisted report generation work before you choose a plan.</p>
-              <a class="link-chip" href="https://app.maulya.in/updates">Read in updates</a>
-            </article>
-          </div>
-        </div>
-      </section>
-    </main>
-    <footer class="site-footer">
-      <div class="shell">
-        <div class="footer-grid">
-          <div class="footer-card">
-            <a class="brand-lockup" href="/" aria-label="Maulya home">
-              <img src="/assets/brand/maulya-icon.png" alt="Maulya" width="84" height="84" />
-              <span class="brand-copy">
-                <span class="brand-name">Maulya</span>
-                <span class="brand-sub">Valuation software</span>
-              </span>
-            </a>
-            <p>Valuation software for real firms. Assignments, reports, team, and billing in one place.</p>
-            <p><a href="mailto:support@maulya.in">support@maulya.in</a></p>
-            <div class="parent-mark">
-              <img src="/assets/brand/notalone-logo-cropped.png" alt="Not Alone Studios logo" width="42" height="42" loading="lazy" decoding="async" />
-              <div class="parent-mark__copy">
-                <strong><a href="/about/">Built by Not Alone Studios</a></strong>
-                <span>Parent development company behind Maulya.</span>
-              </div>
-            </div>
-          </div>
-          <div class="footer-card">
-            <h3>Explore</h3>
-            <a href="/product/">Product</a>
-            <a href="/pricing/">Pricing</a>
-            <a href="/updates/">Updates</a>
-            <a href="/survey/">Survey</a>
-            <a href="/about/">About</a>
-          </div>
-          <div class="footer-card">
-            <h3>Policies and access</h3>
-            <a href="/privacy/">Privacy</a>
-            <a href="/terms/">Terms</a>
-            <a href="https://app.maulya.in/auth/sign-in">Sign in</a>
-            <a href="https://app.maulya.in/auth/sign-up">Try free</a>
-            <a href="https://app.maulya.in/updates">Updates reader</a>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <span>© <span data-year>2026</span> Maulya. Valuation software for real firms.</span>
-          <div class="footer-mini-links">
-            <a href="/product/">Product</a>
-            <a href="/pricing/">Pricing</a>
-            <a href="/survey/">Survey</a>
-            <a href="/updates/">Updates</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
-  <script src="/assets/site.js"></script>
+      <nav class="foot-nav" aria-label="Getting started">
+        <h2 class="foot-h">Getting started</h2>
+        <a href="/start/">Start your firm</a><a href="https://app.maulya.in/auth/sign-in">Sign in</a><a href="/survey/">The office survey</a><a href="mailto:support@maulya.in?subject=Maulya">support@maulya.in</a>
+      </nav>
+      <nav class="foot-nav" aria-label="Policies">
+        <h2 class="foot-h">Policies</h2>
+        <a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/blog/feed.xml">Blog feed</a>
+      </nav>
+    </div>
+    <div class="wrap foot-small"><p>© 2026 Not Alone Studios. Pictures of the app are from its review mode: every name, bank branch and place in them is made up.</p></div>
+  </footer>
+  <script src="/assets/site.js?v=mw67s0a8" defer></script>
 </body>
 </html>
