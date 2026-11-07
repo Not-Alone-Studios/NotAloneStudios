@@ -1,46 +1,26 @@
-# Maulya Static Site Rebuild Notes
+# maulya.in build notes (Nov 2026 rebuild, MLP/ARK-668)
 
-## Scope
+## One command
+`node build/build.mjs` (Node 18+, no packages). Sources:
+- `site.config.mjs`: **every app and survey address**, the "Start your firm" target, and the blog's publish rule. The host change is one line.
+- `src/pages/*.mjs`: the pages (Home, Product, Who it's for, Pricing, About, Start, Privacy, Terms, 404). `src/assets/`: css, js, fonts (Atkinson Hyperlegible Next, OFL), brand, the app's pictures.
+- `src/survey/index.html`: the canonical survey, kept as it was. Its Apps Script address comes from the config.
+- `content/blog/*.md`: the blog (see `content/blog/README.md`).
 
-This build applies the founder-approved commercial direction to the static `maulya.in` site:
+It writes `public_clean/`, `public_hostinger/`, `Maulya_hostinger_ready/` and `Maulya_hostinger_ready.zip` (the live site), plus `Maulya_preview_all_posts.zip` (every post, never upload). The mirrors are generated: never edit them by hand.
 
-- trial-first public CTA
-- pricing promoted publicly
-- survey preserved as the canonical public survey at `/survey/`
-- updates remain app-hosted for full reading and participation
-- static site stays useful even if the app is unhealthy
+## What the site may say
+- Product lines trace to the app's review-mode screens (`~/V3` `main` 9a94cade8) or to Shrinivas's posts.
+- Prices come from the app's plan list: `services/api/app/services/billing/catalogue.py` (Platform ₹2,000, Tier 1 ₹3,500 with 100 reports, Assisted ₹6,000 coming soon, Enterprise; 7 places, ₹500 an extra place; GST on top).
+- Kept off the site until the founders say so: trial numbers, the founding-firm offer, the 50-firm cap (not enforced in the app: FUNNEL.md step 4), and the address lock (not in code).
+- The phone's new design is shown as "in beta" (`PHONE_V2_ENABLED` is off in production).
+- The line from the blogs stands everywhere: Maulya organises the work around the valuer's judgment; it does not decide a property's value.
 
-## Live linkage status
+## Pictures
+- Only from the app's review mode: invented names, branches and places.
+- Phone numbers were replaced with "+91 90000 00000" before each picture was taken.
+- Screens showing real-looking borrower names (My Office, Reports, the phone's notifications) were left out.
+- To retake them, see the shooter notes in `~/Downloads/Maulya/7_STATUS/LW.md`.
 
-The static site now states that:
-
-- beta pricing is early-access pricing
-- the first `50` firms receive beta access
-- later firms join the waitlist
-
-That commercial behavior is now enforced in the V3 auth flow. The marketing site points to the real signup route at:
-
-- `https://app.maulya.in/auth/sign-up`
-
-The app or API side now owns:
-
-- first-50-firms beta-cap enforcement
-- waitlist creation for later public signups
-- waitlist return handling for later sign-ins and auth callback flows
-- the waitlist confirmation page stating "You've joined the waitlist."
-
-## Still intentionally softened on the static site
-
-The static site does not promise exact day-count or report-credit trial mechanics yet. Those detailed beta entitlements still need a separate app-side implementation before they can be marketed as hard guarantees.
-
-Because of that, this rebuild deliberately avoids exact public claims such as:
-
-- `7 days`
-- `3 report credits`
-- survey-based extension numbers
-
-The pricing page still shows the real commercial plans and credit model, but beta onboarding allowances are left to the live app flow until that implementation lands.
-
-## Survey page note
-
-The survey experience at `/survey/` is preserved as a standalone full-screen experience because it uses its own custom static shell and Google Apps Script submission flow. It remains the canonical survey, but it is no longer the main public homepage gate.
+## Old addresses
+`/solutions/` and `/associates/` go to `/for-whom/`, `/pilot/` to `/start/`, `/demo/` to `/product/`, and `/updates/` to `/blog/`. Each is a 301 in `.htaccess`, plus a small page for hosts that ignore it.

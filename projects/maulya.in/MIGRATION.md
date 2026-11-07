@@ -39,7 +39,7 @@ Key implications:
 - no app rebuild here
 - no duplication of workspace flows here
 - public CTAs should route into the correct live hosts
-- updates/articles should currently link into `https://app.maulya.in/updates`
+- articles live on this site at `/blog/`, built from Markdown (the old `/updates/` redirects there)
 
 ## Important public-route expectations
 
@@ -66,12 +66,12 @@ Primary external/product links:
 - sign in: `https://app.maulya.in/auth/sign-in`
 - demo: `https://demo.maulya.in/`
 
-## Publishing flow
+## Publishing flow (since Nov 2026)
 
-1. Edit the source under `projects/maulya.in/src/`
-2. Sync source into the deploy mirrors
-3. Regenerate `Maulya_hostinger_ready/` and `Maulya_hostinger_ready.zip`
-4. Upload the Hostinger-ready output to the static host if using Hostinger
+1. Edit `src/`, `content/blog/` or `site.config.mjs`
+2. Run `node build/build.mjs` (it writes the mirrors and both zips)
+3. Upload `Maulya_hostinger_ready.zip` to Hostinger (the card: `~/Downloads/Maulya/3_DEPLOY/CARD_MAULYA_IN_SITE_2026-11.md`)
+4. The way back: `rollback/Maulya_hostinger_ready_before_2026-11.zip` is the zip that was live before the rebuild
 
 ## DNS / routing reminders
 

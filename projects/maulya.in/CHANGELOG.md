@@ -1,5 +1,13 @@
 # Changelog - maulya.in
 
+## [2026-11-07] - The new maulya.in (MLP/ARK-668)
+- New site in the app's own design language. Pages: Home, Product, Who it's for, Pricing, About, Start, Blog, Survey, Privacy, Terms, 404.
+- Pictures are the current app (web and phone) in review mode.
+- The blog is built from Markdown files (`content/blog/`) by `node build/build.mjs`. It has search and categories on the page, an Atom feed and the sitemap. A post goes live when its status is "Published".
+- Every app address now comes from `site.config.mjs`. "Start your firm" goes to `/start/` until the app has a public sign-up (FUNNEL.md).
+- Prices follow the app's plan list. Claims the app doesn't support are removed: the 50-firm waitlist, the address lock and `auth.maulya.in`.
+- Old addresses redirect. The March zip is kept in `rollback/`.
+
 ## [2026-03-07] - Initial Marketing Site
 - Initial release of the standalone `maulya.in` marketing site.
 - Implemented core branding with a warm V2 palette.
