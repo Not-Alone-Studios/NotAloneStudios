@@ -19,3 +19,6 @@ coverage/
 
 # Claude local worktrees
 .claude/worktrees/
+
+# A browser saved-login file found in the repo root (MLP/ARK-668): never add it
+Login Data
