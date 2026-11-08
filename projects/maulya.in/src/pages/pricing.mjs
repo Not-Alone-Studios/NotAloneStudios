@@ -25,6 +25,7 @@ export default ({ L }) => ({
     </section>
     <section class="section">
       <div class="wrap">
+        <h2 class="sr-only">The plans</h2>
         <div class="plans">
           <div class="plan">
             <h3>Platform</h3>

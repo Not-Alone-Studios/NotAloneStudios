@@ -1,6 +1,7 @@
 // Usage: node shoot.cjs <outdir> <listfile.json>
 // list: [{name, path, w, h, mobile, fullPage, waitMs}]
-const { chromium } = require(process.env.HOME + "/V3-lanes/site-shots/node_modules/playwright");
+// Playwright from the app repo's checkout (PW=<path> to use another one; ~/V3-lanes/site-shots is gone, 8 Nov)
+const { chromium } = require(process.env.PW || process.env.HOME + "/V3/node_modules/playwright");
 const fs = require("fs");
 const BASE = process.env.BASE || "http://127.0.0.1:5189";
 (async () => {

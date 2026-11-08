@@ -1,8 +1,11 @@
-// Home. Every product line here is seen on a review-mode screen of the app (main, 9a94cade8) or said in Shrinivas's
-// posts; the screens' words are quoted as the app says them.
-import { fileScale } from "./parts.mjs";
+// Home. Every product line here is seen on a review-mode screen of the app (main, 9a94cade8), is in Shrinivas's train
+// (mlp/srk/srk-train-2026-11-08, see journey.mjs), or is said in Shrinivas's posts; the screens' words are quoted as the
+// app says them. MLP/ARK-693: the working day in his words (the five places), the file's journey in motion, Ruling 20,
+// who built it (as About has it), and what happens after applying (the early-access page's own steps).
+import { fileJourney } from "./journey.mjs";
 
-export default ({ L, shot, latest, card }) => ({
+export default ({ L, shot, latest, card, cfg }) => ({
+  extraHead: `<link rel="stylesheet" href="/assets/journey.css?v=${cfg.__buildId}" />`,
   path: "/",
   title: "Maulya: office software for property valuers",
   description:
@@ -43,12 +46,13 @@ export default ({ L, shot, latest, card }) => ({
           <p>A bank assignment arrives as a forwarded message or a phone call. Then the file spreads out. Nobody is careless; the work simply moves through messages and memory.</p>
         </div>
         <ul class="scatter scatter-wrap">
-          <li><strong>WhatsApp</strong><span>the borrower's number and the address</span></li>
-          <li><strong>An Excel sheet</strong><span>the pending list, kept by one person</span></li>
-          <li><strong>A phone gallery</strong><span>site photos, mixed with personal ones</span></li>
-          <li><strong>A laptop folder</strong><span>drafts, scans and the final report</span></li>
+          <li><strong>WhatsApp</strong><span>the site engineer's measurement, somewhere between a payment screenshot and another file's photo</span></li>
+          <li><strong>A Word template</strong><span>the report, half-finished, waiting for that one measurement</span></li>
+          <li><strong>A laptop folder</strong><span>Final, Final1 and Final_new, and nobody fully sure which one went to the bank</span></li>
+          <li><strong>The phone</strong><span>repeated calls to the site engineer, the branch and the borrower</span></li>
           <li><strong>The valuer's memory</strong><span>which branch called, and what they wanted</span></li>
         </ul>
+        <p class="small muted" style="margin:12px 0 0;max-width:80ch">In Shrinivas's words, from <a href="/blog/property-valuation-report-inputs/">What inputs are usually needed for a property valuation report?</a>, <a href="/blog/old-valuation-report-retrieval/">Why old valuation reports become hard to retrieve</a> and <a href="/blog/property-valuation-site-visit-checklist/">the site visit checklist</a>.</p>
         <div class="into-one">
           <svg class="equals" viewBox="0 0 44 30" aria-hidden="true" data-equals><rect x="2" y="6" width="40" height="6" rx="1"/><rect x="2" y="18" width="40" height="6" rx="1"/></svg>
           <p style="margin:0"><strong>In Maulya it is one file.</strong> The bank and branch, the borrower and property, the site visit, the photos and documents, the report, the approval and the fee, together, with the person who has it now.</p>
@@ -60,10 +64,11 @@ export default ({ L, shot, latest, card }) => ({
       <div class="wrap">
         <div class="section-head">
           <span class="kicker">How a file moves</span>
-          <h2>Seven places, the same on every screen.</h2>
-          <p>These are the app's own words for where a file is. Pick one to see what happens there, who does it, and the screen they work on.</p>
+          <h2>From the day it comes in to the day it is paid.</h2>
+          <p>One file's way through a valuer's office, in the app's own words. Each step names who does it and what they see on the screen.</p>
         </div>
-        ${fileScale(shot)}
+        ${fileJourney()}
+        <p style="margin-top:20px"><a href="/product/#scale">See the screen for each step</a></p>
       </div>
     </section>
 
@@ -136,6 +141,10 @@ export default ({ L, shot, latest, card }) => ({
           <div><h3>Not for borrowers or buyers</h3><p>It is for valuation offices: valuers, firms, site engineers and office staff.</p></div>
         </div>
         <p class="small muted" style="margin-top:16px">From <a href="/blog/does-maulya-decide-property-value/">Does Maulya automatically decide property value?</a> and <a href="/blog/what-is-maulya-valuation-workflow-platform/">What is Maulya?</a></p>
+        <div class="note green" style="margin-top:32px">
+          <p><strong>Your firm's reports stay your firm's.</strong> Nothing from one firm's reports ever reaches another firm. That includes market and guideline rates, values, comparables and suggestions.</p>
+          <p class="small">How this website handles what you send it: <a href="/privacy/">the privacy notice</a>.</p>
+        </div>
       </div>
     </section>
 
@@ -152,13 +161,32 @@ export default ({ L, shot, latest, card }) => ({
       </div>
     </section>` : ""}
 
+    <section class="section">
+      <div class="wrap">
+        <div class="maker">
+          <img src="/assets/media/maulya/founders/shrinivas-face-240.jpg" alt="Shrinivas, a practising registered valuer." width="120" height="120" loading="lazy" decoding="async" />
+          <div>
+            <span class="kicker">Who built it</span>
+            <h2>Built by a practising registered valuer.</h2>
+            <p>Shrinivas is a practising property valuer. He knows where assignments slow down, where evidence goes missing, and why approvals turn into friction. That shaped Maulya's files, documents, site visits and report process. Sriram builds the product.</p>
+            <p><a href="/about/">About the people behind Maulya</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="closing on-body">
       <div class="wrap">
         <h2>Bring your firm's files into one place.</h2>
         <p class="lead">We are choosing 10 to 15 valuation firms from the applications. They use Maulya free for six weeks, in return for real use and feedback.</p>
+        <ol class="after-apply" aria-label="What happens after you apply">
+          <li><b>You apply</b><span>with your firm's details.</span></li>
+          <li><b>We choose 10 to 15 firms</b><span>and write to each firm we choose.</span></li>
+          <li><b>Six weeks, free</b><span>on your firm's real work. Tell us what helps and what doesn't.</span></li>
+        </ol>
         <div class="actions">
           ${L.apply("btn btn-gold")}
-          <a class="btn btn-line" href="/pricing/">See the prices</a>
+          <a class="btn btn-line" href="/early-access/">How early access works</a>
         </div>
       </div>
     </section>

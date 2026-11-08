@@ -1,6 +1,7 @@
 // Parts shared by pages. The scale's seven places are the app's own (a file's page, "Where the work stands":
 // Not started, At site, Waiting at desk, At desk, With the valuer, Ready to go, Delivered). The quoted lines are words
-// seen on the app's review-mode screens.
+// seen on the app's review-mode screens. MLP/ARK-693: the steps' words follow Shrinivas's train (SRK-84 who checks the
+// visit, SRK-86 the form for office staff and approve in one press, SRK-89 a paid file closes itself); journey.mjs.
 
 const STAGES = [
   {
@@ -14,7 +15,7 @@ const STAGES = [
   {
     name: "At site",
     title: "The site visit",
-    text: "The site engineer sees the visit on the phone: when and where, who to meet, the site's exact location, and a check of the site in steps. Photos are taken against the list the report needs.",
+    text: "The site engineer sees the visit on the phone: when and where, who to meet, the site's exact location, and a check of the site in steps. Photos are taken against the list the report needs. When the visit is done, the phone asks who should check it.",
     who: ["Site engineer", "Assistant valuer"],
     said: ["Photos for the report", "Take each photo the report needs. Each one is kept on this phone first, then goes to the office by itself."],
     pics: [["phone-visit", "A site visit on the phone with the time, place, who to meet and buttons to go there and to call.", true], ["phone-visit-photos", "The visit's photos: 1 of 2 needed photos taken and sent.", true]],
@@ -22,15 +23,15 @@ const STAGES = [
   {
     name: "Waiting at desk",
     title: "The evidence arrives",
-    text: "Photos and documents land on the file, not in someone's gallery. The file says what has come and what is still missing, so the office can ask for it while the field person can still be reached.",
-    who: ["Office staff", "Assistant valuer"],
+    text: "Photos and documents land on the file, not in someone's gallery. The file says what has come and what is still missing, so the office can ask for it while the field person can still be reached. The owner or an assistant valuer checks the visit: accepts it, or sends it back to the site engineer.",
+    who: ["Owner", "Assistant valuer", "Office staff"],
     said: ["Documents", "3 of 5 in. 2 missing."],
     pics: [["desk-file-overview", "A file's page: where the work stands on a seven-step scale, the documents with 3 of 5 in and 2 missing, the site visit, and who has the file now."]],
   },
   {
     name: "At desk",
-    title: "The report is prepared",
-    text: "The desk prepares the report from what is on the file: the property, the photos, the documents and the valuer's figures. The file shows who has it and since when.",
+    title: "The report is made",
+    text: "The desk makes the report on the report form, from what is on the file: the property, the photos and the documents. Office staff can fill the whole form; the prevailing rate and the adopted rate stay with the valuer. The file shows who has it and since when.",
     who: ["Office staff", "Assistant valuer"],
     said: ["Where the file is now", "At desk. Report being written."],
     pics: [["desk-home-office-staff", "Home for office staff: files with you, waiting at the desk, visits today and ready to go, with each file's next step."]],
@@ -38,16 +39,16 @@ const STAGES = [
   {
     name: "With the valuer",
     title: "The valuer checks and approves",
-    text: "The report comes back to the valuer to check. Approving it is the valuer's step, shown as its own step, never assumed. Figures, approval and finalising stay with the valuer; office staff never do them.",
-    who: ["Owner", "Associate valuer"],
+    text: "The report comes to the valuer to check. Approving it is the valuer's step, never assumed: one press approves it and asks who prints, signs and hands it over. Nobody approves their own report, and office staff never approve.",
+    who: ["Owner", "Associate valuer", "Assistant valuer"],
     said: ["The report is ready to check", "Approve the report"],
     equals: true,
     pics: [["desk-home-owner", "The owner's Home with two files waiting for approval, each with an Approve button."]],
   },
   {
     name: "Ready to go",
-    title: "Printed and signed",
-    text: "The report is ready to hand over. The file shows what is left, such as signing the printed report.",
+    title: "Printed, signed and handed over",
+    text: "The person the valuer chose prints the report, signs it and hands it over, marking each step on the file. The file shows what is left, such as signing the printed report. At hand-over the payment is recorded on the file.",
     who: ["Owner", "Associate valuer", "Office staff"],
     said: ["Ready to go", "Sign the printed report"],
     pics: [["desk-home-associate", "Home for an associate valuer, with files ready to go."]],
@@ -55,7 +56,7 @@ const STAGES = [
   {
     name: "Delivered",
     title: "Handed over, and kept",
-    text: "The finished report stays with its file: the photos, the documents and the history of who did what. Months later, when a bank or borrower asks about an old report, it can be found.",
+    text: "When the report is handed over and nothing is owed, the file closes by itself. The finished report stays with its file: the photos, the documents and the history of who did what. Months later, when a bank or borrower asks about an old report, it can be found.",
     who: ["Everyone who worked on it"],
     said: ["Files you worked on", "Finished"],
     pics: [["desk-queue-owner", "The Queue with the Finished tab and every file by where it is."]],

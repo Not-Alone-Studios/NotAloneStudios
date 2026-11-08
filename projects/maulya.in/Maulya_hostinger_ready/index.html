@@ -21,8 +21,8 @@
   <link rel="alternate" type="application/atom+xml" title="Maulya blog" href="/blog/feed.xml" />
   <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/site.css?v=mw6kfrzy" />
-  
+  <link rel="stylesheet" href="/assets/site.css?v=mw85l9mz" />
+  <link rel="stylesheet" href="/assets/journey.css?v=mw85l9mz" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Maulya","url":"https://maulya.in/","logo":"https://maulya.in/assets/brand/maulya-icon.png","email":"support@maulya.in","parentOrganization":{"@type":"Organization","name":"Not Alone Studios"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Maulya","applicationCategory":"BusinessApplication","operatingSystem":"Web browser, on a computer or a phone","description":"Workflow software for property valuation offices in India: files, site visits, evidence, reports, approvals and fees.","offers":{"@type":"Offer","price":"2000","priceCurrency":"INR","description":"Platform plan, a month, before GST"}}</script>
 </head>
@@ -72,12 +72,13 @@
           <p>A bank assignment arrives as a forwarded message or a phone call. Then the file spreads out. Nobody is careless; the work simply moves through messages and memory.</p>
         </div>
         <ul class="scatter scatter-wrap">
-          <li><strong>WhatsApp</strong><span>the borrower's number and the address</span></li>
-          <li><strong>An Excel sheet</strong><span>the pending list, kept by one person</span></li>
-          <li><strong>A phone gallery</strong><span>site photos, mixed with personal ones</span></li>
-          <li><strong>A laptop folder</strong><span>drafts, scans and the final report</span></li>
+          <li><strong>WhatsApp</strong><span>the site engineer's measurement, somewhere between a payment screenshot and another file's photo</span></li>
+          <li><strong>A Word template</strong><span>the report, half-finished, waiting for that one measurement</span></li>
+          <li><strong>A laptop folder</strong><span>Final, Final1 and Final_new, and nobody fully sure which one went to the bank</span></li>
+          <li><strong>The phone</strong><span>repeated calls to the site engineer, the branch and the borrower</span></li>
           <li><strong>The valuer's memory</strong><span>which branch called, and what they wanted</span></li>
         </ul>
+        <p class="small muted" style="margin:12px 0 0;max-width:80ch">In Shrinivas's words, from <cite>What inputs are usually needed for a property valuation report?</cite>, <cite>Why old valuation reports become hard to retrieve</cite> and <cite>the site visit checklist</cite>.</p>
         <div class="into-one">
           <svg class="equals" viewBox="0 0 44 30" aria-hidden="true" data-equals><rect x="2" y="6" width="40" height="6" rx="1"/><rect x="2" y="18" width="40" height="6" rx="1"/></svg>
           <p style="margin:0"><strong>In Maulya it is one file.</strong> The bank and branch, the borrower and property, the site visit, the photos and documents, the report, the approval and the fee, together, with the person who has it now.</p>
@@ -89,94 +90,87 @@
       <div class="wrap">
         <div class="section-head">
           <span class="kicker">How a file moves</span>
-          <h2>Seven places, the same on every screen.</h2>
-          <p>These are the app's own words for where a file is. Pick one to see what happens there, who does it, and the screen they work on.</p>
+          <h2>From the day it comes in to the day it is paid.</h2>
+          <p>One file's way through a valuer's office, in the app's own words. Each step names who does it and what they see on the screen.</p>
         </div>
         
-        <div class="scale" data-scale>
-          <ol class="scale-rule" role="tablist" aria-label="Where a file is">
-            <li role="presentation"><button class="scale-btn" role="tab" id="st-0" aria-controls="sp-0" aria-selected="true" tabindex="0"><span class="scale-dot" aria-hidden="true"></span><span class="scale-name">Not started</span></button></li><li role="presentation"><button class="scale-btn" role="tab" id="st-1" aria-controls="sp-1" aria-selected="false" tabindex="-1"><span class="scale-dot" aria-hidden="true"></span><span class="scale-name">At site</span></button></li><li role="presentation"><button class="scale-btn" role="tab" id="st-2" aria-controls="sp-2" aria-selected="false" tabindex="-1"><span class="scale-dot" aria-hidden="true"></span><span class="scale-name">Waiting at desk</span></button></li><li role="presentation"><button class="scale-btn" role="tab" id="st-3" aria-controls="sp-3" aria-selected="false" tabindex="-1"><span class="scale-dot" aria-hidden="true"></span><span class="scale-name">At desk</span></button></li><li role="presentation"><button class="scale-btn" role="tab" id="st-4" aria-controls="sp-4" aria-selected="false" tabindex="-1"><span class="scale-dot" aria-hidden="true"></span><span class="scale-name">With the valuer</span></button></li><li role="presentation"><button class="scale-btn" role="tab" id="st-5" aria-controls="sp-5" aria-selected="false" tabindex="-1"><span class="scale-dot" aria-hidden="true"></span><span class="scale-name">Ready to go</span></button></li><li role="presentation"><button class="scale-btn" role="tab" id="st-6" aria-controls="sp-6" aria-selected="false" tabindex="-1"><span class="scale-dot" aria-hidden="true"></span><span class="scale-name">Delivered</span></button></li>
-          </ol>
-          <div class="scale-panels">
-          <div class="scale-panel" role="tabpanel" id="sp-0" aria-labelledby="st-0" tabindex="0">
-            <div>
-              <p class="small muted" style="margin:0 0 6px">1 of 7, Not started</p>
-              <h3>The file comes in</h3>
-              <p>The file is made once: who sent it (a bank, a client directly or another valuer), the bank and branch, the property and the borrower, where it is, and who does the work. You can save a draft and come back to it.</p>
-              
-              <p class="said"><strong>On the screen:</strong> "Documents this bank will need", "Choose the bank and the kind of property to see the documents this bank will need."</p>
-              <ul class="who" aria-label="Who works here"><li>Owner</li><li>Associate valuer</li><li>Assistant valuer</li><li>Office staff</li></ul>
+        <div class="journey" data-journey>
+          <div class="journey-rail" aria-hidden="true">
+            <div class="journey-card" data-journey-card>
+              <p class="jc-file"><b>Borrower K</b><span>Co-op Bank A Branch 2 · House</span></p>
+              <p class="jc-where"><span class="jc-bars" aria-hidden="true"><i class="here"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><b data-jc-place>Not started</b></p>
+              <p class="jc-line"><span>Last:</span> <span data-jc-event>File opened</span></p>
+              <p class="jc-line"><span data-jc-label>Next:</span> <b data-jc-next>Give it to someone</b></p>
             </div>
-            <div class="panel-pics"><figure class="frame-desk"><img class="shot shot-desk " src="/assets/media/app/desk-new-file-960.webp" srcset="/assets/media/app/desk-new-file-960.webp 960w, /assets/media/app/desk-new-file-1440.webp 1440w" sizes="(min-width: 1200px) 1000px, 94vw" width="1440" height="900" alt="The New file form: details filled 1 of 7, the documents the bank will need, and the report's due date, with sections for who sent it, the property and the borrower, where it is, and who does the work." loading="lazy" decoding="async" /></figure></div>
           </div>
-          <div class="scale-panel" role="tabpanel" id="sp-1" aria-labelledby="st-1" tabindex="0">
-            <div>
-              <p class="small muted" style="margin:0 0 6px">2 of 7, At site</p>
-              <h3>The site visit</h3>
-              <p>The site engineer sees the visit on the phone: when and where, who to meet, the site's exact location, and a check of the site in steps. Photos are taken against the list the report needs.</p>
+          <ol class="journey-steps">
+            <li class="journey-step" data-at="0" data-place="Not started" data-event="File opened" data-next="Give it to someone" data-next-label="Next:">
+              <span class="journey-dot" aria-hidden="true"></span>
+              <p class="journey-place"><span class="num">1</span> of 7 · Not started</p>
+              <h3>A new file, made once</h3>
+              <p>The office makes the file as it comes in: who sent it, the bank and branch, the property and the borrower, and where it is. Choose the bank and the kind of property, and the file lists the documents this bank will need. Then the site visit is given to someone.</p>
               
-              <p class="said"><strong>On the screen:</strong> "Photos for the report", "Take each photo the report needs. Each one is kept on this phone first, then goes to the office by itself."</p>
+              <p class="said"><strong>On the screen:</strong> "Documents this bank will need", "Give it to someone"</p>
+              <ul class="who" aria-label="Who works here"><li>Owner</li><li>Assistant valuer</li><li>Office staff</li></ul>
+            </li>
+            <li class="journey-step" data-at="1" data-place="At site" data-event="Given to the site engineer for the site visit" data-next="Done at the site" data-next-label="Next:">
+              <span class="journey-dot" aria-hidden="true"></span>
+              <p class="journey-place"><span class="num">2</span> of 7 · At site</p>
+              <h3>The site visit, on the phone</h3>
+              <p>The site engineer accepts the visit, finds the site, meets the contact and checks the site in steps. Each photo the report needs is kept on the phone first, then goes to the office by itself. The floors measured on the phone are kept as the actual built-up area.</p>
+              
+              <p class="said"><strong>On the screen:</strong> "Done at the site", "Who should check this visit?"</p>
               <ul class="who" aria-label="Who works here"><li>Site engineer</li><li>Assistant valuer</li></ul>
-            </div>
-            <div class="panel-pics"><figure class="frame-phone"><img class="shot shot-phone " src="/assets/media/app/phone-visit-390.webp" srcset="/assets/media/app/phone-visit-390.webp 390w, /assets/media/app/phone-visit-780.webp 780w" sizes="(min-width: 900px) 300px, 70vw" width="390" height="844" alt="A site visit on the phone with the time, place, who to meet and buttons to go there and to call." loading="lazy" decoding="async" /></figure><figure class="frame-phone"><img class="shot shot-phone " src="/assets/media/app/phone-visit-photos-390.webp" srcset="/assets/media/app/phone-visit-photos-390.webp 390w, /assets/media/app/phone-visit-photos-780.webp 780w" sizes="(min-width: 900px) 300px, 70vw" width="390" height="844" alt="The visit's photos: 1 of 2 needed photos taken and sent." loading="lazy" decoding="async" /></figure></div>
-          </div>
-          <div class="scale-panel" role="tabpanel" id="sp-2" aria-labelledby="st-2" tabindex="0">
-            <div>
-              <p class="small muted" style="margin:0 0 6px">3 of 7, Waiting at desk</p>
-              <h3>The evidence arrives</h3>
-              <p>Photos and documents land on the file, not in someone's gallery. The file says what has come and what is still missing, so the office can ask for it while the field person can still be reached.</p>
+            </li>
+            <li class="journey-step" data-at="2" data-place="Waiting at desk" data-event="Site work sent in" data-next="Check the site visit" data-next-label="Next:">
+              <span class="journey-dot" aria-hidden="true"></span>
+              <p class="journey-place"><span class="num">3</span> of 7 · Waiting at desk</p>
+              <h3>The visit is checked</h3>
+              <p>The visit goes to the person the engineer chose: the owner or an assistant valuer. They see what came in from the site, then accept the visit, or send it back to the site engineer to be corrected. No visit skips the check.</p>
               
-              <p class="said"><strong>On the screen:</strong> "Documents", "3 of 5 in. 2 missing."</p>
+              <p class="said"><strong>On the screen:</strong> "Check the site visit", "Accept the visit"</p>
+              <ul class="who" aria-label="Who works here"><li>Owner</li><li>Assistant valuer</li></ul>
+            </li>
+            <li class="journey-step" data-at="3" data-place="At desk" data-event="Site work checked" data-next="Make the report" data-next-label="Next:">
+              <span class="journey-dot" aria-hidden="true"></span>
+              <p class="journey-place"><span class="num">4</span> of 7 · At desk</p>
+              <h3>Make the report</h3>
+              <p>The report form comes in groups, with starting answers from the file, the enclosures from its documents, and the valuer's details from Settings. Office staff can fill the whole form; the prevailing rate and the adopted rate stay with the valuer. The report is made in the bank's format, as a Word file and its PDF, then sent to be checked.</p>
+              
+              <p class="said"><strong>On the screen:</strong> "Make the report", "Next: they read it and approve it."</p>
               <ul class="who" aria-label="Who works here"><li>Office staff</li><li>Assistant valuer</li></ul>
-            </div>
-            <div class="panel-pics"><figure class="frame-desk"><img class="shot shot-desk " src="/assets/media/app/desk-file-overview-960.webp" srcset="/assets/media/app/desk-file-overview-960.webp 960w, /assets/media/app/desk-file-overview-1440.webp 1440w" sizes="(min-width: 1200px) 1000px, 94vw" width="1440" height="900" alt="A file's page: where the work stands on a seven-step scale, the documents with 3 of 5 in and 2 missing, the site visit, and who has the file now." loading="lazy" decoding="async" /></figure></div>
-          </div>
-          <div class="scale-panel" role="tabpanel" id="sp-3" aria-labelledby="st-3" tabindex="0">
-            <div>
-              <p class="small muted" style="margin:0 0 6px">4 of 7, At desk</p>
-              <h3>The report is prepared</h3>
-              <p>The desk prepares the report from what is on the file: the property, the photos, the documents and the valuer's figures. The file shows who has it and since when.</p>
+            </li>
+            <li class="journey-step" data-at="4" data-place="With the valuer" data-event="Sent to the valuer to approve" data-next="Approve the report" data-next-label="Next:">
+              <span class="journey-dot" aria-hidden="true"></span>
+              <p class="journey-place"><span class="num">5</span> of 7 · With the valuer</p>
+              <h3>Approve the report, in one press</h3>
+              <p>The valuer reads the report: the preview, the Word file or the PDF. One press approves it, and the same question asks who prints, signs and hands it over. Or the valuer sends it back with a note. Nobody approves their own report.</p>
+              <p class="journey-eq"><svg class="equals" viewBox="0 0 44 30" aria-hidden="true" data-equals><rect x="2" y="6" width="40" height="6" rx="1"/><rect x="2" y="18" width="40" height="6" rx="1"/></svg><span class="small">In the app, the equals mark levels when a registered valuer finalises.</span></p>
+              <p class="said"><strong>On the screen:</strong> "Approve the report", "Who prints, signs and hands it over?"</p>
+              <ul class="who" aria-label="Who works here"><li>Owner</li><li>Associate valuer</li><li>Assistant valuer</li></ul>
+            </li>
+            <li class="journey-step" data-at="5" data-place="Ready to go" data-event="The report is approved." data-next="Mark it printed" data-next-label="Next:">
+              <span class="journey-dot" aria-hidden="true"></span>
+              <p class="journey-place"><span class="num">6</span> of 7 · Ready to go</p>
+              <h3>Print, sign and hand over</h3>
+              <p>The person the valuer chose prints the report, signs it and hands it over, marking each step on the file. At hand-over the file shows the bill, what has been received and what is still owed, and the payment is recorded there: who paid, how, and how much.</p>
               
-              <p class="said"><strong>On the screen:</strong> "Where the file is now", "At desk. Report being written."</p>
-              <ul class="who" aria-label="Who works here"><li>Office staff</li><li>Assistant valuer</li></ul>
-            </div>
-            <div class="panel-pics"><figure class="frame-desk"><img class="shot shot-desk " src="/assets/media/app/desk-home-office-staff-960.webp" srcset="/assets/media/app/desk-home-office-staff-960.webp 960w, /assets/media/app/desk-home-office-staff-1440.webp 1440w" sizes="(min-width: 1200px) 1000px, 94vw" width="1440" height="900" alt="Home for office staff: files with you, waiting at the desk, visits today and ready to go, with each file's next step." loading="lazy" decoding="async" /></figure></div>
-          </div>
-          <div class="scale-panel" role="tabpanel" id="sp-4" aria-labelledby="st-4" tabindex="0">
-            <div>
-              <p class="small muted" style="margin:0 0 6px">5 of 7, With the valuer</p>
-              <h3>The valuer checks and approves</h3>
-              <p>The report comes back to the valuer to check. Approving it is the valuer's step, shown as its own step, never assumed. Figures, approval and finalising stay with the valuer; office staff never do them.</p>
-              <p style="display:flex;gap:12px;align-items:center"><svg class="equals" viewBox="0 0 44 30" aria-hidden="true" data-equals><rect x="2" y="6" width="40" height="6" rx="1"/><rect x="2" y="18" width="40" height="6" rx="1"/></svg><span class="small">In the app, the equals mark levels when a registered valuer finalises.</span></p>
-              <p class="said"><strong>On the screen:</strong> "The report is ready to check", "Approve the report"</p>
-              <ul class="who" aria-label="Who works here"><li>Owner</li><li>Associate valuer</li></ul>
-            </div>
-            <div class="panel-pics"><figure class="frame-desk"><img class="shot shot-desk " src="/assets/media/app/desk-home-owner-960.webp" srcset="/assets/media/app/desk-home-owner-960.webp 960w, /assets/media/app/desk-home-owner-1440.webp 1440w" sizes="(min-width: 1200px) 1000px, 94vw" width="1440" height="900" alt="The owner's Home with two files waiting for approval, each with an Approve button." loading="lazy" decoding="async" /></figure></div>
-          </div>
-          <div class="scale-panel" role="tabpanel" id="sp-5" aria-labelledby="st-5" tabindex="0">
-            <div>
-              <p class="small muted" style="margin:0 0 6px">6 of 7, Ready to go</p>
-              <h3>Printed and signed</h3>
-              <p>The report is ready to hand over. The file shows what is left, such as signing the printed report.</p>
+              <p class="said"><strong>On the screen:</strong> "Mark it printed", "Mark it signed", "Mark it handed over", "Record a payment"</p>
+              <ul class="who" aria-label="Who works here"><li>Office staff</li><li>Owner</li><li>Assistant valuer</li></ul>
+            </li>
+            <li class="journey-step" data-at="6" data-place="Delivered" data-event="Closed by itself: handed over and paid" data-next="✓ Complete" data-next-label="Now:">
+              <span class="journey-dot" aria-hidden="true"></span>
+              <p class="journey-place"><span class="num">7</span> of 7 · Delivered</p>
+              <h3>Handed over, paid, and kept</h3>
+              <p>When the report is handed over and nothing is owed, the file closes by itself. The report stays with its file, with the photos, the documents and who did what, so it can be found when a bank asks about it months later.</p>
               
-              <p class="said"><strong>On the screen:</strong> "Ready to go", "Sign the printed report"</p>
-              <ul class="who" aria-label="Who works here"><li>Owner</li><li>Associate valuer</li><li>Office staff</li></ul>
-            </div>
-            <div class="panel-pics"><figure class="frame-desk"><img class="shot shot-desk " src="/assets/media/app/desk-home-associate-960.webp" srcset="/assets/media/app/desk-home-associate-960.webp 960w, /assets/media/app/desk-home-associate-1440.webp 1440w" sizes="(min-width: 1200px) 1000px, 94vw" width="1440" height="900" alt="Home for an associate valuer, with files ready to go." loading="lazy" decoding="async" /></figure></div>
-          </div>
-          <div class="scale-panel" role="tabpanel" id="sp-6" aria-labelledby="st-6" tabindex="0">
-            <div>
-              <p class="small muted" style="margin:0 0 6px">7 of 7, Delivered</p>
-              <h3>Handed over, and kept</h3>
-              <p>The finished report stays with its file: the photos, the documents and the history of who did what. Months later, when a bank or borrower asks about an old report, it can be found.</p>
-              
-              <p class="said"><strong>On the screen:</strong> "Files you worked on", "Finished"</p>
+              <p class="said"><strong>On the screen:</strong> "✓ Complete"</p>
               <ul class="who" aria-label="Who works here"><li>Everyone who worked on it</li></ul>
-            </div>
-            <div class="panel-pics"><figure class="frame-desk"><img class="shot shot-desk " src="/assets/media/app/desk-queue-owner-960.webp" srcset="/assets/media/app/desk-queue-owner-960.webp 960w, /assets/media/app/desk-queue-owner-1440.webp 1440w" sizes="(min-width: 1200px) 1000px, 94vw" width="1440" height="900" alt="The Queue with the Finished tab and every file by where it is." loading="lazy" decoding="async" /></figure></div>
-          </div>
-          </div>
+            </li>
+          </ol>
         </div>
+        <p class="small muted journey-foot">The file card is a sample from the app's review mode: the borrower and the branch are made up.</p>
+        <p style="margin-top:20px"><a href="/product/#scale">See the screen for each step</a></p>
       </div>
     </section>
 
@@ -249,18 +243,41 @@
           <div><h3>Not for borrowers or buyers</h3><p>It is for valuation offices: valuers, firms, site engineers and office staff.</p></div>
         </div>
         <p class="small muted" style="margin-top:16px">From <cite>Does Maulya automatically decide property value?</cite> and <cite>What is Maulya?</cite></p>
+        <div class="note green" style="margin-top:32px">
+          <p><strong>Your firm's reports stay your firm's.</strong> Nothing from one firm's reports ever reaches another firm. That includes market and guideline rates, values, comparables and suggestions.</p>
+          <p class="small">How this website handles what you send it: <a href="/privacy/">the privacy notice</a>.</p>
+        </div>
       </div>
     </section>
 
     
 
+    <section class="section">
+      <div class="wrap">
+        <div class="maker">
+          <img src="/assets/media/maulya/founders/shrinivas-face-240.jpg" alt="Shrinivas, a practising registered valuer." width="120" height="120" loading="lazy" decoding="async" />
+          <div>
+            <span class="kicker">Who built it</span>
+            <h2>Built by a practising registered valuer.</h2>
+            <p>Shrinivas is a practising property valuer. He knows where assignments slow down, where evidence goes missing, and why approvals turn into friction. That shaped Maulya's files, documents, site visits and report process. Sriram builds the product.</p>
+            <p><a href="/about/">About the people behind Maulya</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="closing on-body">
       <div class="wrap">
         <h2>Bring your firm's files into one place.</h2>
         <p class="lead">We are choosing 10 to 15 valuation firms from the applications. They use Maulya free for six weeks, in return for real use and feedback.</p>
+        <ol class="after-apply" aria-label="What happens after you apply">
+          <li><b>You apply</b><span>with your firm's details.</span></li>
+          <li><b>We choose 10 to 15 firms</b><span>and write to each firm we choose.</span></li>
+          <li><b>Six weeks, free</b><span>on your firm's real work. Tell us what helps and what doesn't.</span></li>
+        </ol>
         <div class="actions">
           <a class="btn btn-gold" href="/early-access/">Apply for early access</a>
-          <a class="btn btn-line" href="/pricing/">See the prices</a>
+          <a class="btn btn-line" href="/early-access/">How early access works</a>
         </div>
       </div>
     </section>
@@ -288,6 +305,6 @@
     </div>
     <div class="wrap foot-small"><p>© 2026 Not Alone Studios. Pictures of the app are from its review mode: every name, bank branch and place in them is made up.</p></div>
   </footer>
-  <script src="/assets/site.js?v=mw6kfrzy" defer></script>
+  <script src="/assets/site.js?v=mw85l9mz" defer></script>
 </body>
 </html>

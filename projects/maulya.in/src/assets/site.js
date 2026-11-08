@@ -49,6 +49,43 @@
     pick(0, false);
   });
 
+  // MLP/ARK-693: how a file moves. The step being read (the one crossing the middle of the screen) moves the file card:
+  // its place, its last line and its next step, and the line fills to that step's dot. Each step comes in once when it
+  // is reached, unless the reader asks for less motion: then the list simply stands, and the card still follows.
+  $$("[data-journey]").forEach(function (j) {
+    var steps = $$(".journey-step", j), list = $(".journey-steps", j), card = $("[data-journey-card]", j);
+    if (!steps.length || !card) return;
+    var place = $("[data-jc-place]", card), ev = $("[data-jc-event]", card), next = $("[data-jc-next]", card),
+      label = $("[data-jc-label]", card), bars = $$(".jc-bars i", card), at = -1;
+    var still = !window.matchMedia || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function show(i) {
+      if (i === at) return;
+      at = i;
+      var s = steps[i];
+      place.textContent = s.getAttribute("data-place");
+      ev.textContent = s.getAttribute("data-event");
+      next.textContent = s.getAttribute("data-next");
+      label.textContent = s.getAttribute("data-next-label");
+      bars.forEach(function (b, k) { b.className = k < i ? "done" : k === i ? "here" : ""; });
+      steps.forEach(function (t, k) { t.classList.toggle("past", k < i); t.classList.toggle("now", k === i); });
+      list.style.setProperty("--p", String(Math.min(1, (s.offsetTop + 14) / Math.max(1, list.offsetHeight - 38))));
+      if (!still) { card.classList.remove("changed"); void card.offsetWidth; card.classList.add("changed"); }
+    }
+    show(0);
+    if (!("IntersectionObserver" in window)) return;
+    if (!still) {
+      j.classList.add("moving");
+      var seen = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("seen"); seen.unobserve(e.target); } });
+      }, { rootMargin: "0px 0px -8% 0px" });
+      steps.forEach(function (s) { seen.observe(s); });
+    }
+    var mid = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) show(+e.target.getAttribute("data-at")); });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    steps.forEach(function (s) { mid.observe(s); });
+  });
+
   // The equals mark: drawn tilted, it levels once when the finalising step is shown (the app's one bold moment)
   var style = document.createElement("style");
   style.textContent = "[data-equals] rect:first-child{transform:rotate(-8deg) translateY(-2px)}[data-equals] rect:last-child{transform:rotate(6deg) translateY(2px)}[data-equals].level rect{transform:none}";

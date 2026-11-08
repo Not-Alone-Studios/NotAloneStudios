@@ -1,4 +1,5 @@
-const { chromium } = require(process.env.HOME + "/V3-lanes/site-shots/node_modules/playwright");
+// Playwright from the app repo's checkout (PW=<path> to use another one; ~/V3-lanes/site-shots is gone, 8 Nov)
+const { chromium } = require(process.env.PW || process.env.HOME + "/V3/node_modules/playwright");
 (async () => { const b = await chromium.launch(); const out = process.argv[2];
   const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
   await p.goto("http://127.0.0.1:8768/", { waitUntil: "networkidle" });

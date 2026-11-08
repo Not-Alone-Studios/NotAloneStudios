@@ -1,0 +1,62 @@
+/* MLP/ARK-693: "How a file moves", one file's way through the office (src/pages/journey.mjs). Home only.
+   The words are an ordered list; the file card beside it is decoration that follows the step being read. Motion only
+   shows a change: each step comes in once as it is reached, the line fills to it, the card's place updates. With reduced
+   motion (site.css turns every transition off) or without the script, the same list stands still; without the script
+   the card is not drawn at all. Transforms and opacity only, so nothing moves the page's layout. */
+
+.journey { display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 0 56px; align-items: start; }
+.journey-rail { display: none; align-self: stretch; }
+.js .journey-rail { display: block; }
+.journey-card { position: sticky; top: 112px; background: var(--face); border: 1px solid var(--line-strong);
+  border-radius: var(--radius); padding: 18px 20px; box-shadow: 0 12px 28px rgba(9, 64, 48, 0.08); }
+.journey-card p { margin: 0; }
+.jc-file b { display: block; font-size: 1.125rem; line-height: 1.3; }
+.jc-file span { color: var(--muted); font-size: var(--s-small); }
+.jc-where { display: flex; align-items: center; gap: 12px; margin: 14px 0 12px !important; padding: 12px 0;
+  border-block: 1px solid var(--line); font-size: var(--s-large); }
+.jc-bars { display: inline-flex; gap: 3px; flex: none; }
+.jc-bars i { width: 5px; height: 20px; border-radius: 1px; background: var(--line-strong); transition: background 300ms var(--ease); }
+.jc-bars i.done { background: var(--green); }
+.jc-bars i.here { background: var(--gold); }
+.jc-line { font-size: var(--s-small); line-height: 1.45; }
+.jc-line + .jc-line { margin-top: 6px !important; }
+.jc-line > span:first-child { color: var(--muted); }
+.journey-card.changed [data-jc-place], .journey-card.changed [data-jc-next] { animation: jc-change 900ms var(--ease); }
+@keyframes jc-change { from { background: #f6e7cb; } to { background: transparent; } }
+
+.journey-steps { position: relative; list-style: none; margin: 0; padding: 0 0 0 52px; }
+.journey-steps::before, .journey-steps::after { content: ""; position: absolute; left: 11px; top: 14px; bottom: 24px; width: 2px; }
+.journey-steps::before { background: var(--line-strong); }
+.journey-steps::after { background: var(--green); transform-origin: top; transform: scaleY(var(--p, 0)); transition: transform 600ms var(--ease); }
+.journey-step { position: relative; padding: 0 0 48px; }
+.journey-step:last-child { padding-bottom: 0; }
+.journey-step h3 { font-size: var(--s-h3); margin-bottom: 8px; }
+.journey-step > p { max-width: 62ch; }
+.journey-dot { position: absolute; left: -50px; top: 4px; width: 22px; height: 22px; border-radius: 50%; z-index: 1;
+  background: var(--face); border: 2px solid var(--line-strong); transition: background 300ms var(--ease), border-color 300ms var(--ease), box-shadow 300ms var(--ease); }
+.journey-step.past .journey-dot { background: var(--green); border-color: var(--green); }
+.journey-step.now .journey-dot { background: var(--gold); border-color: var(--gold-edge); box-shadow: 0 0 0 5px #f6e7cb; }
+.journey-place { font-size: var(--s-small); font-weight: 700; color: var(--green); margin: 0 0 4px; }
+.journey-eq { display: flex; gap: 12px; align-items: center; }
+.journey-step .said { max-width: 62ch; }
+.journey-foot { margin: 32px 0 0; }
+
+/* Each step comes in once, as it is reached (only when motion is welcome: site.js adds .moving) */
+.journey.moving .journey-step { opacity: 0; transform: translateY(24px); transition: opacity 600ms var(--ease), transform 600ms var(--ease); }
+.journey.moving .journey-step.seen { opacity: 1; transform: none; }
+
+/* A phone: the card rides at the top of the steps, one line for where the file is and one for what is next */
+@media (max-width: 860px) {
+  .journey { display: block; }
+  .js .journey-rail { position: sticky; top: 72px; z-index: 3; margin: 0 -16px 24px; padding: 8px 16px; background: var(--face); }
+  .journey-card { position: static; padding: 10px 14px; box-shadow: 0 6px 16px rgba(9, 64, 48, 0.10); }
+  .jc-file, .jc-line:not(:last-child) { display: none; }
+  .jc-where { margin: 0 0 4px !important; padding: 0; border: 0; font-size: 1.0625rem; }
+  .jc-line { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .journey-steps { padding-left: 44px; }
+  .journey-steps::before, .journey-steps::after { left: 9px; }
+  .journey-dot { left: -44px; width: 20px; height: 20px; }
+  .journey-step { padding-bottom: 40px; }
+}
+
+@media print { .journey-rail { display: none !important; } .journey { display: block; } }

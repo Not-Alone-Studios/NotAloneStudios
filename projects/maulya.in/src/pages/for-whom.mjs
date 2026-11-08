@@ -1,5 +1,7 @@
 // Who it's for. The jobs' names and one-line descriptions are the app's own (services/api/app/services/jobs.py, main
 // 9a94cade8); "what they do" follows each job's abilities in the same file and Shrinivas's post 25 (who can use Maulya).
+// MLP/ARK-693: office staff and assistant valuer lines follow Shrinivas's train (SRK-84 who checks a visit; SRK-86 R2 the
+// whole form for office staff, the rates with the valuer; R5 approve in one press; R6 who prints; R8 payment at hand-over).
 
 const JOBS = [
   {
@@ -17,13 +19,13 @@ const JOBS = [
   {
     id: "assistant", name: "Assistant valuer",
     line: "Sees every file at every stage. Makes files, gives them out, visits, enters figures and prepares reports.",
-    does: ["Makes files and gives them to the right person.", "Goes on site visits.", "Enters the valuation figures and prepares and makes reports."],
+    does: ["Makes files and gives them to the right person.", "Goes on site visits, and checks a visit sent to them.", "Enters the valuation figures and prepares and makes reports.", "Approves a report sent to them to check."],
     pic: ["desk-home-assistant", "Home for an assistant valuer."],
   },
   {
     id: "office", name: "Office staff",
     line: "Makes files, gives site visits, prepares the report and hands it over. Sees the files they make and the files given to them.",
-    does: ["Enters a new file once, as it comes in.", "Gives out the site visit.", "Prepares the report and hands it over.", "Never enters figures, approves or finalises: those stay with the valuer."],
+    does: ["Enters a new file once, as it comes in.", "Gives out the site visit.", "Fills the report form and makes the report; the prevailing rate and the adopted rate stay with the valuer.", "Prints, signs and hands over the report when the valuer chooses them, and records the payment at hand-over.", "Never approves or finalises: that stays with the valuer."],
     pic: ["desk-home-office-staff", "Home for office staff, with the files waiting at the desk."],
   },
   {
