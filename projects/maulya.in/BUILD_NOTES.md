@@ -24,3 +24,8 @@ It writes `public_clean/`, `public_hostinger/`, `Maulya_hostinger_ready/` and `M
 
 ## Old addresses
 `/solutions/` and `/associates/` go to `/for-whom/`, `/pilot/` and `/start/` to `/early-access/`, `/demo/` to `/product/`, and `/updates/` to `/blog/`. Each is a 301 in `.htaccess`, plus a small page for hosts that ignore it.
+
+## How a file moves (MLP/ARK-693)
+- Home's journey is `src/pages/journey.mjs` (the words, each step's source in its header), `src/assets/journey.css` (Home only) and the "how a file moves" block in `src/assets/site.js`.
+- The words follow the app as of Deploy 14 (Shrinivas's train). When the app's steps or buttons change, change `JOURNEY` there and Product's `STAGES` in `src/pages/parts.mjs` together.
+- Motion: transforms and opacity only; `prefers-reduced-motion` and no-script show the same list still. Check with `build/tools/journey-site.cjs`.
