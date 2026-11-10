@@ -8,14 +8,8 @@
 
 export default ({ L, cfg }) => {
   const ea = cfg.earlyAccess;
-  const form = String(ea.formUrl || "").trim();
-  // While the form's address is empty, this page's own button falls back to an email, so it never loops back to itself.
-  const mail = `mailto:${cfg.site.supportEmail}?subject=${encodeURIComponent("Early access to Maulya")}&body=${encodeURIComponent("Firm name:\nTown or city:\nYour name and job:\nHow many people work on valuation files:\n")}`;
-  const button = !ea.open
-    ? `<span class="btn-closed">Applications are closed</span>`
-    : form
-      ? L.apply("btn btn-gold")
-      : `<a class="btn btn-gold" href="${mail}">Apply for early access</a>`;
+  // MLP/ARK-719: the button opens the application page (/early-access/apply/), through the same L.apply as every gold button.
+  const button = L.apply("btn btn-gold");
   return {
     path: "/early-access/",
     title: "Apply for early access",

@@ -8,7 +8,7 @@ const fs = require("fs");
   const [base, out, widthsArg, reducedArg, pathsArg] = process.argv.slice(2);
   const widths = widthsArg.split(",").map(Number);
   const reduced = reducedArg === "1";
-  const paths = pathsArg ? pathsArg.split(",") : ["/", "/product/", "/for-whom/", "/pricing/", "/about/", "/early-access/", "/blog/", "/blog/site-visit-mistakes-property-valuation/", "/blog/bank-valuation-assignment-workflow-india/", "/survey/", "/privacy/", "/terms/", "/404.html"];
+  const paths = pathsArg ? pathsArg.split(",") : ["/", "/product/", "/for-whom/", "/pricing/", "/about/", "/early-access/", "/early-access/apply/", "/blog/", "/blog/site-visit-mistakes-property-valuation/", "/blog/bank-valuation-assignment-workflow-india/", "/survey/", "/privacy/", "/terms/", "/404.html"];
   fs.mkdirSync(out, { recursive: true });
   const browser = await chromium.launch();
   const report = [];

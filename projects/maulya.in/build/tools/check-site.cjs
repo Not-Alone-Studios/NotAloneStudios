@@ -5,7 +5,7 @@ const fs = require("fs");
 (async () => {
   const [base, out, widthsArg, pathsArg] = process.argv.slice(2);
   const widths = widthsArg.split(",").map(Number);
-  const paths = pathsArg ? pathsArg.split(",") : ["/", "/product/", "/for-whom/", "/pricing/", "/about/", "/early-access/", "/blog/", "/blog/site-visit-mistakes-property-valuation/", "/blog/bank-valuation-assignment-workflow-india/", "/survey/", "/privacy/", "/terms/", "/404.html"];
+  const paths = pathsArg ? pathsArg.split(",") : ["/", "/product/", "/for-whom/", "/pricing/", "/about/", "/early-access/", "/early-access/apply/", "/blog/", "/blog/site-visit-mistakes-property-valuation/", "/blog/bank-valuation-assignment-workflow-india/", "/survey/", "/privacy/", "/terms/", "/404.html"];
   fs.mkdirSync(out, { recursive: true });
   const browser = await chromium.launch();
   const allLinks = new Set(); const report = [];

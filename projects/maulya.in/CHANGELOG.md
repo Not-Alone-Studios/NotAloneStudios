@@ -1,5 +1,12 @@
 # Changelog - maulya.in
 
+## [2026-11-10] - The early-access application page, as Shrinivas approved it (MLP/ARK-719)
+- New `/early-access/apply/`: Shrinivas's heading, intro, five parts, 26 questions, the reply under each answer, the consent line, "Send my application" and the confirmation, word for word (`build/tools/check-apply.mjs` compares them with his approved file: no differences). Source: `src/pages/early-access-apply.mjs`, behaviour `src/assets/apply.js`, styles at the end of `site.css`.
+- Every gold "Apply for early access" button opens it (`earlyAccess.formUrl` is the site's own page; the build's old WARNING is gone). The `/early-access/` page's button goes there too, not to an email.
+- Answers go to a Google Sheet through `early-access-apps-script/code.gs` (one row per application, a column per question, plus the time; write-only). New setting `earlyAccess.appsScriptUrl`, EMPTY until ARK deploys the script: the page then says sending opens soon and that nothing was sent, and the build prints a WARNING.
+- Privacy: the early-access line now says "your name, email, WhatsApp number, place, firm details and answers are used only to choose early-access firms and to contact you" (Shrinivas's draft G1; waiting for his yes).
+- Not uploaded. See `HANDOFF_ARK719.md`.
+
 ## [2026-11-09] - Alignment, "How a file moves" in motion, an honest pull to apply (MLP/ARK-693)
 - 25 alignment and detail faults fixed (list and before/after pictures in `5_PLANS_AND_REFERENCE/SITE_2026-11-09/`): section spacing, the founders' faces, Pricing's ticks, heading order, 44 px tap targets, the footer, the phone menu, the hero, borders, the jobs grid, line lengths, the blog's chips.
 - Home's "How a file moves" is one file's way through the office in the app's own words (Shrinivas's train, SRK-84 to SRK-90), with a file card that follows the step being read; still for reduced motion and without the script. Product's seven places and Who it's for use the same words.

@@ -22,7 +22,7 @@ export const privacy = ({ L }) => ({
         <li>Basic visit and hosting information needed to serve the site.</li>
         <li>Survey answers you choose to send through the workflow survey. They are about how your office works; the survey does not ask for your name or phone number.</li>
         <li>Emails you choose to send us from the site's links.</li>
-        <li>An application for early access: the details you give in the application form are used to choose firms and to contact them.</li>
+        <li>An application for early access: your name, email, WhatsApp number, place, firm details and answers are used only to choose early-access firms and to contact you.</li>
         <li>Your move into the app when you choose to sign in.</li>
       </ul>
       <p>The site sets no advertising cookies. The blog's checklists and search work only in your browser and are not sent anywhere.</p>

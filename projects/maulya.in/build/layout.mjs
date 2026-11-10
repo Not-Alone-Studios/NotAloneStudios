@@ -8,14 +8,12 @@ export function links(cfg) {
     app,
     signIn: app + cfg.app.signInPath,
     signUp,
-    // MLP/ARK-683: every "Apply for early access" button. The form's address if it is set, else the site's own page.
+    // MLP/ARK-683: every "Apply for early access" button. MLP/ARK-719: it opens the site's own application page.
     apply: (cls = "btn btn-gold", label = "Apply for early access") => {
       const ea = cfg.earlyAccess;
       if (!ea.open) return `<span class="btn-closed">Applications are closed</span>`;
-      const form = String(ea.formUrl || "").trim();
-      return form
-        ? `<a class="${cls}" href="${esc(form)}" rel="noopener">${label}</a>`
-        : `<a class="${cls}" href="/early-access/">${label}</a>`;
+      const form = String(ea.formUrl || "").trim() || "/early-access/apply/";
+      return `<a class="${cls}" href="${esc(form)}">${label}</a>`;
     },
     survey: "/survey/",
     mail: (subject) => `mailto:${cfg.site.supportEmail}${subject ? "?subject=" + encodeURIComponent(subject) : ""}`,

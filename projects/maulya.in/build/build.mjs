@@ -21,6 +21,7 @@ import forWhom from "../src/pages/for-whom.mjs";
 import pricing from "../src/pages/pricing.mjs";
 import about from "../src/pages/about.mjs";
 import earlyAccess from "../src/pages/early-access.mjs";
+import earlyAccessApply from "../src/pages/early-access-apply.mjs";
 import { privacy, terms, notFound } from "../src/pages/legal.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -38,7 +39,7 @@ const MOVED = {
   "/updates/": "/blog/",
 };
 
-const STATIC_PAGES = [home, product, forWhom, pricing, about, earlyAccess, privacy, terms, notFound];
+const STATIC_PAGES = [home, product, forWhom, pricing, about, earlyAccess, earlyAccessApply, privacy, terms, notFound];
 
 function rm(p) { fs.rmSync(p, { recursive: true, force: true }); }
 function write(file, text) { fs.mkdirSync(path.dirname(file), { recursive: true }); fs.writeFileSync(file, text); }
@@ -153,8 +154,9 @@ console.log(`  Maulya_hostinger_ready.zip   ${size(path.join(ROOT, "Maulya_hosti
 console.log(`  Maulya_preview_all_posts.zip ${size(path.join(ROOT, "Maulya_preview_all_posts.zip"))} (all ${prev.posts} posts, not for upload)`);
 const ea = cfg.earlyAccess;
 console.log(`  App sign-in: ${links(cfg).signIn}`);
-console.log(`  "Apply for early access": ${!ea.open ? "CLOSED (open: false): the buttons say \"Applications are closed\"" : ea.formUrl ? ea.formUrl + " (same tab)" : "/early-access/ (no form link yet)"}`);
-if (ea.open && !String(ea.formUrl || "").trim()) {
+console.log(`  "Apply for early access": ${!ea.open ? "CLOSED (open: false): the buttons say \"Applications are closed\"" : (String(ea.formUrl || "").trim() || "/early-access/apply/") + " (the site's own application page, same tab)"}`);
+console.log(`  Applications are sent to: ${String(ea.appsScriptUrl || "").trim() || "NOWHERE YET (earlyAccess.appsScriptUrl is empty)"}`);
+if (ea.open && !String(ea.appsScriptUrl || "").trim()) {
   const bar = "!".repeat(78);
-  console.warn(`\n${bar}\n!! WARNING: earlyAccess.formUrl in site.config.mjs is EMPTY.\n!! Every "Apply for early access" button goes to the site's own /early-access/ page, which has no form\n!! to send people to (its button falls back to an email). Paste Shrinivas's Google Form link into\n!! site.config.mjs, run \`node build/build.mjs\` again, and only then upload the zip.\n${bar}\n`);
+  console.warn(`\n${bar}\n!! WARNING: earlyAccess.appsScriptUrl in site.config.mjs is EMPTY.\n!! /early-access/apply/ shows the form, but "Send my application" says sending opens soon and that\n!! nothing was sent: NO APPLICATION IS COLLECTED. Deploy early-access-apps-script/code.gs in Google\n!! (as a web app, "Anyone"), paste its /exec address into site.config.mjs, run \`node build/build.mjs\`\n!! again, and only then upload the zip.\n${bar}\n`);
 }

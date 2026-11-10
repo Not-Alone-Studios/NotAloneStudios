@@ -17,11 +17,14 @@ export default {
 
   earlyAccess: {
     // MLP/ARK-683: the site's one gold button, "Apply for early access" (header, hero, the end of each page).
-    //   formUrl: the Google Form's address (Shrinivas sends it). While it is empty the build still works, every button
-    //            goes to the site's own /early-access/ page, and the build prints a loud warning. Paste the link
-    //            here, run `node build/build.mjs`, and every button goes straight to the form (same tab).
-    //   open:    false turns every button into the words "Applications are closed" (when the 10 to 15 are chosen).
-    formUrl: "",
+    // MLP/ARK-719: it opens the site's own application page, /early-access/apply/ (the form Shrinivas approved on 10 Nov).
+    //   formUrl:        where every gold button goes. Leave it as the site's own page; if it is emptied the buttons still go there.
+    //   appsScriptUrl:  the Google Apps Script web app that writes each application to the Sheet (early-access-apps-script/code.gs).
+    //                   EMPTY until ARK deploys the script in Google (with chat #31B): while it is empty the page shows the form,
+    //                   but at "Send my application" it says sending opens soon and that nothing was sent. The build warns.
+    //   open:           false turns every button into the words "Applications are closed" (when the 10 to 15 are chosen).
+    formUrl: "/early-access/apply/",
+    appsScriptUrl: "",
     open: true,
   },
 

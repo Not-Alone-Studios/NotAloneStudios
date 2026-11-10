@@ -2,7 +2,7 @@
 
 ## One command
 `node build/build.mjs` (Node 18+, no packages). Sources:
-- `site.config.mjs`: **every app and survey address**, the early-access form address and open/closed switch (`earlyAccess`, MLP/ARK-683), and the blog's publish rule. The host change is one line.
+- `site.config.mjs`: **every app and survey address**, the early-access button address, the Apps Script address that collects applications and the open/closed switch (`earlyAccess`, MLP/ARK-683, ARK-719), and the blog's publish rule. The host change is one line.
 - `src/pages/*.mjs`: the pages (Home, Product, Who it's for, Pricing, About, Start, Privacy, Terms, 404). `src/assets/`: css, js, fonts (Atkinson Hyperlegible Next, OFL), brand, the app's pictures.
 - `src/survey/index.html`: the canonical survey, kept as it was. Its Apps Script address comes from the config.
 - `content/blog/*.md`: the blog (see `content/blog/README.md`).
