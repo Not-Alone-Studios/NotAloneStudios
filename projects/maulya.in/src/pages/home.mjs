@@ -4,6 +4,8 @@
 // who built it (as About has it), and what happens after applying (the early-access page's own steps).
 import { fileJourney } from "./journey.mjs";
 
+// "Who built it" (the maker block below: "Built by a practising registered valuer." and the two-founders paragraph):
+// Approved by the founder, Tue 10 Nov 2026 15:06. The visible text does not change.
 export default ({ L, shot, latest, card, cfg }) => ({
   extraHead: `<link rel="stylesheet" href="/assets/journey.css?v=${cfg.__buildId}" />`,
   path: "/",

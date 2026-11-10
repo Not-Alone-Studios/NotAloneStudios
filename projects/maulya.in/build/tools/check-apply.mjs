@@ -94,7 +94,12 @@ eq("heading", mod.HEADING, heading);
 eq("consent", mod.CONSENT, consent);
 eq("start line", mod.START_LINE, startLine);
 eq("button", mod.SEND, button);
-eq("confirmation", mod.CONFIRMATION, confLine);
+// SRK-101 (the founder, Tue 10 Nov 15:06): ONE confirmation for both ways of sending, "Thank you. You're on the waiting list." + the file's own line
+eq("confirmation (one constant; the founder's 15:06 answer, word for word)", mod.CONFIRMATION, "Thank you. You're on the waiting list. We read every application and reply to everyone within a week, chosen or not.");
+eq("confirmation ends with the content file's line", mod.CONFIRMATION.endsWith(" " + confLine), true);
+eq("there is no second confirmation constant", "CONFIRMATION_SERVER" in mod, false);
+eq("waiting-list heading (the founder, 15:06)", mod.HEADING_WAITLIST, "Join Maulya's waiting list");
+eq("'Why is it free?' paragraph (approved 15:06, word for word)", mod.WHY_FREE, "Why is it free? We want honest feedback from real valuation offices. Maulya is free for the firms we choose until 28 December. We do not ask for a card or any payment, and your firm's files and data stay your firm's own.");
 eq("support WhatsApp", mod.SUPPORT_WHATSAPP, whatsapp);
 eq("sending-not-open line names the WhatsApp", mod.SAYS.notOpen.includes(whatsapp), true);
 eq("failed-send line names the WhatsApp", mod.SAYS.failed.includes(whatsapp), true);
@@ -152,10 +157,14 @@ else {
   }
   const textOf = (s) => un(s.replace(/<[^>]+>/g, "")).replace(/\s+/g, " ");
   const has = (what, t) => eq(`page shows ${what}`, textOf(html).includes(t.replace(/\s+/g, " ")), true);
-  has("the heading", heading); has("the consent line", consent); has(waitlistPhase ? "the waiting-list start line (phase waitlist)" : "the start line", waitlistPhase ? mod.WAITLIST_LINE : startLine); has("the button", button);
+  has(waitlistPhase ? "the waiting-list heading (phase waitlist)" : "the heading", waitlistPhase ? mod.HEADING_WAITLIST : heading);
+  eq("the page's h1 is the heading of this phase", textOf((html.match(/<h1>(.*?)<\/h1>/) || [])[1] || ""), waitlistPhase ? mod.HEADING_WAITLIST : heading);
+  eq("the page's <title> starts with the heading of this phase", un(((html.match(/<title>(.*?)<\/title>/) || [])[1] || "")).startsWith(waitlistPhase ? mod.HEADING_WAITLIST : heading), true);
+  has("the consent line", consent); has(waitlistPhase ? "the waiting-list start line (phase waitlist)" : "the start line", waitlistPhase ? mod.WAITLIST_LINE : startLine); has("the button", button);
   has("the 'why it is free' draft", mod.WHY_FREE);
   intro.forEach((t, i) => has(`intro ${i + 1}`, t));
-  has("the confirmation", confLine); has("the email hint", emailHint);
+  has("the confirmation", mod.CONFIRMATION); has("the email hint", emailHint);
+  eq("the shipped data carries the one confirmation and no second one", data.says.confirm === mod.CONFIRMATION && !("confirmServer" in data.says), true);
   for (const p of expectParts) { has(`"${p.title}"`, p.title); has("its line", p.sub); for (const q of p.qs) has(`question ${q.n}`, `${q.n}. ${q.text}`); }
   for (const [num, e] of Object.entries(expectQ)) for (const o of e.options) eq(`page has a button "${o.label}" (Q${num})`, html.includes(`>${o.label.replace(/&/g, "&amp;").replace(/"/g, "&quot;")}</button>`), true);
   eq("every question has its own wrapper id (the missing list links to it)", [...html.matchAll(/id="qw(\d+)"/g)].map((m) => +m[1]).join(","), Array.from({ length: 27 }, (_, i) => i + 1).join(","));
@@ -172,7 +181,6 @@ for (const [f, ev] of [["dist/live/early-access/index.html", "ea_view"], ["dist/
 }
 
 // ---- the server contract (addendum 1) and the two addendum-2 lines: the page's table against contract.cjs, and the fixed words
-eq("server 201 confirmation (addendum 1)", mod.CONFIRMATION_SERVER, "Thank you. You're on the waiting list. We read every application and reply to everyone within a week, chosen or not.");
 eq("server network-error/5xx line (addendum 1)", mod.SAYS.failedServer, "Not sent. Your answers are still on this screen. Please try again, or WhatsApp 99801 40777.");
 eq("waiting-list start line (addendum 2)", mod.WAITLIST_LINE, "The first group is full. Join the waiting list and we'll write when places open.");
 {
@@ -195,8 +203,13 @@ eq("waiting-list start line (addendum 2)", mod.WAITLIST_LINE, "The first group i
 
 // ---- the Privacy page: the founder's early-access line, shipped
 const priv = path.join(ROOT, "dist/live/privacy/index.html");
-if (fs.existsSync(priv)) eq("privacy page has the early-access line", fs.readFileSync(priv, "utf8").replace(/&#39;/g, "'").includes(privacyLine), true);
-else diffs.push("dist/live/privacy/index.html is missing: run node build/build.mjs first");
+if (fs.existsSync(priv)) {
+  const ph = fs.readFileSync(priv, "utf8").replace(/&#39;/g, "'");
+  eq("privacy page has the early-access line", ph.includes(privacyLine), true);
+  // SRK-101 (the founder, 15:06): one more line, directly after it, word for word
+  const countLine = "Visits to the early-access pages are counted with a random number kept only in your browser tab, with no cookie, and sent only to Maulya's own server. We use no analytics or advertising tracker.";
+  eq("privacy page has the visit-counting line directly after the early-access line", ph.includes(`${privacyLine}</li>\n        <li>${countLine}</li>`), true);
+} else diffs.push("dist/live/privacy/index.html is missing: run node build/build.mjs first");
 
 // ---- the Sheet script
 const gs = fs.readFileSync(path.join(ROOT, "early-access-apps-script/code.gs"), "utf8");

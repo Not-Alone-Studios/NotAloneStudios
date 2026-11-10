@@ -4,7 +4,7 @@
 // the intro, the five parts, the 27 questions, the reply under each answer, the consent line, the button and the confirmation.
 // Nothing here is a new claim. build/tools/check-apply.mjs compares every one of them with that file by script (run it after
 // any edit here).
-// Lines that file does not give: the "Why it is free" paragraph (a DRAFT for the founder's yes, WHY_FREE below), what is still
+// Lines that file does not give: the "Why it is free" paragraph (WHY_FREE below, approved by the founder 10 Nov 15:06), what is still
 // missing, a send that failed, the page while no Apps Script address is set, the no-script line.
 // The page's behaviour is in src/assets/apply.js; the answers go to early-access-apps-script/code.gs.
 import { esc } from "../../build/md.mjs";
@@ -28,8 +28,8 @@ export const INTRO = [
 ];
 // The founder, 10 Nov: the line after the intro.
 export const START_LINE = "The first firms start on 16 November and use Maulya free until 28 December.";
-// DRAFT for the founder's yes (SRK-99 item 9): only facts already decided: why it is free, until when, no card or payment,
-// the firm's files and data stay its own. Marked as a draft in SRK99_DONE.md; change it here once he has answered.
+// Approved by the founder, Tue 10 Nov 2026 15:06 (SRK-101): only facts already decided: why it is free, until when, no card or payment,
+// the firm's files and data stay its own.
 export const WHY_FREE = "Why is it free? We want honest feedback from real valuation offices. Maulya is free for the firms we choose until 28 December. We do not ask for a card or any payment, and your firm's files and data stay your firm's own.";
 export const HEADING = "Apply to use Maulya free, and help shape it";
 export const CONSENT = "I agree that Maulya may contact me about early access and about Maulya. My answers are kept for one year.";
@@ -37,9 +37,10 @@ export const SUPPORT_WHATSAPP = "99801 40777";
 export const SEND = "Send my application";
 // MLP/SRK-99 addendum 2: earlyAccess.phase "waitlist" replaces the start line with this one (the founder's A7).
 export const WAITLIST_LINE = "The first group is full. Join the waiting list and we'll write when places open.";
-export const CONFIRMATION = "We read every application and reply to everyone within a week, chosen or not.";
-// MLP/SRK-99 addendum 1: what a 201 from Maulya's server shows (sendTo "server"). With sendTo "sheet" the founder's CONFIRMATION above is shown.
-export const CONFIRMATION_SERVER = "Thank you. You're on the waiting list. We read every application and reply to everyone within a week, chosen or not.";
+// The one confirmation, for both ways of sending (sendTo "sheet" and "server"). The founder, Tue 10 Nov 2026 15:06 (SRK-101).
+export const CONFIRMATION = "Thank you. You're on the waiting list. We read every application and reply to everyone within a week, chosen or not.";
+// earlyAccess.phase "waitlist": the page's heading (the founder, Tue 10 Nov 2026 15:06).
+export const HEADING_WAITLIST = "Join Maulya's waiting list";
 
 // type: one = pick one (buttons), many = tick all (buttons), text, para. Every question is required unless optional: true.
 export const PARTS = [
@@ -252,7 +253,7 @@ function dataJson() {
     };
   }
   d.text = Object.fromEntries(QUESTIONS.filter((q) => q.type === "text" || q.type === "para").map((q) => [q.n, { optional: !!q.optional, input: q.input || "", text: q.text, key: q.key, max: q.max || 0 }]));
-  d.says = { needed: SAYS.needed, notOpen: SAYS.notOpen, sending: SAYS.sending, confirm: CONFIRMATION, confirmServer: CONFIRMATION_SERVER, failedServer: SAYS.failedServer };
+  d.says = { needed: SAYS.needed, notOpen: SAYS.notOpen, sending: SAYS.sending, confirm: CONFIRMATION, failedServer: SAYS.failedServer };
   d.failed = SAYS.failed;
   return JSON.stringify(d).replace(/</g, "\u003c");
 }
@@ -282,7 +283,7 @@ export default ({ cfg, L }) => {
         </section>`).join("\n");
   return {
     path: "/early-access/apply/",
-    title: HEADING,
+    title: waitlist ? HEADING_WAITLIST : HEADING,
     description: waitlist
       ? "Join the waiting list for early access to Maulya. The first group is full; we'll write when places open."
       : "An application to use Maulya free, on real files, from the 10–15 firms we are choosing. The first firms start on 16 November.",
@@ -290,7 +291,7 @@ export default ({ cfg, L }) => {
     <section class="page-head on-body">
       <div class="wrap">
         <span class="kicker">Early access</span>
-        <h1>${esc(HEADING)}</h1>
+        <h1>${esc(waitlist ? HEADING_WAITLIST : HEADING)}</h1>
         ${INTRO.map((t, i) => `<p class="${i === 0 ? "lead" : "apply-intro"}">${esc(t)}</p>`).join("\n        ")}
         <p class="apply-intro apply-start"><strong>${esc(waitlist ? WAITLIST_LINE : START_LINE)}</strong></p>
         <p class="apply-intro apply-why">${esc(WHY_FREE)}</p>

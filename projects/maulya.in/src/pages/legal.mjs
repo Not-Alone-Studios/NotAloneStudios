@@ -23,6 +23,7 @@ export const privacy = ({ L }) => ({
         <li>Survey answers you choose to send through the workflow survey. They are about how your office works; the survey does not ask for your name or phone number.</li>
         <li>Emails you choose to send us from the site's links.</li>
         <li>An application for early access: your name, email, WhatsApp number, place, firm details and answers are used to choose early-access firms and to contact you about Maulya, and are kept for one year.</li>
+        <li>Visits to the early-access pages are counted with a random number kept only in your browser tab, with no cookie, and sent only to Maulya's own server. We use no analytics or advertising tracker.</li>
         <li>Your move into the app when you choose to sign in.</li>
       </ul>
       <p>The site sets no advertising cookies. The blog's checklists and search work only in your browser and are not sent anywhere.</p>

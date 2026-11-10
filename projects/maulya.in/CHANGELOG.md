@@ -1,5 +1,11 @@
 # Changelog - maulya.in
 
+## [2026-11-10] - The founder's answers on the early-access page (MLP/SRK-101)
+- The "Why is it free?" paragraph and Home's "Who built it" text: approved by the founder, Tue 10 Nov 2026 15:06 (code comments only; the visible text does not change).
+- One confirmation for both ways of sending: "Thank you. You're on the waiting list. We read every application and reply to everyone within a week, chosen or not." (one constant, `CONFIRMATION`; the second one is gone).
+- `earlyAccess.phase "waitlist"`: the form's heading (and page title) is "Join Maulya's waiting list".
+- Privacy: one more line directly after the early-access line, on counting visits to the early-access pages.
+
 ## [2026-11-10] - The form brought to the founder's 10 Nov content; sending to Maulya's server, switchable (MLP/SRK-99)
 - Built on ARK's page (`551b66f`): `/early-access/` stays the intro page, the application stays at `/early-access/apply/`, and every gold button goes to `/early-access/apply/`.
 - The founder's 10 Nov updates: a new Part 3 question "How many districts do you work in?" (27 questions now; old 17 to 26 are 18 to 27); the Email hint "The email you will sign in with"; the consent line "... My answers are kept for one year."; the line "The first firms start on 16 November and use Maulya free until 28 December."; WhatsApp 99801 40777 in the fallback lines; the Privacy line. A "Why is it free?" paragraph under the intro (DRAFT for the founder's yes).

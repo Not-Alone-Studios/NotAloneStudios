@@ -81,7 +81,7 @@ const evs = (stub) => stub.log.filter((e) => e.method === "POST" && e.path.endsW
     await page.locator("#apply-btn").click();
     await page.waitForSelector("#apply-done:not([hidden])", { timeout: 8000 });
     await sleep(500);
-    ok("sheet: the confirmation is the founder's own line", (await page.locator("#apply-done").innerText()).trim() === "We read every application and reply to everyone within a week, chosen or not.");
+    ok("sheet: the confirmation is the same one line as under server (10 Nov 15:06)", (await page.locator("#apply-done").innerText()).trim() === SERVER_THANKS);
     ok("sheet: one body went to the Sheet, with q1..q27", toSheet.length === 1 && Object.keys(JSON.parse(toSheet[0]).answers).join() === Array.from({ length: 27 }, (_, i) => "q" + (i + 1)).join());
     ok("sheet: the answer is the words people read (not a code)", JSON.parse(toSheet[0]).answers.q1 === "Yes, more than once");
     const posts = toApp.filter((x) => x.method === "POST");
@@ -200,7 +200,7 @@ const evs = (stub) => stub.log.filter((e) => e.method === "POST" && e.path.endsW
         if (r % 2 === 1) ok(`run ${r}: the optional anything_else is left out when empty`, !("anything_else" in b.answers));
         else ok(`run ${r}: the optional anything_else is sent when written`, b.answers.anything_else === "Nothing else. =1+1");
       }
-      ok(`run ${r}: the confirmation is the addendum's words`, (await page.locator("#apply-done").innerText()).trim() === SERVER_THANKS);
+      ok(`run ${r}: the confirmation is the one approved line`, (await page.locator("#apply-done").innerText()).trim() === SERVER_THANKS);
     }
     const allValues = Object.entries(C.APPLICATION).filter(([, rule]) => rule.one || rule.many);
     const missed = allValues.flatMap(([k, rule]) => (rule.one || rule.many).filter((v) => !(seenValues[k] && seenValues[k].has(v))).map((v) => `${k}=${v}`));

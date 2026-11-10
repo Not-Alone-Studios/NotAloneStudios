@@ -197,7 +197,7 @@ async function fillAll(page, data, pick) {
     await page.route("https://fake-script.invalid/**", (r) => { body = r.request().postData(); r.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' }); });
     await page.locator("#apply-btn").click();
     await page.waitForSelector("#apply-done:not([hidden])", { timeout: 8000 });
-    ok("the confirmation is the approved line", (await page.locator("#apply-done").innerText()).trim() === "We read every application and reply to everyone within a week, chosen or not.");
+    ok("the confirmation is the one approved line (10 Nov 15:06)", (await page.locator("#apply-done").innerText()).trim() === "Thank you. You're on the waiting list. We read every application and reply to everyone within a week, chosen or not.");
     ok("the form is gone and focus is on the confirmation", (await page.locator("#apply").isHidden()) && (await page.evaluate(() => document.activeElement.id)) === "apply-done");
     const p = JSON.parse(body);
     const keys = Object.keys(p.answers);

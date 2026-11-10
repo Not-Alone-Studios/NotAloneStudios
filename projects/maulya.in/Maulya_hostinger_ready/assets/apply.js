@@ -297,7 +297,7 @@
       })
       .then(function (x) {
         t.clear();
-        if (x.s === 201) return succeeded(D.says.confirmServer);
+        if (x.s === 201) return succeeded(D.says.confirm);
         if (x.s === 422 && x.j && x.j.error_code === "early_access.missing") {
           // the server names the missing questions by its keys: say each one plainly, with a link, and keep every answer
           finish(); attempted = true;
@@ -328,7 +328,7 @@
       return;
     }
     var server = mode() === "server";
-    if (trap && trap.value) { succeeded(server ? D.says.confirmServer : D.says.confirm); return; } // the trap field was filled: a robot. Nothing is sent.
+    if (trap && trap.value) { succeeded(D.says.confirm); return; } // the trap field was filled: a robot. Nothing is sent.
     if (server) { if (!EA) { setState(D.says.failedServer); return; } sendServer(); return; }
     if (!endpointNow()) { setState(D.says.notOpen); return; }
     sendSheet();
