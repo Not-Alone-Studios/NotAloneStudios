@@ -17,15 +17,27 @@ export default {
 
   earlyAccess: {
     // MLP/ARK-683: the site's one gold button, "Apply for early access" (header, hero, the end of each page).
-    // MLP/ARK-719: it opens the site's own application page, /early-access/apply/ (the form Shrinivas approved on 10 Nov).
-    //   formUrl:        where every gold button goes. Leave it as the site's own page; if it is emptied the buttons still go there.
-    //   appsScriptUrl:  the Google Apps Script web app that writes each application to the Sheet (early-access-apps-script/code.gs).
-    //                   EMPTY until ARK deploys the script in Google (with chat #31B): while it is empty the page shows the form,
-    //                   but at "Send my application" it says sending opens soon and that nothing was sent. The build warns.
+    // MLP/ARK-719: it opens the site's own application page, /early-access/apply/ (the form the founder approved on 10 Nov);
+    // /early-access/ stays the intro page that leads to it. MLP/SRK-99 (addenda 1 and 2) added apiBase, sendTo and phase.
+    //   formUrl:        where every gold button goes: /early-access/apply/. If it is emptied the buttons still go there.
     //   open:           false turns every button into the words "Applications are closed" (when the 10 to 15 are chosen).
+    //   phase:          "open" (default) or "waitlist" (the founder's A7). "waitlist": every "Apply for early access" button and link reads
+    //                   "Join the waiting list", and the start line on the form becomes "The first group is full. Join the waiting list
+    //                   and we'll write when places open." The form, its keys and its sending are the same in both phases.
+    //   apiBase:        Maulya's server, for the visit counting and (sendTo "server") the application and the Survey.
+    //   sendTo:         "sheet" (default until ARK's server part is live, about 16-17 Nov) or "server". The founders choose.
+    //                   "sheet": the application goes to the Google Apps Script below, and the Survey page sends to its own Apps Script as
+    //                   it always did. "server": both go to apiBase and not to the Sheet.
+    //                   (Visit counting on the early-access pages goes to apiBase in both settings; the Survey counts only when "server".)
+    //   appsScriptUrl:  the Google Apps Script web app that writes each application to the Sheet (early-access-apps-script/code.gs).
+    //                   EMPTY until ARK deploys the script in Google: with sendTo "sheet" the form shows, but at "Send my application" it says
+    //                   "Applications open shortly" and WhatsApp 99801 40777, and sends nothing. The build warns (only when sendTo is "sheet").
     formUrl: "/early-access/apply/",
-    appsScriptUrl: "",
     open: true,
+    phase: "open", // "open" | "waitlist"
+    apiBase: "https://app.maulya.in",
+    sendTo: "sheet", // "sheet" | "server"
+    appsScriptUrl: "",
   },
 
   survey: {

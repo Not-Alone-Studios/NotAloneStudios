@@ -1,16 +1,18 @@
 // node check.cjs <base> <outdir> <widths,comma> [paths,comma]
 // Playwright from the app repo's checkout (PW=<path> to use another one; ~/V3-lanes/site-shots is gone, 8 Nov)
-const { chromium } = require(process.env.PW || process.env.HOME + "/V3/node_modules/playwright");
+const { chromium } = require(process.env.PW || (process.env.HOME || process.env.USERPROFILE) + "/V3/node_modules/playwright");
+const NO_REAL_SERVER = (r) => r.fulfill({ status: 204, headers: { "access-control-allow-origin": "*", "access-control-allow-headers": "content-type" } }); // MLP/SRK-99: the pages count visits to app.maulya.in; a test must never reach the real server
 const fs = require("fs");
 (async () => {
   const [base, out, widthsArg, pathsArg] = process.argv.slice(2);
   const widths = widthsArg.split(",").map(Number);
   const paths = pathsArg ? pathsArg.split(",") : ["/", "/product/", "/for-whom/", "/pricing/", "/about/", "/early-access/", "/early-access/apply/", "/blog/", "/blog/site-visit-mistakes-property-valuation/", "/blog/bank-valuation-assignment-workflow-india/", "/survey/", "/privacy/", "/terms/", "/404.html"];
   fs.mkdirSync(out, { recursive: true });
-  const browser = await chromium.launch();
+  const browser = await chromium.launch(process.env.CHROME ? { executablePath: process.env.CHROME } : {});
   const allLinks = new Set(); const report = [];
   for (const w of widths) {
     const ctx = await browser.newContext({ viewport: { width: w, height: w < 800 ? 844 : 900 }, deviceScaleFactor: 1, isMobile: w < 800, hasTouch: w < 800 });
+    await ctx.route("https://app.maulya.in/**", NO_REAL_SERVER);
     for (const p of paths) {
       const page = await ctx.newPage(); const errs = [];
       page.on("console", m => { if (m.type() === "error") errs.push(m.text().slice(0, 160)); });

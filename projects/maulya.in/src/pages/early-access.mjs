@@ -62,6 +62,7 @@ export default ({ L, cfg }) => {
         </aside>
       </div>
     </section>
+    ${L.visit("ea_view")}
 `,
   };
 };

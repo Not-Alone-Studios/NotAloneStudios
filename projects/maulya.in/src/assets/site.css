@@ -433,10 +433,8 @@ thead th { border-bottom: 2px solid var(--green); font-size: var(--s-small); col
 .foot .btn-closed { padding: 0; border: 0; opacity: .85; font-weight: 400; }
 
 /* MLP/ARK-693: who built it (Home), and what happens after applying (Home's closing) */
-.maker { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 28px; align-items: start; max-width: 860px; }
-.maker img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; background: var(--face); border: 1px solid var(--line); }
+.maker { max-width: 860px; } /* MLP/SRK-99: no founder photo or name outside About */
 .maker h2 { margin-bottom: 12px; }
-@media (max-width: 560px) { .maker { grid-template-columns: 1fr; gap: 16px; } .maker img { width: 96px; height: 96px; } }
 .after-apply { list-style: none; counter-reset: aa; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0;
   margin: 32px 0 0; padding: 0; max-width: 960px; border-top: 1px solid #1f5a49; }
 .after-apply li { counter-increment: aa; padding: 20px 24px 4px 0; display: flex; flex-direction: column; gap: 4px; color: var(--on-body-quiet); }
@@ -445,7 +443,7 @@ thead th { border-bottom: 2px solid var(--green); font-size: var(--s-small); col
 .after-apply b { color: var(--on-body); }
 @media (max-width: 760px) { .after-apply { grid-template-columns: 1fr; } .after-apply li { padding: 16px 0 0 48px; position: relative; } .after-apply li::before { position: absolute; left: 0; top: 16px; } }
 
-/* MLP/ARK-719: the early-access application (/early-access/apply/). Same look as the rest: gold is the one action, answer
+/* MLP/ARK-719: the early-access application (now /early-access/, MLP/SRK-99). Same look as the rest: gold is the one action, answer
    buttons are the blog chips' shape at 48 px, the reply under an answer is the site's green note. Phone first. */
 html:not(.js) .apply { display: none; }
 .apply[hidden], .apply-done[hidden], .other[hidden] { display: none; }
@@ -503,3 +501,17 @@ textarea.field { min-height: 132px; resize: vertical; line-height: 1.5; }
 .apply-done .note { margin-top: 0; }
 .apply-done:focus { outline: none; }
 .apply-done:focus-visible { box-shadow: var(--focus); }
+
+/* MLP/SRK-99: the form is at /early-access/ now: the start line and the "why it is free" paragraph under the intro, a visible hint
+   under a question, and the list of what is still missing (each item a link, 44 px tall) */
+.apply-start { margin-top: 20px; font-size: 1.125rem; }
+.on-body .apply-start { color: var(--on-body); }
+.apply-why { margin-top: 12px; }
+.q-hint { margin: -4px 0 10px; color: var(--muted); max-width: 62ch; }
+.apply-need-head { margin: 0 0 4px; font-weight: 700; }
+.apply-need { list-style: none; margin: 0; padding: 0; }
+.apply-need li { margin: 0; }
+.apply-need a { display: inline-block; padding: 12px 0; min-height: 44px; line-height: 1.35; }
+
+/* MLP/SRK-99 addendum 1: the hidden trap field "website": off screen, out of the Tab order and aria-hidden (a person never sees or reaches it) */
+.hp { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }

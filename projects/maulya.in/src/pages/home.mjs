@@ -52,7 +52,7 @@ export default ({ L, shot, latest, card, cfg }) => ({
           <li><strong>The phone</strong><span>repeated calls to the site engineer, the branch and the borrower</span></li>
           <li><strong>The valuer's memory</strong><span>which branch called, and what they wanted</span></li>
         </ul>
-        <p class="small muted" style="margin:12px 0 0;max-width:80ch">In Shrinivas's words, from <a href="/blog/property-valuation-report-inputs/">What inputs are usually needed for a property valuation report?</a>, <a href="/blog/old-valuation-report-retrieval/">Why old valuation reports become hard to retrieve</a> and <a href="/blog/property-valuation-site-visit-checklist/">the site visit checklist</a>.</p>
+        <p class="small muted" style="margin:12px 0 0;max-width:80ch">From the blog: <a href="/blog/property-valuation-report-inputs/">What inputs are usually needed for a property valuation report?</a>, <a href="/blog/old-valuation-report-retrieval/">Why old valuation reports become hard to retrieve</a> and <a href="/blog/property-valuation-site-visit-checklist/">the site visit checklist</a>.</p>
         <div class="into-one">
           <svg class="equals" viewBox="0 0 44 30" aria-hidden="true" data-equals><rect x="2" y="6" width="40" height="6" rx="1"/><rect x="2" y="18" width="40" height="6" rx="1"/></svg>
           <p style="margin:0"><strong>In Maulya it is one file.</strong> The bank and branch, the borrower and property, the site visit, the photos and documents, the report, the approval and the fee, together, with the person who has it now.</p>
@@ -164,11 +164,10 @@ export default ({ L, shot, latest, card, cfg }) => ({
     <section class="section">
       <div class="wrap">
         <div class="maker">
-          <img src="/assets/media/maulya/founders/shrinivas-face-240.jpg" alt="Shrinivas, a practising registered valuer." width="120" height="120" loading="lazy" decoding="async" />
           <div>
             <span class="kicker">Who built it</span>
             <h2>Built by a practising registered valuer.</h2>
-            <p>Shrinivas is a practising property valuer. He knows where assignments slow down, where evidence goes missing, and why approvals turn into friction. That shaped Maulya's files, documents, site visits and report process. Sriram builds the product.</p>
+            <p>One of Maulya's two founders is a practising property valuer, who knows where assignments slow down, where evidence goes missing, and why approvals turn into friction. That shaped Maulya's files, documents, site visits and report process. The other founder builds the product.</p>
             <p><a href="/about/">About the people behind Maulya</a></p>
           </div>
         </div>

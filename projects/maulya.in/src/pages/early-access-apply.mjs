@@ -1,10 +1,11 @@
-// MLP/ARK-719: /early-access/apply/: the early-access application, as Shrinivas approved it on Tue 10 Nov 2026
-// (~/Downloads/Maulya/5_PLANS_AND_REFERENCE/SITE_2026-11-10/EARLY_ACCESS_FORM_APPROVED_BY_SRK_2026-11-10.md).
-// His words are the source: the heading, the intro, the five parts, the 26 questions, the reply under each answer, the consent
-// line, the button and the confirmation. Nothing here is a new claim. build/tools/check-apply.mjs compares every one of them
-// with that file by script (run it after any edit here).
-// The few lines the approved text does not give (what is still missing, the page when sending is not open yet, a send that
-// failed, the no-script line) are labelled "#31's call" in LW_ACTIONS.md.
+// MLP/ARK-719, brought to the founder's 10 Nov content by MLP/SRK-99 (addendum 1: the application stays at /early-access/apply/;
+// /early-access/ stays ARK's intro page that leads here).
+// The words are the founder's, in EARLY_ACCESS_FORM_CONTENT.md beside this project (its "Updates of 10 Nov" win): the heading,
+// the intro, the five parts, the 27 questions, the reply under each answer, the consent line, the button and the confirmation.
+// Nothing here is a new claim. build/tools/check-apply.mjs compares every one of them with that file by script (run it after
+// any edit here).
+// Lines that file does not give: the "Why it is free" paragraph (a DRAFT for the founder's yes, WHY_FREE below), what is still
+// missing, a send that failed, the page while no Apps Script address is set, the no-script line.
 // The page's behaviour is in src/assets/apply.js; the answers go to early-access-apps-script/code.gs.
 import { esc } from "../../build/md.mjs";
 
@@ -25,10 +26,20 @@ export const INTRO = [
   "We are choosing 10–15 firms to use Maulya free for six weeks, on real files, and to tell us honestly what works and what doesn't.",
   "About 6 minutes. Questions marked * are needed.",
 ];
+// The founder, 10 Nov: the line after the intro.
+export const START_LINE = "The first firms start on 16 November and use Maulya free until 28 December.";
+// DRAFT for the founder's yes (SRK-99 item 9): only facts already decided: why it is free, until when, no card or payment,
+// the firm's files and data stay its own. Marked as a draft in SRK99_DONE.md; change it here once he has answered.
+export const WHY_FREE = "Why is it free? We want honest feedback from real valuation offices. Maulya is free for the firms we choose until 28 December. We do not ask for a card or any payment, and your firm's files and data stay your firm's own.";
 export const HEADING = "Apply to use Maulya free, and help shape it";
-export const CONSENT = "I agree that Maulya may contact me about early access. My answers are used only to choose early-access firms.";
+export const CONSENT = "I agree that Maulya may contact me about early access and about Maulya. My answers are kept for one year.";
+export const SUPPORT_WHATSAPP = "99801 40777";
 export const SEND = "Send my application";
+// MLP/SRK-99 addendum 2: earlyAccess.phase "waitlist" replaces the start line with this one (the founder's A7).
+export const WAITLIST_LINE = "The first group is full. Join the waiting list and we'll write when places open.";
 export const CONFIRMATION = "We read every application and reply to everyone within a week, chosen or not.";
+// MLP/SRK-99 addendum 1: what a 201 from Maulya's server shows (sendTo "server"). With sendTo "sheet" the founder's CONFIRMATION above is shown.
+export const CONFIRMATION_SERVER = "Thank you. You're on the waiting list. We read every application and reply to everyone within a week, chosen or not.";
 
 // type: one = pick one (buttons), many = tick all (buttons), text, para. Every question is required unless optional: true.
 export const PARTS = [
@@ -82,7 +93,7 @@ export const PARTS = [
     title: "About you", sub: "So we can reach you.",
     questions: [
       { n: 8, type: "text", text: "Full name", autocomplete: "name" },
-      { n: 9, type: "text", text: "Email", hint: "name@example.com", input: "email", autocomplete: "email" },
+      { n: 9, type: "text", text: "Email", hint: "The email you will sign in with", input: "email", autocomplete: "email" },
       { n: 10, type: "text", text: "WhatsApp number", hint: "10-digit mobile number", input: "tel", autocomplete: "tel" },
       { n: 11, type: "text", text: "City or district, and state", hint: "For example: Mudhol, Karnataka", autocomplete: "address-level2" },
       { n: 12, type: "one", text: "Years in practice as a valuer", options: plain("Under 3", "3–10", "Over 10") },
@@ -95,21 +106,22 @@ export const PARTS = [
       { n: 14, type: "one", text: "How many people work on valuation files?", options: plain("Just me", "2–5", "6–15", "More than 15") },
       { n: 15, type: "many", text: "Who is in your team?", options: plain("Assistant valuers", "Site engineers", "Office staff", "Associates") },
       { n: 16, type: "one", text: "Bank files per month", options: plain("Under 10", "10–30", "30–60", "Over 60") },
-      { n: 17, type: "one", text: "How many nationalised banks are you empanelled with?", options: plain("None", "1–2", "3–5", "6 or more") },
-      { n: 18, type: "one", text: "How many other banks and lenders are you empanelled with (co-operative banks, private banks, NBFCs)?", options: plain("None", "1–2", "3–5", "6 or more") },
-      { n: 19, type: "many", text: "Property types you value most", options: plain("Houses", "Flats", "Plots", "Commercial", "Industrial", "Agricultural land") },
+      { n: 17, type: "one", text: "How many districts do you work in?", options: plain("1", "2–3", "4–6", "More than 6") },
+      { n: 18, type: "one", text: "How many nationalised banks are you empanelled with?", options: plain("None", "1–2", "3–5", "6 or more") },
+      { n: 19, type: "one", text: "How many other banks and lenders are you empanelled with (co-operative banks, private banks, NBFCs)?", options: plain("None", "1–2", "3–5", "6 or more") },
+      { n: 20, type: "many", text: "Property types you value most", options: plain("Houses", "Flats", "Plots", "Commercial", "Industrial", "Agricultural land") },
     ],
   },
   {
     title: "How you make reports", sub: "Pick what fits, or add your own under Other.",
     questions: [
-      { n: 20, type: "one", text: "How do you make reports now?", options: [
+      { n: 21, type: "one", text: "How do you make reports now?", options: [
         opt("Word templates", R("Keep the bank's format, lose the typing.", "Maulya fills the bank's own format from what the file already knows, starting with SBI Format A and co-operative bank formats.")),
         opt("Excel", R("Your sheets, without the copying.", "Maulya works out the values for you and puts them straight into the bank's format.")),
         opt("Other software", R("We'd love to hear what you miss in it.", "Maulya handles the whole file, not just the report: the visit, the documents, the approval and the payment.")),
         opt("Someone else types them", R("Let them type less.", "In Maulya the site visit and the file fill most of the form, so the person preparing the report checks instead of typing.")),
       ] },
-      { n: 21, type: "many", other: true, text: "What takes the most time in a file?", replyHead: "Here is how Maulya helps with these:", options: [
+      { n: 22, type: "many", other: true, text: "What takes the most time in a file?", replyHead: "Here is how Maulya helps with these:", options: [
         opt("Typing the report", "Typing: the site visit and the file fill most of the report form."),
         opt("Calculations", "Calculations: worked out for you, the same way every time."),
         opt("Collecting documents", "Documents: each bank's list on the file, with what is missing shown in red."),
@@ -117,7 +129,7 @@ export const PARTS = [
         opt("Bank corrections", "Corrections: change a figure once and the whole report follows."),
         opt("Following up for payment", "Payments: what is owed shows on every file and is recorded at hand-over."),
       ] },
-      { n: 22, type: "many", other: true, text: "What would make a tool worth paying for?", replyHead: "Maulya already does these:", options: [
+      { n: 23, type: "many", other: true, text: "What would make a tool worth paying for?", replyHead: "Maulya already does these:", options: [
         opt("Faster reports", "Faster reports: the visit fills the form; you set the rates and approve."),
         opt("Fewer mistakes", "Fewer mistakes: one calculation, and a check before approval."),
         opt("Seeing where every file is", "Every file's step and who has it, on one screen."),
@@ -130,32 +142,73 @@ export const PARTS = [
   {
     title: "Early access", sub: "Free for six weeks. In return, we ask for real use and honest feedback.",
     questions: [
-      { n: 23, type: "one", text: "Will you use Maulya on your real bank files for six weeks?", options: [
+      { n: 24, type: "one", text: "Will you use Maulya on your real bank files for six weeks?", options: [
         opt("Yes", R("Thank you.", "Real files are how Maulya gets better for offices like yours.")),
         opt("No", R("Early access needs real files.", "Real files are how we find what to fix. If now is not the right time, you can still use Maulya when it opens to everyone.")),
       ] },
-      { n: 24, type: "one", text: "Would you be comfortable with a quick call every 2–3 days, for an update or your feedback?", options: [
+      { n: 25, type: "one", text: "Would you be comfortable with a quick call every 2–3 days, for an update or your feedback?", options: [
         opt("Yes", R("Thank you.", "Those short calls are how your way of working gets built into Maulya.")),
         opt("No", R("These calls are the heart of early access.", "Short, frequent calls are how your office's way of working gets built into Maulya. Firms who can give them will be chosen first.")),
       ] },
-      { n: 25, type: "one", text: "Site visits are done on", options: plain("Android phone", "iPhone", "Paper notes") },
-      { n: 26, type: "para", optional: true, text: "Anything else we should know?" },
+      { n: 26, type: "one", text: "Site visits are done on", options: plain("Android phone", "iPhone", "Paper notes") },
+      { n: 27, type: "para", optional: true, text: "Anything else we should know?" },
     ],
   },
 ];
 
 export const QUESTIONS = PARTS.flatMap((p) => p.questions);
 
-// The lines the approved text does not give (listed in LW_ACTIONS.md as #31's call, ARK may overrule)
+// MLP/SRK-99 addendum 1: the server contract's fixed names. Per question number: [key, [the value of each option, in the page's order], extras].
+// The words people read stay the founder's; only these values are sent to Maulya's server (sendTo "server"). A tick-all question's
+// "Other" is the value "other" (22 and 23), with the typed text under keyOther. build/tools/contract.cjs holds the same table,
+// written out separately from the addendum, and the tests check the page's real requests against it.
+export const SERVER = {
+  1: ["lost_next_file", ["yes_more_than_once", "once_or_twice", "no"]],
+  2: ["report_time", ["same_day", "1_2_days", "3_5_days", "more_than_5_days"]],
+  3: ["rate_change_time", ["under_10_min", "10_30_min", "30_60_min", "more_than_an_hour"]],
+  4: ["calc_mistake", ["yes", "nearly", "no"]],
+  5: ["lost_payment", ["yes_more_than_once", "once_or_twice", "never"]],
+  6: ["invoices_today", ["word_or_excel", "tally", "billing_app", "by_hand", "usually_none"]],
+  7: ["file_tracking", ["diary", "excel", "whatsapp", "software", "in_my_head"]],
+  8: ["full_name", null, { max: 120 }],
+  9: ["email", null, { max: 200 }],
+  10: ["whatsapp", null],
+  11: ["place", null, { max: 120 }],
+  12: ["years_in_practice", ["under_3", "3_10", "over_10"]],
+  13: ["firm_name", null, { max: 160 }],
+  14: ["people_on_files", ["just_me", "2_5", "6_15", "more_than_15"]],
+  15: ["team", ["assistant_valuers", "site_engineers", "office_staff", "associates"]],
+  16: ["files_per_month", ["under_10", "10_30", "30_60", "over_60"]],
+  17: ["districts", ["1", "2_3", "4_6", "more_than_6"]],
+  18: ["nationalised_banks", ["none", "1_2", "3_5", "6_or_more"]],
+  19: ["other_lenders", ["none", "1_2", "3_5", "6_or_more"]],
+  20: ["property_types", ["houses", "flats", "plots", "commercial", "industrial", "agricultural_land"]],
+  21: ["report_method", ["word_templates", "excel", "other_software", "someone_else_types"]],
+  22: ["time_sinks", ["typing", "calculations", "documents", "travel", "bank_corrections", "payment_followup"], { keyOther: "time_sinks_other", otherMax: 300 }],
+  23: ["worth_paying", ["faster_reports", "fewer_mistakes", "file_tracking", "payment_tracking", "bank_formats", "phone_visits"], { keyOther: "worth_paying_other", otherMax: 300 }],
+  24: ["real_files_six_weeks", ["yes", "no"]],
+  25: ["calls_every_2_3_days", ["yes", "no"]],
+  26: ["site_visits_on", ["android", "iphone", "paper"]],
+  27: ["anything_else", null, { max: 2000 }],
+};
+for (const q of QUESTIONS) {
+  const [key, values, extra] = SERVER[q.n];
+  q.key = key; Object.assign(q, extra || {});
+  if (values) q.options.forEach((o, i) => { o.v = values[i]; });
+}
+
+// The lines the content file does not give. The founder (SRK-99) gave the two about sending, and 99801 40777 as the
+// WhatsApp for any fallback; "needed" and the no-script line are this lane's words.
 export const SAYS = {
-  noScript: (mail) => `This form needs JavaScript. If it will not run for you, write to ${mail}.`,
+  noScript: `This form needs JavaScript. If it will not run for you, please write to us on WhatsApp: ${SUPPORT_WHATSAPP}.`,
   needed: "Still needed before you can send:",
-  notOpen: "Sending applications opens soon. Nothing was sent. Your answers are still on this screen.",
-  failed: (mail) => `Your application was not sent. Your answers are still on this screen: try again in a moment, or write to ${mail}.`,
+  notOpen: `Applications open shortly. Please write to us on WhatsApp: ${SUPPORT_WHATSAPP}.`,
+  failed: `We couldn't send this just now. Your answers are still here; please try again, or WhatsApp ${SUPPORT_WHATSAPP}.`,
+  // sendTo "server" (addendum 1): a network error or a 5xx
+  failedServer: `Not sent. Your answers are still on this screen. Please try again, or WhatsApp ${SUPPORT_WHATSAPP}.`,
   sending: "Sending…",
 };
 
-const replyHtml = (r) => `<strong>${esc(r.bold)}</strong>${r.rest ? " " + esc(r.rest) : ""}`;
 const req = `<span class="req" aria-hidden="true"> *</span><span class="sr-only"> (required)</span>`;
 
 function questionHtml(q) {
@@ -163,48 +216,51 @@ function questionHtml(q) {
   const mark = q.optional ? "" : req;
   const legend = `<span class="q-n">${q.n}.</span> ${esc(q.text)}${mark}`;
   if (q.type === "text" || q.type === "para") {
-    const common = `id="${id}" name="${id}" data-q="${q.n}"${q.optional ? "" : " required"}`;
+    const hintId = `${id}-hint`;
+    const common = `id="${id}" name="${id}" data-q="${q.n}"${q.optional ? "" : " required"}${q.hint ? ` aria-describedby="${hintId}"` : ""}`;
     const field = q.type === "para"
-      ? `<textarea ${common} rows="4" maxlength="2000" class="field"></textarea>`
-      : `<input ${common} class="field" type="${q.input === "email" ? "email" : q.input === "tel" ? "tel" : "text"}"${q.input === "tel" ? ' inputmode="tel"' : q.input === "email" ? ' inputmode="email"' : ""} autocomplete="${q.autocomplete}"${q.hint ? ` placeholder="${esc(q.hint)}"` : ""} maxlength="200" />`;
-    return `<div class="q" data-qwrap="${q.n}"><label class="q-label" for="${id}">${legend}</label>${field}</div>`;
+      ? `<textarea ${common} rows="4" maxlength="${q.max || 2000}" class="field"></textarea>`
+      : `<input ${common} class="field" type="${q.input === "email" ? "email" : q.input === "tel" ? "tel" : "text"}"${q.input === "tel" ? ' inputmode="tel"' : q.input === "email" ? ' inputmode="email"' : ""} autocomplete="${q.autocomplete}" maxlength="${q.max || 200}" />`;
+    // the hint is real text under the label (a placeholder vanishes as soon as a person types, and is easy to misread)
+    const hint = q.hint ? `<p class="q-hint" id="${hintId}">${esc(q.hint)}</p>` : "";
+    return `<div class="q" id="qw${q.n}" data-qwrap="${q.n}"><label class="q-label" for="${id}">${legend}</label>${hint}${field}</div>`;
   }
   const many = q.type === "many";
   const buttons = q.options.map((o, i) =>
     `<button type="button" class="opt" aria-pressed="false" data-i="${i}">${esc(o.label)}</button>`).join("")
     + (q.other ? `<button type="button" class="opt" aria-pressed="false" data-other="1">Other</button>` : "");
   const otherBox = q.other
-    ? `<div class="other" hidden><label class="other-label" for="${id}-other">Other</label><input id="${id}-other" class="field" type="text" maxlength="200" data-other-text /></div>`
+    ? `<div class="other" hidden><label class="other-label" for="${id}-other">Other</label><input id="${id}-other" class="field" type="text" maxlength="300" data-other-text /></div>`
     : "";
-  return `<fieldset class="q" data-qwrap="${q.n}" data-q="${q.n}" data-kind="${many ? "many" : "one"}">`
+  return `<fieldset class="q" id="qw${q.n}" data-qwrap="${q.n}" data-q="${q.n}" data-kind="${many ? "many" : "one"}">`
     + `<legend class="q-label">${legend}</legend>`
     + `<div class="opts">${buttons}</div>${otherBox}`
     + `<div class="reply" role="status"></div></fieldset>`;
 }
 
 // What the page script needs: the replies, by question and option (the page's words stay in this one file)
-function dataJson(mail) {
+function dataJson() {
   const d = {};
   for (const q of QUESTIONS) {
     if (q.type !== "one" && q.type !== "many") continue;
     d[q.n] = {
-      kind: q.type, head: q.replyHead || "", other: !!q.other,
+      kind: q.type, head: q.replyHead || "", other: !!q.other, text: q.text, key: q.key, keyOther: q.keyOther || "",
       options: q.options.map((o) => ({
-        label: o.label,
+        label: o.label, v: o.v,
         reply: o.reply ? (typeof o.reply === "string" ? { line: o.reply } : { bold: o.reply.bold, rest: o.reply.rest }) : null,
       })),
     };
   }
-  d.text = Object.fromEntries(QUESTIONS.filter((q) => q.type === "text" || q.type === "para").map((q) => [q.n, { optional: !!q.optional, input: q.input || "" }]));
-  d.says = { needed: SAYS.needed, notOpen: SAYS.notOpen, sending: SAYS.sending };
-  d.failed = SAYS.failed(mail);
-  return JSON.stringify(d).replace(/</g, "\\u003c");
+  d.text = Object.fromEntries(QUESTIONS.filter((q) => q.type === "text" || q.type === "para").map((q) => [q.n, { optional: !!q.optional, input: q.input || "", text: q.text, key: q.key, max: q.max || 0 }]));
+  d.says = { needed: SAYS.needed, notOpen: SAYS.notOpen, sending: SAYS.sending, confirm: CONFIRMATION, confirmServer: CONFIRMATION_SERVER, failedServer: SAYS.failedServer };
+  d.failed = SAYS.failed;
+  return JSON.stringify(d).replace(/</g, "\u003c");
 }
 
-export default ({ cfg }) => {
+export default ({ cfg, L }) => {
   const url = String(cfg.earlyAccess.appsScriptUrl || "").trim();
-  const mail = cfg.site.supportEmail;
-  const dataText = dataJson(mail);
+  const waitlist = cfg.earlyAccess.phase === "waitlist";
+  const dataText = dataJson();
   if (!cfg.earlyAccess.open) {
     // earlyAccess.open: false (the 10 to 15 are chosen): the page keeps its address but takes no applications
     return {
@@ -227,31 +283,37 @@ export default ({ cfg }) => {
   return {
     path: "/early-access/apply/",
     title: HEADING,
-    description: "An application to use Maulya free for six weeks, on real files, from the 10–15 firms we are choosing.",
+    description: waitlist
+      ? "Join the waiting list for early access to Maulya. The first group is full; we'll write when places open."
+      : "An application to use Maulya free, on real files, from the 10–15 firms we are choosing. The first firms start on 16 November.",
     body: `
     <section class="page-head on-body">
       <div class="wrap">
         <span class="kicker">Early access</span>
         <h1>${esc(HEADING)}</h1>
         ${INTRO.map((t, i) => `<p class="${i === 0 ? "lead" : "apply-intro"}">${esc(t)}</p>`).join("\n        ")}
+        <p class="apply-intro apply-start"><strong>${esc(waitlist ? WAITLIST_LINE : START_LINE)}</strong></p>
+        <p class="apply-intro apply-why">${esc(WHY_FREE)}</p>
       </div>
     </section>
     <section class="section">
       <div class="wrap apply-wrap">
-        <noscript><div class="note"><p>${esc(SAYS.noScript(mail))}</p></div></noscript>
+        <noscript><div class="note"><p>${esc(SAYS.noScript)}</p></div></noscript>
         <div class="apply-done" id="apply-done" tabindex="-1" hidden role="status"><div class="note green"><p><strong>${esc(CONFIRMATION)}</strong></p></div></div>
         <form class="apply" id="apply" novalidate data-endpoint="${esc(url)}" data-open="${cfg.earlyAccess.open ? "1" : "0"}" autocomplete="on">
 ${parts}
           <div class="apply-send">
+            <div class="hp" aria-hidden="true"><input type="text" id="website" name="website" value="" tabindex="-1" autocomplete="off" /></div>
             <label class="consent"><input type="checkbox" id="consent" /><span>${esc(CONSENT)}${req}</span></label>
             <p class="apply-missing small" id="apply-missing"></p>
             <button type="submit" class="btn btn-gold apply-btn" id="apply-btn" aria-disabled="true" aria-describedby="apply-missing">${esc(SEND)}</button>
-            <p class="apply-state" id="apply-state" role="status"></p>
+            <div class="apply-state" id="apply-state" role="status"></div>
           </div>
         </form>
         <script type="application/json" id="apply-data">${dataText}</script>
       </div>
     </section>
+    ${L.visit("apply_view")}
     <script src="/assets/apply.js?v=${cfg.__buildId}" defer></script>
 `,
   };

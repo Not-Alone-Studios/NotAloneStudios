@@ -2,7 +2,8 @@
 // Screenshots every page at each width, and measures what a picture can't: sideways scroll, small tap targets,
 // long lines, low contrast, heading order, images without size or alt, layout shift.
 // Playwright from the app repo's checkout (PW=<path> to use another one; ~/V3-lanes/site-shots is gone, 8 Nov)
-const { chromium } = require(process.env.PW || process.env.HOME + "/V3/node_modules/playwright");
+const { chromium } = require(process.env.PW || (process.env.HOME || process.env.USERPROFILE) + "/V3/node_modules/playwright");
+const NO_REAL_SERVER = (r) => r.fulfill({ status: 204, headers: { "access-control-allow-origin": "*", "access-control-allow-headers": "content-type" } }); // MLP/SRK-99: the pages count visits to app.maulya.in; a test must never reach the real server
 const fs = require("fs");
 (async () => {
   const [base, out, widthsArg, reducedArg, pathsArg] = process.argv.slice(2);
@@ -10,10 +11,11 @@ const fs = require("fs");
   const reduced = reducedArg === "1";
   const paths = pathsArg ? pathsArg.split(",") : ["/", "/product/", "/for-whom/", "/pricing/", "/about/", "/early-access/", "/early-access/apply/", "/blog/", "/blog/site-visit-mistakes-property-valuation/", "/blog/bank-valuation-assignment-workflow-india/", "/survey/", "/privacy/", "/terms/", "/404.html"];
   fs.mkdirSync(out, { recursive: true });
-  const browser = await chromium.launch();
+  const browser = await chromium.launch(process.env.CHROME ? { executablePath: process.env.CHROME } : {});
   const report = [];
   for (const w of widths) {
     const ctx = await browser.newContext({ viewport: { width: w, height: w < 800 ? 800 : 900 }, deviceScaleFactor: 1, isMobile: w < 800, hasTouch: w < 800, reducedMotion: reduced ? "reduce" : "no-preference" });
+    await ctx.route("https://app.maulya.in/**", NO_REAL_SERVER);
     await ctx.addInitScript(() => {
       window.__cls = 0;
       try { new PerformanceObserver((l) => { for (const e of l.getEntries()) if (!e.hadRecentInput) window.__cls += e.value; }).observe({ type: "layout-shift", buffered: true }); } catch (e) {}

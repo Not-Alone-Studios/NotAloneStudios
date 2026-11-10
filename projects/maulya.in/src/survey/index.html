@@ -544,6 +544,42 @@
     // ───────────────────────────────────────────────────────────────────────
 
     /* ============================================================
+       MAULYA'S SERVER (MLP/SRK-99 addendum 2). Used only while the site's earlyAccess.sendTo is "server" (read live from the shared
+       visit.js, window.MaulyaEA). While it is "sheet" (the default) none of this runs and the page sends to the Sheet exactly as before.
+       Keys are the questions' own ids (a1..f4: lower_snake_case, ASCII). Values are the codes below, in the order of each question's
+       opts; the two free-text questions (c5, c6) send the typed text. RAISE SURVEY_VERSION whenever a question or a choice changes.
+       ============================================================ */
+    const SURVEY_VERSION = '2026-11-survey-1';
+    const CODES = {
+      a1: ['independent', 'team_2_5', 'team_6_15', 'team_over_15'],
+      a2: ['1_5', '6_10', '11_20', 'more_than_20'],
+      a3: ['none', '1_2', '3_5', 'more_than_5'],
+      a4: ['ibbi', 'section_34ab_34ap', 'both', 'prefer_not_to_say'],
+      a5: ['0_3', '4_7', '8_15', 'more_than_15'],
+      b1: ['i_do_all', 'team_member', 'shared', 'depends'],
+      b2: ['few_hours', 'same_day', 'within_1_day', '2_days_or_more'],
+      b3: ['under_4_hours', 'same_day', '1_2_days', 'more_than_2_days'],
+      b4: ['very_often', 'sometimes', 'rarely', 'almost_never'],
+      c1: ['report_time', 'market_rates', 'manual_calculations', 'multiple_assignments'],
+      c2: ['frequently', 'occasionally', 'rarely', 'never'],
+      c3: ['manual_folders', 'computer_folders', 'cloud_storage', 'no_system'],
+      c4: ['a_lot', 'moderate', 'very_little', 'do_not_train'],
+      d1: ['age_life', 'wdv', 'depends', 'other'],
+      d2: ['more_confident', 'equally_confident', 'slightly_hesitant', 'not_comfortable'],
+      d3: ['absolutely_essential', 'important', 'somewhat_important', 'not_necessary'],
+      e1: ['memory_whatsapp_calls', 'notebook_diary', 'excel_sheets', 'dedicated_software'],
+      e2: ['extremely_useful', 'useful', 'somewhat_useful', 'not_useful'],
+      e3: ['extremely_helpful', 'helpful', 'somewhat_helpful', 'not_needed'],
+      f1: ['very_interested', 'interested', 'maybe', 'not_interested'],
+      f2: ['extremely_valuable', 'useful', 'somewhat_useful', 'not_useful'],
+      f3: ['yes_significantly', 'yes_somewhat', 'very_little_difference', 'no'],
+      f4: ['below_3000', '3000_5000', '5000_9000', 'above_9000']
+    };
+    Q.forEach(q => { if (CODES[q.id]) q.v = CODES[q.id]; });
+    const SURVEY_TEXT_MAX = 2000;
+    const SURVEY_PARTIAL_KEY = 'maulya_survey_partial_sent';
+
+    /* ============================================================
        STATE
        ============================================================ */
     const st = {
@@ -555,6 +591,10 @@
       swipe: { x0: 0, y0: 0 },
       didShowSwipeHint: false,
       transitioning: false,
+      startedCounted: false,
+      doneCounted: false,
+      completedSent: false,
+      partialSent: false,
     };
 
     /* ============================================================
@@ -726,6 +766,49 @@
     }
 
     /* ============================================================
+       SERVER SUBMISSION (only while sendTo is "server")
+       ============================================================ */
+    function ea() { return window.MaulyaEA || null; }
+    function toServer() { const e = ea(); return !!(e && e.sendTo() === 'server'); }
+    function eaCount(ev) { try { if (toServer()) ea().count(ev); } catch (e) {} }
+
+    function serverAnswers() {
+      const out = {};
+      Q.forEach(q => {
+        const v = st.answers[q.id];
+        if (v === undefined || v === null || v === '') return;
+        if (q.t === 'x') { const t = String(v).trim(); if (t) out[q.id] = t.slice(0, SURVEY_TEXT_MAX); }
+        else { const i = q.opts.indexOf(v); if (i >= 0 && q.v) out[q.id] = q.v[i]; }
+      });
+      return out;
+    }
+
+    function submitToServer(onStatus) {
+      const body = { visit: ea().visit(), version: SURVEY_VERSION, answers: serverAnswers(), completed: true };
+      ea().post('/api/v3/public/site-survey/responses', body)
+        .then(r => onStatus(r.status === 201 ? 'ok' : 'error'))
+        .catch(() => onStatus('error'));
+    }
+
+    // Leaving part-way: the answers so far, once per visit, with completed:false (never more than once).
+    function sendPartial() {
+      try {
+        if (!toServer() || st.partialSent || st.completedSent) return;
+        const answers = serverAnswers();
+        if (!Object.keys(answers).length) return;
+        try { if (sessionStorage.getItem(SURVEY_PARTIAL_KEY) === '1') return; sessionStorage.setItem(SURVEY_PARTIAL_KEY, '1'); } catch (e) {}
+        st.partialSent = true;
+        ea().post('/api/v3/public/site-survey/responses', { visit: ea().visit(), version: SURVEY_VERSION, answers: answers, completed: false }, { keepalive: true }).catch(() => {});
+      } catch (e) {}
+    }
+
+    function countStarted() {
+      if (st.startedCounted) return;
+      st.startedCounted = true;
+      eaCount('site_survey_started');
+    }
+
+    /* ============================================================
        NAVIGATION
        ============================================================ */
     function goTo(newIdx, dir) {
@@ -758,6 +841,7 @@
 
     function selectOption(qId, val, el, autoAdvance) {
       clearTimeout(st.autoTimer);
+      countStarted();
       st.answers[qId] = val;
       // Update selection UI
       document.querySelectorAll('.sv-option').forEach(o => {
@@ -915,7 +999,7 @@
       return `
         <div class="sv-done" role="region" aria-label="Survey complete">
           <span class="sv-done__icon" aria-hidden="true">✓</span>
-          <h2 class="sv-done__title">Thanks — responses received.</h2>
+          <h2 class="sv-done__title">${toServer() ? 'Sending your answers…' : 'Thanks — responses received.'}</h2>
           <p class="sv-done__sub">Your answers help us tune workflow fit, approvals, reporting posture, and rollout priorities.</p>
           ${profile ? `<div class="sv-done__profile" aria-label="Your workflow profile">${profile}</div>` : ''}
           <div id="sv-submit-status" class="sv-submit-status sv-submit-status--pending" role="status" aria-live="polite">
@@ -1006,6 +1090,7 @@
       if (ta) {
         ta.value = st.answers[screen.q?.id] || '';
         ta.addEventListener('input', () => {
+          countStarted();
           if (screen.q) st.answers[screen.q.id] = ta.value;
           save();
         });
@@ -1024,8 +1109,14 @@
       card.querySelector('#sv-dl-json')?.addEventListener('click', downloadJSON);
       card.querySelector('#sv-mail-btn')?.addEventListener('click', sendMail);
 
-      // Done: auto-submit to Google Sheet
-      if (screen.t === 'done') {
+      // Done: sendTo "server": send to Maulya's server (and not to the Sheet)
+      if (screen.t === 'done' && toServer()) {
+        if (!st.doneCounted) { st.doneCounted = true; eaCount('site_survey_done'); }
+        runServerSubmit(card);
+      }
+
+      // Done: auto-submit to Google Sheet (sendTo "sheet", the default: exactly as before)
+      if (screen.t === 'done' && !toServer()) {
         const statusEl = card.querySelector('#sv-submit-status');
         clearSaved();
         submitToSheet((state) => {
@@ -1042,6 +1133,30 @@
           }
         });
       }
+    }
+
+    function runServerSubmit(card) {
+      const statusEl = card.querySelector('#sv-submit-status');
+      const titleEl = card.querySelector('.sv-done__title');
+      if (!statusEl) return;
+      statusEl.className = 'sv-submit-status sv-submit-status--pending';
+      statusEl.innerHTML = '<span class="sv-submit-spinner" aria-hidden="true"></span>Submitting…';
+      submitToServer((state) => {
+        if (state === 'ok') {
+          st.completedSent = true;
+          clearSaved();
+          if (titleEl) titleEl.textContent = 'Thanks — responses received.';
+          statusEl.className = 'sv-submit-status sv-submit-status--ok';
+          statusEl.textContent = 'Submitted ✅';
+        } else {
+          // no answer is lost silently: they are still saved on this device and still in the page
+          if (titleEl) titleEl.textContent = 'Your answers are not sent yet.';
+          statusEl.className = 'sv-submit-status sv-submit-status--error';
+          statusEl.innerHTML = 'Not sent. Your answers are still on this screen. Please try again. <button id="sv-retry">Try again</button> <button id="sv-dl-fallback">Download JSON instead</button>';
+          statusEl.querySelector('#sv-retry')?.addEventListener('click', () => runServerSubmit(card));
+          statusEl.querySelector('#sv-dl-fallback')?.addEventListener('click', downloadJSON);
+        }
+      });
     }
 
     /* ============================================================
@@ -1142,6 +1257,9 @@
 
       // Keyboard
       document.addEventListener('keydown', handleKey);
+
+      // Leaving part-way (sendTo "server" only): the answers so far, once
+      window.addEventListener('pagehide', sendPartial);
 
       // Swipe
       initSwipe();

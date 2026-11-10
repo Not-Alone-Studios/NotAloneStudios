@@ -1,5 +1,16 @@
 # Changelog - maulya.in
 
+## [2026-11-10] - The form brought to the founder's 10 Nov content; sending to Maulya's server, switchable (MLP/SRK-99)
+- Built on ARK's page (`551b66f`): `/early-access/` stays the intro page, the application stays at `/early-access/apply/`, and every gold button goes to `/early-access/apply/`.
+- The founder's 10 Nov updates: a new Part 3 question "How many districts do you work in?" (27 questions now; old 17 to 26 are 18 to 27); the Email hint "The email you will sign in with"; the consent line "... My answers are kept for one year."; the line "The first firms start on 16 November and use Maulya free until 28 December."; WhatsApp 99801 40777 in the fallback lines; the Privacy line. A "Why is it free?" paragraph under the intro (DRAFT for the founder's yes).
+- "Send my application", pressed half-done, lists what is missing, each item a link to its question. Hints are real text under the label, not placeholders.
+- New settings in `site.config.mjs`: `earlyAccess.apiBase` (`https://app.maulya.in`), `earlyAccess.sendTo` (`"sheet"` default, or `"server"`), `earlyAccess.phase` (`"open"` default, or `"waitlist"`: every apply button reads "Join the waiting list" and the start line changes).
+- `sendTo "server"`: the application goes to `{apiBase}/api/v3/public/early-access/applications` with the contract's keys, a hidden `website` trap field, and its 201 / 422 / 429 / 5xx answers handled; the Survey page sends to `.../site-survey/responses` the same way (version `2026-11-survey-1`; a part-way leave is sent once with `completed:false`). `sendTo "sheet"`: both send to their Google Apps Scripts as before.
+- Visit counting (`src/assets/visit.js`, shared by the three pages): a uuid v4 in `sessionStorage` only (no cookie), fire-and-forget events to `.../early-access/events`, sent only once the server has answered. The Survey counts only while `sendTo` is `"server"`.
+- `early-access-apps-script/code.gs`: 27 columns, and an email to the founders per application (addresses in the script's Script properties, none in the repo); a README with the deploy steps.
+- The founder's name and photo only on About: removed from Home, the blog byline and lead, the blog feed and article data; the unused face crop is deleted.
+- New tools: `contract.cjs`, `stub-server.cjs`, `server-site.cjs`, `survey-site.cjs`, `check-appsscript.cjs`; `check-apply.mjs` rewritten. Not uploaded.
+
 ## [2026-11-10] - The early-access application page, as Shrinivas approved it (MLP/ARK-719)
 - New `/early-access/apply/`: Shrinivas's heading, intro, five parts, 26 questions, the reply under each answer, the consent line, "Send my application" and the confirmation, word for word (`build/tools/check-apply.mjs` compares them with his approved file: no differences). Source: `src/pages/early-access-apply.mjs`, behaviour `src/assets/apply.js`, styles at the end of `site.css`.
 - Every gold "Apply for early access" button opens it (`earlyAccess.formUrl` is the site's own page; the build's old WARNING is gone). The `/early-access/` page's button goes there too, not to an email.

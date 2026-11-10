@@ -217,7 +217,7 @@ export function postBody(post, all, { L, preview, isLive }) {
         <p class="crumbs"><a href="/blog/">Blog</a> <span aria-hidden="true">/</span> <a href="/blog/?category=${slugify(post.category || "")}">${esc(post.category || "")}</a></p>
         <h1>${esc(post.title)}</h1>
         <p class="lead">${esc(post.meta_description || "")}</p>
-        <div class="post-meta" style="color:var(--on-body-quiet)"><span>By Shrinivas, registered valuer</span><span>${post.minutes} min read</span></div>
+        <div class="post-meta" style="color:var(--on-body-quiet)"><span>By a practising registered valuer</span><span>${post.minutes} min read</span></div>
       </div>
     </header>
     <div class="wrap post-layout">
@@ -247,7 +247,7 @@ export function indexBody(posts, { preview, isLive }) {
       <div class="wrap">
         <span class="kicker">The blog</span>
         <h1>Practical notes for valuation offices.</h1>
-        <p class="lead">Written by Shrinivas, a practising registered valuer, about the work itself: intake, site visits, evidence, reports, records and running a small office. Every article has a one-minute summary, its checklists you can tick, and its steps drawn out.</p>
+        <p class="lead">Written by a practising registered valuer, about the work itself: intake, site visits, evidence, reports, records and running a small office. Every article has a one-minute summary, its checklists you can tick, and its steps drawn out.</p>
       </div>
     </section>`;
   if (!posts.length) {
@@ -289,7 +289,7 @@ export function atomFeed(posts, cfg) {
   <link href="${o}/blog/"/>
   <id>${o}/blog/</id>
   <updated>${updated}</updated>
-  <author><name>Shrinivas</name></author>
+  <author><name>Maulya</name></author>
 ${posts.slice(0, cfg.blog.perPageFeed).map((p) => `  <entry>
     <title>${esc(p.title)}</title>
     <link href="${o}/blog/${p.slug}/"/>

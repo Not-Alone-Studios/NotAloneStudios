@@ -8,13 +8,19 @@ export function links(cfg) {
     app,
     signIn: app + cfg.app.signInPath,
     signUp,
-    // MLP/ARK-683: every "Apply for early access" button. MLP/ARK-719: it opens the site's own application page.
+    // MLP/ARK-683: every "Apply for early access" button. MLP/ARK-719, SRK-99: it opens the site's own application page, /early-access/apply/.
+    // MLP/SRK-99 addendum 2: while earlyAccess.phase is "waitlist" every one of these reads "Join the waiting list" (a label passed
+    // in, like the survey's "Apply for early access →", has its words swapped the same way).
     apply: (cls = "btn btn-gold", label = "Apply for early access") => {
       const ea = cfg.earlyAccess;
       if (!ea.open) return `<span class="btn-closed">Applications are closed</span>`;
       const form = String(ea.formUrl || "").trim() || "/early-access/apply/";
-      return `<a class="${cls}" href="${esc(form)}">${label}</a>`;
+      const words = ea.phase === "waitlist" ? label.replace("Apply for early access", "Join the waiting list") : label;
+      return `<a class="${cls}" href="${esc(form)}">${words}</a>`;
     },
+    // MLP/SRK-99 addendum 1: the one shared visit-id and counting script (src/assets/visit.js). `event` is the page's own event
+    // (ea_view, apply_view, site_survey_view) or empty for none. The settings are read by the script from these attributes.
+    visit: (event = "") => `<script src="/assets/visit.js?v=${cfg.__buildId}" id="ea-visit" defer data-api-base="${esc(String(cfg.earlyAccess.apiBase || "").replace(/[/]$/, ""))}" data-send-to="${esc(cfg.earlyAccess.sendTo === "server" ? "server" : "sheet")}"${event ? ` data-event="${esc(event)}"` : ""}></script>`,
     survey: "/survey/",
     mail: (subject) => `mailto:${cfg.site.supportEmail}${subject ? "?subject=" + encodeURIComponent(subject) : ""}`,
   };

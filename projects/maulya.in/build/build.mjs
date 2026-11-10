@@ -91,7 +91,7 @@ function buildSite(dir, { preview }) {
       extraHead: `<meta name="keywords" content="${[p.primary_keyword, ...(p.secondary_keywords || [])].filter(Boolean).join(", ").replace(/"/g, "&quot;")}" />`,
       jsonLd: [{
         "@context": "https://schema.org", "@type": "Article", headline: p.title, description: p.meta_description,
-        author: { "@type": "Person", name: "Shrinivas" }, publisher: { "@type": "Organization", name: "Maulya" },
+        author: { "@type": "Organization", name: "Maulya" }, publisher: { "@type": "Organization", name: "Maulya" },
         datePublished: p.date || undefined, articleSection: p.category, keywords: [p.primary_keyword, ...(p.secondary_keywords || [])].filter(Boolean).join(", "),
         mainEntityOfPage: `${cfg.site.origin}/blog/${p.slug}/`,
       }],
@@ -106,7 +106,9 @@ function buildSite(dir, { preview }) {
   survey = survey.replace(/const APPS_SCRIPT_URL = '[^']*';/, `const APPS_SCRIPT_URL = '${cfg.survey.appsScriptUrl}';`)
     .replace(/<a href="\/pilot\/\?src=maulya-survey-done" class="sv-btn sv-btn--primary">\s*Apply for early access →\s*<\/a>/,
       cfg.earlyAccess.open ? L.apply("sv-btn sv-btn--primary", "Apply for early access →") : `<span class="sv-btn sv-btn--secondary">Applications are closed</span>`)
-    .replace('<a href="/updates/" class="sv-btn sv-btn--secondary">Read product notes</a>', '<a href="/blog/" class="sv-btn sv-btn--secondary">Read the blog</a>');
+    .replace('<a href="/updates/" class="sv-btn sv-btn--secondary">Read product notes</a>', '<a href="/blog/" class="sv-btn sv-btn--secondary">Read the blog</a>')
+    // MLP/SRK-99 addendum 2: the shared visit helper (counts site_survey_view only while earlyAccess.sendTo is "server")
+    .replace("</body>", `  ${L.visit("site_survey_view")}\n</body>`);
   write(path.join(dir, "survey", "index.html"), survey);
   sitemap.push("/survey/");
 
@@ -155,8 +157,11 @@ console.log(`  Maulya_preview_all_posts.zip ${size(path.join(ROOT, "Maulya_previ
 const ea = cfg.earlyAccess;
 console.log(`  App sign-in: ${links(cfg).signIn}`);
 console.log(`  "Apply for early access": ${!ea.open ? "CLOSED (open: false): the buttons say \"Applications are closed\"" : (String(ea.formUrl || "").trim() || "/early-access/apply/") + " (the site's own application page, same tab)"}`);
-console.log(`  Applications are sent to: ${String(ea.appsScriptUrl || "").trim() || "NOWHERE YET (earlyAccess.appsScriptUrl is empty)"}`);
-if (ea.open && !String(ea.appsScriptUrl || "").trim()) {
+const server = ea.sendTo === "server";
+console.log(`  Phase: ${ea.phase === "waitlist" ? 'WAITLIST (the buttons read "Join the waiting list")' : "open"}`);
+console.log(`  Applications and the Survey are sent to: ${server ? `MAULYA'S SERVER, ${String(ea.apiBase || "").replace(/[/]$/, "")} (sendTo "server")` : `the Google Sheet: ${String(ea.appsScriptUrl || "").trim() || "NOWHERE YET (earlyAccess.appsScriptUrl is empty)"} (sendTo "sheet")`}`);
+console.log(`  Visit counting on the early-access pages: ${String(ea.apiBase || "").trim() ? `to ${String(ea.apiBase).replace(/[/]$/, "")}, only once that server answers` : "OFF (earlyAccess.apiBase is empty)"}`);
+if (ea.open && !server && !String(ea.appsScriptUrl || "").trim()) {
   const bar = "!".repeat(78);
-  console.warn(`\n${bar}\n!! WARNING: earlyAccess.appsScriptUrl in site.config.mjs is EMPTY.\n!! /early-access/apply/ shows the form, but "Send my application" says sending opens soon and that\n!! nothing was sent: NO APPLICATION IS COLLECTED. Deploy early-access-apps-script/code.gs in Google\n!! (as a web app, "Anyone"), paste its /exec address into site.config.mjs, run \`node build/build.mjs\`\n!! again, and only then upload the zip.\n${bar}\n`);
+  console.warn(`\n${bar}\n!! WARNING: earlyAccess.appsScriptUrl in site.config.mjs is EMPTY.\n!! /early-access/apply/ shows the form, but "Send my application" says applications open shortly and\n!! nothing is sent: NO APPLICATION IS COLLECTED. Deploy early-access-apps-script/code.gs in Google\n!! (as a web app, "Anyone"), paste its /exec address into site.config.mjs, run \`node build/build.mjs\`\n!! again, and only then upload the zip.\n${bar}\n`);
 }
