@@ -62,7 +62,9 @@ function buildSite(dir, { preview }) {
   const sitemap = [];
 
   // assets (pages, fonts, pictures, brand)
-  copyDir(path.join(SRC, "assets"), path.join(dir, "assets"));
+  // MLP/SRK-109: the old scales logo files stay in src/assets/brand (nothing is deleted by hand) but nothing points at them any more, so they are not built.
+  const OLD_LOGO = new Set(["maulya-logo.png", "maulya-logo-sm.png", "maulya-icon.png"]);
+  copyDir(path.join(SRC, "assets"), path.join(dir, "assets"), (f) => OLD_LOGO.has(path.basename(f)));
 
   const ctx = { cfg, L, shot, latest: posts.filter(isLive), card: (p, lv) => card(p, lv, { preview, isLive }) };
   // a page may cite a post: a link while it is built, its title in plain text until then
@@ -119,6 +121,8 @@ function buildSite(dir, { preview }) {
     write(outFile(dir, from), `<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><title>Moved</title><meta name="robots" content="noindex"><link rel="canonical" href="${cfg.site.origin}${to}"><meta http-equiv="refresh" content="0; url=${to}"></head><body><p>This page has moved to <a href="${to}">${cfg.site.origin}${to}</a>.</p></body></html>\n`);
   }
   write(path.join(dir, ".htaccess"), htaccess);
+  // MLP/SRK-109: browsers and crawlers ask for /favicon.ico first; it is the founder's own file (the pages link the SVG and PNG too).
+  fs.copyFileSync(path.join(SRC, "assets", "brand", "favicon.ico"), path.join(dir, "favicon.ico"));
 
   write(path.join(dir, "robots.txt"), `User-agent: *\n${preview ? "Disallow: /\n" : "Allow: /\n"}\nSitemap: ${cfg.site.origin}/sitemap.xml\n`);
   write(path.join(dir, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemap.map((u) => `  <url><loc>${cfg.site.origin}${u}</loc></url>`).join("\n")}\n</urlset>\n`);

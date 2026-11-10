@@ -67,6 +67,7 @@ p { margin: 0 0 1em; }
 .top-row { display: flex; align-items: center; gap: 24px; min-height: 72px; }
 .brand { display: inline-flex; align-items: center; flex: none; min-height: 48px; }
 .brand-img { width: 132px; height: auto; }
+.foot-logo { display: block; width: 220px; max-width: 100%; height: auto; }
 .nav-panel { display: flex; align-items: center; gap: 24px; flex: 1; }
 .nav { display: flex; gap: 4px; flex: 1; }
 .nav a { padding: 10px 12px; color: var(--text); text-decoration: none; border-radius: var(--radius); font-weight: 400; }

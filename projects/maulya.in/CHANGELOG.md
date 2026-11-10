@@ -1,5 +1,11 @@
 # Changelog - maulya.in
 
+## [2026-11-10] - The new Maulya logo everywhere on the site (MLP/SRK-109)
+- The founder's own vector files (from the app's `public/brand/`) are in `src/assets/brand/`: lockups, marks, app icons, `favicon.svg`, `favicon.ico`. Nothing redrawn. PNGs made from them: `maulya-icon-32.png`, `maulya-apple-touch-icon.png` (180), `maulya-icon-192.png`, `maulya-icon-512.png`.
+- Header: the lockup without the tagline (alt "Maulya"). Footer: the reverse lockup on the dark green. Survey intro card: the same header lockup. Tab icon: `favicon.svg` and the 32 px PNG; `apple-touch-icon`; schema.org `logo` is the 512 px icon; `/favicon.ico` is also built at the site root.
+- The social image `assets/media/app/og-maulya.png` had the old scales on a white card; it now shows the reverse lockup on the same green (the rest of the picture is unchanged).
+- The old scales files (`maulya-logo.png`, `maulya-logo-sm.png`, `maulya-icon.png`) are still in `src/assets/brand/` but nothing points at them and the build skips them. `notalone-logo-cropped.png` (the studio's) is kept.
+
 ## [2026-11-10] - Three wording changes on the early-access page (MLP/SRK-107B)
 - No "28 December" on the page: the start line is "The first firms start on 16 November and use Maulya free for six weeks."; "Why is it free?" says six weeks to start, extended until 31 March 2027 for firms that reply regularly with feedback; the consent box also allows contacting people later about Maulya.
 

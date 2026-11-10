@@ -34,8 +34,11 @@ const NAV = [
   ["/about/", "About"],
 ];
 
-/** The logo mark drawn as the site has used since March (the scales, today's mark; the new one is on hold). */
-const LOGO = `<img src="/assets/brand/maulya-logo-sm.png" alt="" width="132" height="40" class="brand-img" />`;
+/** MLP/SRK-109: the founder's new Maulya logo (the M with the two gold bars), his own vector files from the app, not redrawn.
+ *  Header (light): the lockup without the tagline, 132 x 33 (the file's own 1671.2 x 420.9 shape).
+ *  Footer (dark green): the reverse lockup, with its tagline, the only reverse lockup the founder has made. */
+const LOGO = `<img src="/assets/brand/maulya-lockup-no-tagline.svg" alt="Maulya" width="132" height="33" class="brand-img" />`;
+const LOGO_FOOT = `<img src="/assets/brand/maulya-lockup-reverse.svg" alt="Maulya" width="220" height="63" class="foot-logo" />`;
 
 export function page(cfg, opts) {
   const {
@@ -50,7 +53,7 @@ export function page(cfg, opts) {
     "@type": "Organization",
     name: "Maulya",
     url: cfg.site.origin + "/",
-    logo: cfg.site.origin + "/assets/brand/maulya-icon.png",
+    logo: cfg.site.origin + "/assets/brand/maulya-icon-512.png",
     email: cfg.site.supportEmail,
     parentOrganization: { "@type": "Organization", name: "Not Alone Studios" },
   };
@@ -79,7 +82,9 @@ export function page(cfg, opts) {
   <meta property="og:image" content="${cfg.site.origin}${ogImage}" />
   <meta property="og:locale" content="en_IN" />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="icon" type="image/png" href="/assets/brand/maulya-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="/assets/brand/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/maulya-icon-32.png" />
+  <link rel="apple-touch-icon" href="/assets/brand/maulya-apple-touch-icon.png" />
   <link rel="alternate" type="application/atom+xml" title="Maulya blog" href="/blog/feed.xml" />
   <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
@@ -108,7 +113,7 @@ ${body}
   <footer class="foot">
     <div class="wrap foot-grid">
       <div class="foot-brand">
-        <p class="foot-name">Maulya</p>
+        <p class="foot-name">${LOGO_FOOT}</p>
         <p>Office software for property valuers in India: files, site visits, photos, reports and fees in one place. The valuation stays the valuer's.</p>
         <p>Built by Not Alone Studios, Karnataka.</p>
       </div>
