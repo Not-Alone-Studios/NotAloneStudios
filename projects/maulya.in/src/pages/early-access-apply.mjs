@@ -27,12 +27,12 @@ export const INTRO = [
   "About 6 minutes. Questions marked * are needed.",
 ];
 // The founder, 10 Nov: the line after the intro.
-export const START_LINE = "The first firms start on 16 November and use Maulya free until 28 December.";
+export const START_LINE = "The first firms start on 16 November and use Maulya free for six weeks.";
 // Approved by the founder, Tue 10 Nov 2026 15:06 (SRK-101): only facts already decided: why it is free, until when, no card or payment,
 // the firm's files and data stay its own.
-export const WHY_FREE = "Why is it free? We want honest feedback from real valuation offices. Maulya is free for the firms we choose until 28 December. We do not ask for a card or any payment, and your firm's files and data stay your firm's own.";
+export const WHY_FREE = "Why is it free? We want honest feedback from real valuation offices. Maulya is free for the firms we choose, for six weeks to start. For firms that reply regularly with their feedback, we will keep extending it until 31 March 2027. We do not ask for a card or any payment, and your firm's files and data stay your firm's own.";
 export const HEADING = "Apply to use Maulya free, and help shape it";
-export const CONSENT = "I agree that Maulya may contact me about early access and about Maulya. My answers are kept for one year.";
+export const CONSENT = "I agree that Maulya may contact me about early access and later about Maulya. My answers are used to choose early-access firms and are kept for one year.";
 export const SUPPORT_WHATSAPP = "99801 40777";
 export const SEND = "Send my application";
 // MLP/SRK-99 addendum 2: earlyAccess.phase "waitlist" replaces the start line with this one (the founder's A7).

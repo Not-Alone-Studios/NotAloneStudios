@@ -1,5 +1,8 @@
 # Changelog - maulya.in
 
+## [2026-11-10] - Three wording changes on the early-access page (MLP/SRK-107B)
+- No "28 December" on the page: the start line is "The first firms start on 16 November and use Maulya free for six weeks."; "Why is it free?" says six weeks to start, extended until 31 March 2027 for firms that reply regularly with feedback; the consent box also allows contacting people later about Maulya.
+
 ## [2026-11-10] - The founder's answers on the early-access page (MLP/SRK-101)
 - The "Why is it free?" paragraph and Home's "Who built it" text: approved by the founder, Tue 10 Nov 2026 15:06 (code comments only; the visible text does not change).
 - One confirmation for both ways of sending: "Thank you. You're on the waiting list. We read every application and reply to everyone within a week, chosen or not." (one constant, `CONFIRMATION`; the second one is gone).

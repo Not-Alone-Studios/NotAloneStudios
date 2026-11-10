@@ -99,7 +99,7 @@ eq("confirmation (one constant; the founder's 15:06 answer, word for word)", mod
 eq("confirmation ends with the content file's line", mod.CONFIRMATION.endsWith(" " + confLine), true);
 eq("there is no second confirmation constant", "CONFIRMATION_SERVER" in mod, false);
 eq("waiting-list heading (the founder, 15:06)", mod.HEADING_WAITLIST, "Join Maulya's waiting list");
-eq("'Why is it free?' paragraph (approved 15:06, word for word)", mod.WHY_FREE, "Why is it free? We want honest feedback from real valuation offices. Maulya is free for the firms we choose until 28 December. We do not ask for a card or any payment, and your firm's files and data stay your firm's own.");
+eq("'Why is it free?' paragraph (approved 15:06, word for word)", mod.WHY_FREE, "Why is it free? We want honest feedback from real valuation offices. Maulya is free for the firms we choose, for six weeks to start. For firms that reply regularly with their feedback, we will keep extending it until 31 March 2027. We do not ask for a card or any payment, and your firm's files and data stay your firm's own.");
 eq("support WhatsApp", mod.SUPPORT_WHATSAPP, whatsapp);
 eq("sending-not-open line names the WhatsApp", mod.SAYS.notOpen.includes(whatsapp), true);
 eq("failed-send line names the WhatsApp", mod.SAYS.failed.includes(whatsapp), true);

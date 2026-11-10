@@ -53,7 +53,7 @@ async function fillAll(page, data, pick) {
     const data = JSON.parse(await page.evaluate(() => document.getElementById("apply-data").textContent));
 
     ok("one h1", (await page.locator("h1").count()) === 1, await page.locator("h1").innerText());
-    ok("the start line is under the intro", (await page.locator(".apply-start").innerText()).trim() === "The first firms start on 16 November and use Maulya free until 28 December.");
+    ok("the start line is under the intro", (await page.locator(".apply-start").innerText()).trim() === "The first firms start on 16 November and use Maulya free for six weeks.");
     ok("the 'why it is free' paragraph is there (draft)", /^Why is it free\? We want honest feedback from real valuation offices\./.test((await page.locator(".apply-why").innerText()).trim()));
     ok(`${N} questions`, (await page.locator("[data-qwrap]").count()) === N);
     ok("no sideways scroll", await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1));
@@ -65,7 +65,7 @@ async function fillAll(page, data, pick) {
     ok("replies are role=status", (await page.locator(".reply[role=status]").count()) === Object.keys(data).filter((k) => /^\d+$/.test(k)).length);
     const small = await page.evaluate(() => [...document.querySelectorAll("a, button, input:not([type=checkbox]), textarea, .consent")].filter((e) => e.offsetParent && !e.closest("p, li, .hp")).map((e) => ({ t: (e.textContent || e.id || "").trim().slice(0, 24), h: Math.round(e.getBoundingClientRect().height), w: Math.round(e.getBoundingClientRect().width) })).filter((e) => e.h < 44));
     ok("no other control under 44 px tall", small.length === 0, JSON.stringify(small.slice(0, 4)));
-    ok("the consent line is the founder's words, with its *", await page.evaluate(() => { const s = document.querySelector(".consent > span"); return s.childNodes[0].textContent === "I agree that Maulya may contact me about early access and about Maulya. My answers are kept for one year." && s.querySelector(".req").textContent.trim() === "*"; }));
+    ok("the consent line is the founder's words, with its *", await page.evaluate(() => { const s = document.querySelector(".consent > span"); return s.childNodes[0].textContent === "I agree that Maulya may contact me about early access and later about Maulya. My answers are used to choose early-access firms and are kept for one year." && s.querySelector(".req").textContent.trim() === "*"; }));
     await page.screenshot({ path: `${OUT}/apply-top__${w}.png`, fullPage: false });
 
     // the send button starts off and says what is missing

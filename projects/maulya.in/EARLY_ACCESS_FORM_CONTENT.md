@@ -4,8 +4,8 @@
 
 1. **New question in Part 3, after "Bank files per month":** "How many districts do you work in?" (pick one; required): 1 / 2–3 / 4–6 / More than 6. It has no reply message. The questions then number 1–27.
 2. **Under "Email"**, the hint is "The email you will sign in with".
-3. **The consent box** reads: "I agree that Maulya may contact me about early access and about Maulya. My answers are kept for one year. *"
-4. **A line after the intro:** "The first firms start on 16 November and use Maulya free until 28 December."
+3. **The consent box** reads: "I agree that Maulya may contact me about early access and later about Maulya. My answers are used to choose early-access firms and are kept for one year. *"
+4. **A line after the intro:** "The first firms start on 16 November and use Maulya free for six weeks."
 5. **The Privacy page's early-access line:** "An application for early access: your name, email, WhatsApp number, place, firm details and answers are used to choose early-access firms and to contact you about Maulya, and are kept for one year."
 6. **The support WhatsApp** for any fallback message: 99801 40777.
 7. **Answer A5 / A7 / A8:**
