@@ -2,7 +2,9 @@
 // Settings > Maulya plan in review mode). No trial numbers and no founding-firm offer here until ARK says so (LW_ACTIONS,
 // question 3; BUILD_NOTES keeps trial mechanics off the public site). "Tier 1" is the app's working name for the plan.
 
-export default ({ L }) => ({
+export default ({ L, cfg }) => ({
+  // MLP/ARK-992: the polish layer (src/assets/journey.css, end): motion timings, the scale, the hero's gold button.
+  extraHead: `<link rel="stylesheet" href="/assets/journey.css?v=${cfg.__buildId}" />`,
   path: "/pricing/",
   title: "Pricing",
   description:
@@ -21,6 +23,7 @@ export default ({ L }) => ({
         <h1>Plain prices, the same ones the app shows.</h1>
         <p class="lead">Every plan has room for 7 people and 100 GB for your files. Prices are a month, before GST.</p>
         <p class="lead">Firms chosen for early access use Maulya free for six weeks. <a href="/early-access/">About early access</a>.</p>
+        <div class="actions">${L.apply("btn btn-gold")}</div>
       </div>
     </section>
     <section class="section">

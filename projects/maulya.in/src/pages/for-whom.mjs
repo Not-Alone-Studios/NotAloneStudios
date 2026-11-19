@@ -42,7 +42,9 @@ const JOBS = [
   },
 ];
 
-export default ({ L, shot }) => ({
+export default ({ L, shot, cfg }) => ({
+  // MLP/ARK-992: the polish layer (src/assets/journey.css, end): motion timings, the scale, the hero's gold button.
+  extraHead: `<link rel="stylesheet" href="/assets/journey.css?v=${cfg.__buildId}" />`,
   path: "/for-whom/",
   title: "Who it's for: valuers, office staff and site engineers",
   description:
@@ -53,6 +55,7 @@ export default ({ L, shot }) => ({
         <span class="kicker">Who it's for</span>
         <h1>For the whole valuation office, one person or twenty.</h1>
         <p class="lead">Maulya is for registered valuers and the people who work with them. Each person signs in as themselves and sees the work that is theirs. It is not for borrowers, buyers or brokers.</p>
+        <div class="actions">${L.apply("btn btn-gold")}</div>
       </div>
     </section>
     <section class="section">

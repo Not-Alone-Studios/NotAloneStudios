@@ -97,6 +97,48 @@
     $$("[data-equals]:not([role=tabpanel] [data-equals])").forEach(function (el) { io.observe(el); });
   } else $$("[data-equals]").forEach(function (el) { el.classList.add("level"); });
 
+  // MLP/ARK-992: "Apply for early access" within reach on a phone or tablet. At 980 px and below the header's gold button
+  // sits inside the closed menu, so a bar along the bottom carries the same link (cloned from the header: same words,
+  // same address, same phase) while no other gold button and no footer is on screen. It slides in once in 200 ms
+  // (nothing with reduced motion, by site.css's rule), never covers the page's own buttons, and is hidden from every
+  // reader and key while it is away. Not on the application form itself, where the form's own button is the next step.
+  (function () {
+    var src = $(".nav-actions .btn-gold");
+    if (!src || src.tagName !== "A" || /\/early-access\/apply\/?$/.test(location.pathname)) return;
+    if (!window.matchMedia || !("IntersectionObserver" in window)) return;
+    var narrow = window.matchMedia("(max-width: 980px)");
+    var css = document.createElement("style");
+    css.textContent = ".apply-bar{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));" +
+      "background:var(--face);border-top:1px solid var(--line);box-shadow:0 -8px 20px rgba(9,64,48,.10);transform:translateY(110%);visibility:hidden;" +
+      "transition:transform 200ms var(--ease),visibility 0s linear 200ms}" +
+      ".apply-bar.on{transform:none;visibility:visible;transition:transform 200ms var(--ease),visibility 0s}" +
+      ".apply-bar .btn{display:flex;width:100%;max-width:560px;margin:0 auto}" +
+      "@media (min-width:981px){.apply-bar{display:none}}@media print{.apply-bar{display:none}}";
+    document.head.appendChild(css);
+    var bar = document.createElement("div");
+    bar.className = "apply-bar";
+    var a = src.cloneNode(true);
+    a.removeAttribute("id");
+    bar.appendChild(a);
+    document.body.appendChild(bar);
+    var inView = new Set(), passed = false, menu = $(".menu-btn");
+    function update() {
+      var menuOpen = menu && menu.getAttribute("aria-expanded") === "true";
+      bar.classList.toggle("on", narrow.matches && passed && inView.size === 0 && !menuOpen);
+    }
+    var watch = $$("main .btn-gold, .foot");
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) inView.add(e.target); else inView.delete(e.target); });
+      update();
+    });
+    watch.forEach(function (el) { io.observe(el); });
+    function scrolled() { var p = window.scrollY > 320; if (p !== passed) { passed = p; update(); } }
+    window.addEventListener("scroll", scrolled, { passive: true });
+    if (narrow.addEventListener) narrow.addEventListener("change", update);
+    if (menu) menu.addEventListener("click", function () { setTimeout(update, 0); });
+    scrolled();
+  })();
+
   // The blog's index: search on the page and categories (no server)
   var list = $("[data-posts]");
   if (list) {

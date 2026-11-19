@@ -2,7 +2,8 @@
    The words are an ordered list; the file card beside it is decoration that follows the step being read. Motion only
    shows a change: each step comes in once as it is reached, the line fills to it, the card's place updates. With reduced
    motion (site.css turns every transition off) or without the script, the same list stands still; without the script
-   the card is not drawn at all. Transforms and opacity only, so nothing moves the page's layout. */
+   the card is not drawn at all. Transforms and opacity only, so nothing moves the page's layout.
+   MLP/ARK-992: each change now takes 200 to 250 ms (was 300 to 900); the polish layer for other pages is at the end. */
 
 .journey { display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 0 56px; align-items: start; }
 .journey-rail { display: none; align-self: stretch; }
@@ -15,25 +16,25 @@
 .jc-where { display: flex; align-items: center; gap: 12px; margin: 14px 0 12px !important; padding: 12px 0;
   border-block: 1px solid var(--line); font-size: var(--s-large); }
 .jc-bars { display: inline-flex; gap: 3px; flex: none; }
-.jc-bars i { width: 5px; height: 20px; border-radius: 1px; background: var(--line-strong); transition: background 300ms var(--ease); }
+.jc-bars i { width: 5px; height: 20px; border-radius: 1px; background: var(--line-strong); transition: background 200ms var(--ease); }
 .jc-bars i.done { background: var(--green); }
 .jc-bars i.here { background: var(--gold); }
 .jc-line { font-size: var(--s-small); line-height: 1.45; }
 .jc-line + .jc-line { margin-top: 6px !important; }
 .jc-line > span:first-child { color: var(--muted); }
-.journey-card.changed [data-jc-place], .journey-card.changed [data-jc-next] { animation: jc-change 900ms var(--ease); }
-@keyframes jc-change { from { background: #f6e7cb; } to { background: transparent; } }
+.journey-card.changed [data-jc-place], .journey-card.changed [data-jc-next] { animation: jc-change 250ms var(--ease); }
+@keyframes jc-change { from { opacity: 0; } to { opacity: 1; } }
 
 .journey-steps { position: relative; list-style: none; margin: 0; padding: 0 0 0 52px; }
 .journey-steps::before, .journey-steps::after { content: ""; position: absolute; left: 11px; top: 14px; bottom: 24px; width: 2px; }
 .journey-steps::before { background: var(--line-strong); }
-.journey-steps::after { background: var(--green); transform-origin: top; transform: scaleY(var(--p, 0)); transition: transform 600ms var(--ease); }
+.journey-steps::after { background: var(--green); transform-origin: top; transform: scaleY(var(--p, 0)); transition: transform 250ms var(--ease); }
 .journey-step { position: relative; padding: 0 0 48px; }
 .journey-step:last-child { padding-bottom: 0; }
 .journey-step h3 { font-size: var(--s-h3); margin-bottom: 8px; }
 .journey-step > p { max-width: 62ch; }
 .journey-dot { position: absolute; left: -50px; top: 4px; width: 22px; height: 22px; border-radius: 50%; z-index: 1;
-  background: var(--face); border: 2px solid var(--line-strong); transition: background 300ms var(--ease), border-color 300ms var(--ease), box-shadow 300ms var(--ease); }
+  background: var(--face); border: 2px solid var(--line-strong); transition: background 200ms var(--ease), border-color 200ms var(--ease), box-shadow 200ms var(--ease); }
 .journey-step.past .journey-dot { background: var(--green); border-color: var(--green); }
 .journey-step.now .journey-dot { background: var(--gold); border-color: var(--gold-edge); box-shadow: 0 0 0 5px #f6e7cb; }
 .journey-place { font-size: var(--s-small); font-weight: 700; color: var(--green); margin: 0 0 4px; }
@@ -42,7 +43,7 @@
 .journey-foot { margin: 32px 0 0; }
 
 /* Each step comes in once, as it is reached (only when motion is welcome: site.js adds .moving) */
-.journey.moving .journey-step { opacity: 0; transform: translateY(24px); transition: opacity 600ms var(--ease), transform 600ms var(--ease); }
+.journey.moving .journey-step { opacity: 0; transform: translateY(12px); transition: opacity 250ms var(--ease), transform 250ms var(--ease); }
 .journey.moving .journey-step.seen { opacity: 1; transform: none; }
 
 /* A phone: the card rides at the top of the steps, one line for where the file is and one for what is next */
@@ -58,5 +59,38 @@
   .journey-dot { left: -44px; width: 20px; height: 20px; }
   .journey-step { padding-bottom: 40px; }
 }
+
+/* MLP/ARK-992 · the polish layer. This file is linked from Home, Product, Who it's for, Pricing and About (site.css and the
+   other pages are Shrinivas's branch's files, so nothing here edits them; it only adds rules after them).
+   Motion: one change takes 150 to 250 ms, nothing loops, and site.css's reduced-motion rule turns all of it off. */
+
+/* Home's journey above (and the equals mark on every page that links this file): a change is quick, never a show */
+.equals rect { transition-duration: 250ms; }
+
+/* Home, "Today, one file lives in five places": no lone cell. A phone reads one place per row (the name, then its line);
+   a tablet reads three then two, each row filling the width. */
+@media (max-width: 600px) {
+  .scatter { grid-template-columns: 1fr; }
+  .scatter li { padding: 16px 18px; }
+}
+@media (min-width: 601px) and (max-width: 880px) {
+  .scatter { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .scatter li { grid-column: span 2; }
+  .scatter li:nth-child(n + 4) { grid-column: span 3; }
+}
+
+/* Product, the seven places: the line moves to the picked place and the new panel comes in, each in 200 to 250 ms,
+   so a press visibly moves the file one place on */
+.scale-rule::after { transition-duration: 250ms; }
+.js .scale-panel:not([hidden]) { animation: scale-in 200ms var(--ease); }
+@keyframes scale-in { from { opacity: 0; transform: translateX(8px); } to { opacity: 1; transform: none; } }
+
+/* Home, Pricing: lines a reader can follow back (under about 80 characters): "In Maulya it is one file", "Your firm's
+   reports stay your firm's", "Who built it", the blog sources under the five places, "Payments aren't open" */
+.into-one p, .note p, .maker p { max-width: 40em; }
+.scatter + p.small { max-width: 44em !important; }
+
+/* Who it's for, Pricing: the hero now carries the page's one gold button, as Home's and Product's do */
+.page-head .actions { margin-top: 24px; }
 
 @media print { .journey-rail { display: none !important; } .journey { display: block; } }

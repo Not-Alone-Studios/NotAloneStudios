@@ -2,7 +2,9 @@
 // services/api/app/services/assignment_update_flow.py:279-389 (borrower and bank fixed after the first report).
 import { fileScale } from "./parts.mjs";
 
-export default ({ L, shot }) => ({
+export default ({ L, shot, cfg }) => ({
+  // MLP/ARK-992: the polish layer (src/assets/journey.css, end): motion timings, the scale, the hero's gold button.
+  extraHead: `<link rel="stylesheet" href="/assets/journey.css?v=${cfg.__buildId}" />`,
   path: "/product/",
   title: "The product: the web app and the phone",
   description:
