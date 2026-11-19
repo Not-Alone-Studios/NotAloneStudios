@@ -887,7 +887,7 @@
     const hookCTA = hookEngine.querySelector("[data-hook-cta]");
     const hookRadios = hookEngine.querySelectorAll('input[name="hook"]');
     const hookMap = {
-      ops: "https://maulya.in/product/",
+      ops: "https://maulya.in/",
       study: "/products/revalk/",
       custom: "/contact/#studio",
     };
@@ -1001,7 +1001,7 @@ p{line-height:1.6;margin-bottom:12px;color:#b8bcb4}.card{background:#1a2420;bord
         const pct = Math.round(30 + ((step + 1) / total) * 70);
         const label = page.includes("maulya") ? "Maulya" : page.includes("revalk") ? "Revalk" : "System Map";
         zeigLabel.textContent = `${label}: ${pct}% — `;
-        const dest = page.includes("maulya") ? "https://maulya.in/product/" : page.includes("revalk") ? "/products/revalk/" : "/";
+        const dest = page.includes("maulya") ? "https://maulya.in/" : page.includes("revalk") ? "/products/revalk/" : "/";
         zeigContinue.href = dest;
         zeigContinue.textContent = "Continue";
 
@@ -1082,26 +1082,36 @@ p{line-height:1.6;margin-bottom:12px;color:#b8bcb4}.card{background:#1a2420;bord
       backBtn.addEventListener("click", () => showWizardStep(1));
     }
 
-    // Form submit → success (or Maulya handoff redirect)
-    wizard.querySelectorAll("form[data-demo-form]").forEach((form) => {
+    // Form submit → the visitor's own email app, with the brief filled in. Until Nov 2026 these forms
+    // showed "Brief received" and sent nothing; the Maulya form posted to a retired address. A static site has no
+    // server of its own, so the honest path is an email the visitor sends themselves.
+    wizard.querySelectorAll("form[data-mailto]").forEach((form) => {
       form.addEventListener("submit", (e) => {
         e.preventDefault();
-        // Inline validation
         let valid = true;
         form.querySelectorAll("[required]").forEach((field) => {
           const empty = field.tagName === "SELECT" ? !field.value : !field.value.trim();
           field.setAttribute("aria-invalid", String(empty));
           if (empty) valid = false;
         });
-        if (!valid) return;
-
-        // Maulya handoff: POST then redirect
-        const action = form.getAttribute("action");
-        if (action && action.includes("maulya.in")) {
-          fetch(action, { method: "POST", body: new FormData(form) }).catch(() => {});
-          setTimeout(() => { window.location.href = "https://app.maulya.in/partner/request-access"; }, 600);
+        if (!valid) {
+          const first = form.querySelector('[aria-invalid="true"]');
+          if (first) first.focus();
           return;
         }
+        const lines = [];
+        form.querySelectorAll("input, select, textarea").forEach((field) => {
+          if (field.type === "hidden" || !field.name) return;
+          const value = (field.value || "").trim();
+          if (!value) return;
+          const label = field.closest("label");
+          const name = label && label.querySelector("span") ? label.querySelector("span").textContent.trim() : field.name;
+          lines.push(name + ": " + value);
+        });
+        const subject = form.getAttribute("data-mailto") || "Enquiry";
+        window.location.href = "mailto:hello@notalonestudios.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lines.join("\n"));
+        const eventName = form.getAttribute("data-track-submit");
+        if (eventName && window.naTrack) window.naTrack(eventName, { kind: "submit" });
         showWizardStep(3);
       });
     });
@@ -1116,9 +1126,9 @@ p{line-height:1.6;margin-bottom:12px;color:#b8bcb4}.card{background:#1a2420;bord
       if (field.tagName === "SELECT") field.addEventListener("change", () => field.removeAttribute("aria-invalid"));
     });
 
-    // Hash auto-selection: /contact/#maulya, /contact/#revalk, /contact/#studio
+    // Hash auto-selection: /contact/#maulya, /contact/#calvetra, /contact/#studio
     const wizardHash = window.location.hash.replace("#", "");
-    if (wizardHash && ["maulya", "revalk", "studio"].includes(wizardHash)) {
+    if (wizardHash && ["maulya", "calvetra", "studio"].includes(wizardHash)) {
       const matchTile = wizard.querySelector('.lane-tile[data-lane="' + wizardHash + '"]');
       if (matchTile) {
         matchTile.click();
