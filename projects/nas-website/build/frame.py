@@ -28,15 +28,15 @@ PAGES = {
                    "Not Alone Studios builds Maulya, office software for property valuers, and Calvetra, a study planner "
                    "for NEET PG and INI-CET aspirants, and takes on selected systems builds.", None, True),
     "products/index.html": ("/products/", "Projects · Not Alone Studios",
-                            "The studio's projects: Maulya (live), Calvetra (in development) and Revalk (earlier work, "
-                            "no longer in development).", "/products/", True),
-    "products/maulya/index.html": ("/products/maulya/", "How Maulya is built · Not Alone Studios",
-                                   "The engineering under Maulya, office software for property valuers: each firm's data "
-                                   "kept apart, one answer for every file, a record of who did what, and careful releases.",
+                            "The studio's projects: Maulya (in use with its founding firms), Calvetra (in development, with a "
+                            "clickable demo) and Revalk (earlier work, no longer in development).", "/products/", True),
+    "products/maulya/index.html": ("/products/maulya/", "Maulya · Not Alone Studios",
+                                   "Maulya is office software for property valuers in India. It is in use with its founding "
+                                   "firms and not yet open to new firms.",
                                    "/products/", True),
     "products/calvetra/index.html": ("/products/calvetra/", "Calvetra · Not Alone Studios",
-                                     "Calvetra v2, in development: the Library, the Planner and the Topic Board for NEET PG "
-                                     "and INI-CET aspirants, with an honest verdict on every plan.", "/products/", True),
+                                     "Calvetra, in development: a study planner for NEET PG and INI-CET aspirants, with an "
+                                     "honest verdict on every plan. See how it works in a clickable demo.", "/products/", True),
     "products/revalk/index.html": ("/products/revalk/", "Revalk, earlier work · Not Alone Studios",
                                    "Revalk was the studio's study product for NEET PG and INI-CET aspirants in 2026. "
                                    "It is no longer in development.", "/products/", True),
@@ -129,7 +129,7 @@ FOOTER = f"""<!-- nx:footer (build/frame.py) -->
       <nav aria-label="The studio"><h2>Studio</h2><ul><li><a href="/method/">Method</a></li><li><a href="/proof/">Proof</a></li><li><a href="/studio/">Studio</a></li><li><a href="/labs/">Labs</a></li></ul></nav>
       <nav aria-label="Company"><h2>Company</h2><ul><li><a href="/contact/">Contact</a></li><li><a href="/press/">Press</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/terms/">Terms</a></li></ul></nav>
     </div>
-    <div class="nx-footer__base"><p>© <span data-nx-year>2026</span> Not Alone Studios.</p><p>Maulya's own site: <a href="https://maulya.in/">maulya.in</a></p></div>
+    <div class="nx-footer__base"><p>© <span data-nx-year>2026</span> Not Alone Studios.</p><p><a href="mailto:hello@notalonestudios.com">hello@notalonestudios.com</a></p></div>
   </div>
 </footer>
 <!-- /nx:footer -->"""

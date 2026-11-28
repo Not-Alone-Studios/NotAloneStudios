@@ -47,7 +47,7 @@
 
 <main id="main">
 
-  <!-- Maulya, first and largest -->
+  <!-- Maulya, first: short, and not open to new firms -->
   <section class="nx-hero" aria-labelledby="hero-title">
     <div class="nx-shell nx-hero__grid">
       <div>
@@ -56,54 +56,25 @@
           <img src="/assets/brand/maulya/maulya-app-icon-rounded.svg" width="64" height="64" alt="Maulya's mark: a cream serif M on a green tile" />
           <div><span class="nx-mark__name">Maulya</span><span class="nx-mark__sub">Office software for property valuers</span></div>
         </div>
-        <p><span class="nx-status nx-status--live">Live · early access for firms</span></p>
+        <p><span class="nx-status nx-status--live">In use with our founding firms</span></p>
         <h1 id="hero-title" style="margin-top:22px">The system under a valuer’s office.</h1>
-        <p class="nx-lede">Maulya keeps each bank valuation in one file, from the day it comes in to the day it is paid. We built it so the server decides where every file stands and what happens next, and every screen, on the desk or on the phone, shows that one answer.</p>
+        <p class="nx-lede">Maulya keeps each bank valuation in one file, from the day it comes in to the day it is paid. The server decides where every file stands and what happens next, and every screen shows that one answer.</p>
+        <p class="nx-hero__note">In use with our founding firms. Not yet open to new firms.</p>
         <div class="nx-actions">
-          <a class="nx-btn nx-btn--maulya" href="https://maulya.in/">Explore Maulya</a>
-          <a class="nx-btn nx-btn--ghost" href="/products/maulya/">How it’s built</a>
+          <a class="nx-btn nx-btn--maulya" href="/products/maulya/">About Maulya</a>
         </div>
-        <p class="nx-hero__sign">Already invited by your firm? <a href="https://app.maulya.in/">Sign in</a>.</p>
+        <p class="nx-hero__sign">Already using Maulya with your firm? <a href="https://app.maulya.in/">Sign in</a>.</p>
       </div>
       <div>
-        <div class="mx-stage">
-          <div class="mx-stage__phones">
-            <figure class="nx-phone"><img src="/assets/screens/maulya/app/phone-home-owner-390.webp" srcset="/assets/screens/maulya/app/phone-home-owner-390.webp 390w, /assets/screens/maulya/app/phone-home-owner-780.webp 780w" sizes="(max-width: 900px) 45vw, 260px" width="390" height="844" alt="Maulya's Home on a phone: two reports waiting for approval, files not given to anyone, late files and late payments." /></figure>
-            <figure class="nx-phone"><img src="/assets/screens/maulya/app/phone-visit-photos-390.webp" srcset="/assets/screens/maulya/app/phone-visit-photos-390.webp 390w, /assets/screens/maulya/app/phone-visit-photos-780.webp 780w" sizes="(max-width: 900px) 45vw, 260px" width="390" height="844" alt="A site visit's photos on a phone: 1 of 2 needed photos, each kept on the phone first, then sent to the office by itself." /></figure>
-          </div>
-          <p class="mx-stage__note">From Maulya’s app, with review data.</p>
+        <div class="mx-stage mx-stage--words">
+          <img class="mx-stage__mark" src="/assets/brand/maulya/maulya-app-icon-rounded.svg" width="72" height="72" alt="" />
+          <p class="mx-stage__kicker">How it’s built</p>
+          <ul class="mx-principles">
+            <li><b>Each firm’s data, kept apart.</b> The database itself keeps one firm’s files from another’s.</li>
+            <li><b>The server owns every file.</b> Where it stands and what comes next are worked out in one place.</li>
+            <li><b>Who did what, and when.</b> Every action on a file is written to an audit trail.</li>
+          </ul>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- the system and the code -->
-  <section class="nx-section nx-section--sage" aria-labelledby="built-title">
-    <div class="nx-shell">
-      <div class="nx-head nx-reveal">
-        <p class="nx-kicker">How it’s built</p>
-        <h2 id="built-title">Built so a firm can trust it.</h2>
-        <p class="nx-lede"><a href="https://maulya.in/">maulya.in</a> tells the product story. Here is the engineering underneath, as principles; each one is in Maulya’s code.</p>
-      </div>
-      <div class="nx-grid nx-grid--4">
-        <article class="nx-card nx-reveal"><span class="nx-card__no">01</span><h3>Each firm’s data, kept apart</h3><p>Every request carries its firm, and the database draws the same line itself, with row-level rules. One firm’s files never show up in another’s.</p></article>
-        <article class="nx-card nx-reveal"><span class="nx-card__no">02</span><h3>The server owns every file</h3><p>Where a file stands, who has it and what happens next are worked out on the server. The desk, the phone and the queue read the same answer.</p></article>
-        <article class="nx-card nx-reveal"><span class="nx-card__no">03</span><h3>Who did what, and when</h3><p>Actions on a file are written to an audit trail: who did it, when, and what it was before and after.</p></article>
-        <article class="nx-card nx-reveal"><span class="nx-card__no">04</span><h3>Shipped with a way back</h3><p>Every change runs the automated checks. A release takes a fresh backup first, and rolls itself back if the health check fails.</p></article>
-      </div>
-
-      <div class="nx-reveal" style="margin-top:clamp(40px,6vw,72px)">
-        <h3 style="margin-bottom:22px">Seven states, one next step</h3>
-        <ol class="mx-track" aria-label="The seven states of a Maulya file">
-          <li>Not started<small>A new file, made once</small></li>
-          <li>At site<small>The visit, on the phone</small></li>
-          <li>Waiting at desk<small>The visit is checked</small></li>
-          <li>At desk<small>The report is made</small></li>
-          <li>With the valuer<small>Approved, or sent back</small></li>
-          <li>Ready to go<small>Printed, signed, handed over</small></li>
-          <li>Delivered<small>Paid, and kept</small></li>
-        </ol>
-        <p style="margin-top:28px"><a class="nx-link" href="/products/maulya/">All seven principles, and the shape of the system</a></p>
       </div>
     </div>
   </section>
@@ -121,14 +92,14 @@
           <li><strong>Anyone’s plan, fitted to your months,</strong> with the honest list of what had to give.</li>
           <li><strong>Voices side by side, never blended:</strong> rankers, faculty and students, each shown separately.</li>
         </ul>
-        <div class="nx-actions"><a class="nx-btn nx-btn--calvetra" href="/products/calvetra/">Read about Calvetra</a></div>
+        <div class="nx-actions"><a class="nx-btn nx-btn--calvetra" href="/products/calvetra/demo/">See how it works</a><a class="nx-btn nx-btn--ghost" href="/products/calvetra/">Read about Calvetra</a></div>
       </div>
       <div class="nx-reveal">
         <div class="cv-stage">
           <figure class="nx-desk"><div class="nx-desk__bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="/assets/screens/calvetra/30-short-desk-light-800.webp" srcset="/assets/screens/calvetra/30-short-desk-light-800.webp 800w, /assets/screens/calvetra/30-short-desk-light-1280.webp 1280w" sizes="(max-width: 900px) 92vw, 560px" width="800" height="500" loading="lazy" alt="Calvetra's Whole plan on a computer: “About 66 hours short.”, with See what to drop as the first button and Add 20 minutes a day second." /></figure>
           <figure class="nx-phone"><img src="/assets/screens/calvetra/31-drop-list-phone-390.webp" srcset="/assets/screens/calvetra/31-drop-list-phone-390.webp 390w, /assets/screens/calvetra/31-drop-list-phone-780.webp 780w" sizes="180px" width="390" height="844" loading="lazy" alt="Calvetra's What can give list on a phone: the lowest-rated topics, each with its rankers, faculty and students counts." /></figure>
         </div>
-        <p class="nx-cap" style="margin-top:52px">From Calvetra’s design prototype. Names and numbers are invented.</p>
+        <p class="nx-cap" style="margin-top:52px">From Calvetra’s clickable demo, with sample data. Names and numbers are invented.</p>
       </div>
     </div>
   </section>
@@ -185,7 +156,7 @@
       <nav aria-label="The studio"><h2>Studio</h2><ul><li><a href="/method/">Method</a></li><li><a href="/proof/">Proof</a></li><li><a href="/studio/">Studio</a></li><li><a href="/labs/">Labs</a></li></ul></nav>
       <nav aria-label="Company"><h2>Company</h2><ul><li><a href="/contact/">Contact</a></li><li><a href="/press/">Press</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/terms/">Terms</a></li></ul></nav>
     </div>
-    <div class="nx-footer__base"><p>© <span data-nx-year>2026</span> Not Alone Studios.</p><p>Maulya's own site: <a href="https://maulya.in/">maulya.in</a></p></div>
+    <div class="nx-footer__base"><p>© <span data-nx-year>2026</span> Not Alone Studios.</p><p><a href="mailto:hello@notalonestudios.com">hello@notalonestudios.com</a></p></div>
   </div>
 </footer>
 <!-- /nx:footer -->

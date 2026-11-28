@@ -887,7 +887,7 @@
     const hookCTA = hookEngine.querySelector("[data-hook-cta]");
     const hookRadios = hookEngine.querySelectorAll('input[name="hook"]');
     const hookMap = {
-      ops: "https://maulya.in/",
+      ops: "/products/maulya/",
       study: "/products/revalk/",
       custom: "/contact/#studio",
     };
@@ -1001,7 +1001,7 @@ p{line-height:1.6;margin-bottom:12px;color:#b8bcb4}.card{background:#1a2420;bord
         const pct = Math.round(30 + ((step + 1) / total) * 70);
         const label = page.includes("maulya") ? "Maulya" : page.includes("revalk") ? "Revalk" : "System Map";
         zeigLabel.textContent = `${label}: ${pct}% — `;
-        const dest = page.includes("maulya") ? "https://maulya.in/" : page.includes("revalk") ? "/products/revalk/" : "/";
+        const dest = page.includes("maulya") ? "/products/maulya/" : page.includes("revalk") ? "/products/revalk/" : "/";
         zeigContinue.href = dest;
         zeigContinue.textContent = "Continue";
 
